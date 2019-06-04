@@ -1,0 +1,6 @@
+framework module JXEfficient {
+  umbrella header "JXEfficient-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_JXEfficient_Example {
+  umbrella header "Pods-JXEfficient_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
