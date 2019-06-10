@@ -196,6 +196,33 @@
 }
 
 + (UIImage *)jx_PDFImage:(id)dataOrPath {
+    return [self _jx_PDFImage:dataOrPath resize:YES size:CGSizeZero];
+}
+
++ (UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(NSBundle *)bundle {
+    if (jx_strValue(name).length == 0) {
+        return nil;
+    }
+    if (!bundle) {
+        bundle = [NSBundle mainBundle];
+    }
+    NSString *imagePath = [bundle pathForResource:name ofType:@"pdf"];
+    UIImage *img = [UIImage jx_PDFImage:imagePath];
+    return img;
+}
+
++ (UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(NSBundle *)bundle size:(CGSize)size {
+    if (jx_strValue(name).length == 0) {
+        return nil;
+    }
+    if (!bundle) {
+        bundle = [NSBundle mainBundle];
+    }
+    NSString *imagePath = [bundle pathForResource:name ofType:@"pdf"];
+    return [self _jx_PDFImage:imagePath resize:YES size:size];
+}
+
++ (UIImage *)_jx_PDFImage:(id)dataOrPath resize:(BOOL)resize size:(CGSize)size {
     CGPDFDocumentRef pdf = NULL;
     if ([dataOrPath isKindOfClass:[NSData class]]) {
         CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)dataOrPath);
@@ -213,7 +240,7 @@
     }
     
     CGRect pdfRect = CGPDFPageGetBoxRect(page, kCGPDFCropBox);
-    CGSize pdfSize = pdfRect.size;
+    CGSize pdfSize = resize ? size : pdfRect.size;
     CGFloat scale = [UIScreen mainScreen].scale;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef ctx = CGBitmapContextCreate(NULL, pdfSize.width * scale, pdfSize.height * scale, 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
@@ -234,19 +261,7 @@
     CGContextRelease(ctx);
     CGColorSpaceRelease(colorSpace);
     
-    return [pdfImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-}
-
-+ (UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(NSBundle *)bundle {
-    if (jx_strValue(name).length == 0) {
-        return nil;
-    }
-    if (!bundle) {
-        bundle = [NSBundle mainBundle];
-    }
-    NSString *imagePath = [bundle pathForResource:name ofType:@"pdf"];
-    UIImage *img = [UIImage jx_PDFImage:imagePath];
-    return img;
+    return pdfImage;
 }
 
 + (UIImage *)jx_imageWithNamed:(NSString *)name inBundle:(NSBundle *)bundle {

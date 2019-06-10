@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable UIImage *)jx_PDFImage:(id)dataOrPath; ///< 获取 PDF 图片
 + (nullable UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(nullable NSBundle *)bundle; ///< 指定 Bundle 里获取 PDF 图片.
++ (nullable UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(nullable NSBundle *)bundle size:(CGSize)size; ///< 指定 Bundle 里获取指定大小的 PDF 图片.
 + (nullable UIImage *)jx_imageWithNamed:(NSString *)name inBundle:(nullable NSBundle *)bundle; ///< 指定 Bundle 里获取图片.
 
 // QRCode
