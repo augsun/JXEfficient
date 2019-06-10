@@ -196,7 +196,7 @@
 }
 
 + (UIImage *)jx_PDFImage:(id)dataOrPath {
-    return [self _jx_PDFImage:dataOrPath resize:YES size:CGSizeZero];
+    return [self _jx_PDFImage:dataOrPath resize:YES size:CGSizeZero stretched:NO];
 }
 
 + (UIImage *)jx_PDFImageWithNamed:(NSString *)name inBundle:(NSBundle *)bundle {
@@ -219,10 +219,10 @@
         bundle = [NSBundle mainBundle];
     }
     NSString *imagePath = [bundle pathForResource:name ofType:@"pdf"];
-    return [self _jx_PDFImage:imagePath resize:YES size:size];
+    return [self _jx_PDFImage:imagePath resize:YES size:size stretched:YES];
 }
 
-+ (UIImage *)_jx_PDFImage:(id)dataOrPath resize:(BOOL)resize size:(CGSize)size {
++ (UIImage *)_jx_PDFImage:(id)dataOrPath resize:(BOOL)resize size:(CGSize)size stretched:(BOOL)stretched {
     CGPDFDocumentRef pdf = NULL;
     if ([dataOrPath isKindOfClass:[NSData class]]) {
         CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)dataOrPath);
@@ -251,6 +251,23 @@
     }
     
     CGContextScaleCTM(ctx, scale, scale);
+    
+    if (size.width > 0 && size.height > 0) {
+        CGFloat widthScale = size.width / pdfRect.size.width;
+        CGFloat heightScale = size.height / pdfRect.size.height;
+        
+        if (!stretched) {
+            heightScale = widthScale < heightScale ? widthScale : heightScale;
+            widthScale = heightScale < widthScale ? heightScale : widthScale;
+        }
+        
+        CGContextScaleCTM(ctx, widthScale, heightScale);
+    }
+    else {
+        CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page, kCGPDFCropBox, pdfRect, 0, true);
+        CGContextConcatCTM(ctx, drawingTransform);
+    }
+    
     CGContextTranslateCTM(ctx, -pdfRect.origin.x, -pdfRect.origin.y);
     CGContextDrawPDFPage(ctx, page);
     CGPDFDocumentRelease(pdf);
