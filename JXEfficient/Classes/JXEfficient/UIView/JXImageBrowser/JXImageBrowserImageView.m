@@ -256,7 +256,7 @@ const CGFloat JXImageBrowserImageViewAnimationDuration = 0.25;
     // 只捕获 pan 手势情况
     if (gestureRecognizer == self.panGes) {
         CGPoint velocity = [self.panGes velocityInView:self.panGes.view];
-        // 垂直速率> 水平速率 的情况
+        // 垂直速率 > 水平速率 的情况
         if (velocity.y > 0) {
             CGFloat x_and_more = 3 * fabs(velocity.x); // 手指滑向与水平线的向下角度大于 arctan(3) ≈ 72° <主要目的防止和左右切换图片的滑动混淆>
             if (velocity.y > x_and_more && self.scrollView.contentOffset.y <= 0) {
@@ -334,7 +334,7 @@ const CGFloat JXImageBrowserImageViewAnimationDuration = 0.25;
             sCount = sMax;
         }
         else {
-            // 保留底部 0.1 百分比最小不变
+            // 保留底部 0.1(百分比 10%) 最小不变
             CGFloat sReal = sMax - pointY / (JX_SCREEN_H - JX_SCREEN_H * (0.1));
             if (sReal > sMin) {
                 sCount = sReal;

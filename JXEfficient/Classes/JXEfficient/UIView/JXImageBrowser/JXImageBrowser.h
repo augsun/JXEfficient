@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JXImageBrowser : UIView
 
 /**
- 外部不需要持有该方法创建的实例对象, 只需要对该对象的其它回调属性进行相应的设置即可, 如 setImageWithURL
+ 外部不需要持有该方法创建的实例对象, 只需要对该对象的其它回调属性进行相应的设置即可, 如 loadImage
  */
 + (instancetype)imageBrowser;
 
