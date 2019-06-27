@@ -61,13 +61,21 @@
     return decodedStr;
 }
 
-+ (NSDictionary *)jx_URLParamsInURLString:(NSString *)URLString {
-    NSURLComponents *comps = [NSURLComponents componentsWithString:URLString];
-    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] init];
+- (NSDictionary *)jx_URLParams {
+    NSURLComponents *comps = [NSURLComponents componentsWithString:self];
+    NSMutableDictionary *tempDic = nil;
     for (NSURLQueryItem *itemEnum in comps.queryItems) {
+        if (!tempDic) {
+            tempDic = [[NSMutableDictionary alloc] init];
+        }
         tempDic[itemEnum.name] = itemEnum.value;
     }
-    return [tempDic copy];
+    if (tempDic && tempDic.allKeys.count > 0) {
+        return [tempDic copy];
+    }
+    else {
+        return nil;
+    }
 }
 
 - (NSString *)jx_URLAddParams:(NSDictionary *)params {

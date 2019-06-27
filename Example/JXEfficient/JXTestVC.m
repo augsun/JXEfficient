@@ -14,7 +14,8 @@
 
 #import "JXTagsGeneralView.h"
 #import "JXNavigationBar.h"
-#import "NSString+JXCategory.h";
+#import "NSString+JXCategory.h"
+#import "NSString+JXCategory_URLString.h"
 
 @interface JXTestVC ()
 
@@ -94,6 +95,9 @@
     //
     NSString *URLString = nil;
     URLString = @"https://app.mixcapp.com/h5/share/templates/shop.html?shopId=L0124N03&mallNo=1102A001&name=%E6%9D%A5&mixcNativeUrl=mixc%3a%2f%2fapp%2fshopDetail%3fshopId%3dL0124N03";
+    
+    NSDictionary *dicParams = [URLString jx_URLParams];
+    
     
     NSString *newURLString = nil;
     NSDictionary *params = @{

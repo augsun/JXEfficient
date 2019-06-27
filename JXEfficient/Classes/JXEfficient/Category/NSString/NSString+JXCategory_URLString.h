@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)jx_URLDecoded_loop; ///< URLDecoded 直到全部被 Decoded, 最多进行 10 次 URLDecode
 
 //
-+ (nullable NSDictionary *)jx_URLParamsInURLString:(NSString *)URLString; ///< 取得 URLString 里的参数
+- (nullable NSDictionary *)jx_URLParams; ///< 取得 URLString 里的参数
 
 /**
  为 URLString 添加参数
