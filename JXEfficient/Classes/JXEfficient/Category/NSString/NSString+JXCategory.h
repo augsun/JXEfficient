@@ -30,13 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSComparisonResult)jx_compareToVersionString:(NSString *)version;
 
-- (NSString *)jx_URLEncoded; ///< URL encoded
-- (NSString *)jx_URLDecoded; ///< URL decoded
-- (NSString *)jx_URLDecoded_loop; ///< URLDecoded 直到全部被 Decoded, 最多进行 10 次 URLDecode
-
-//
-+ (nullable NSDictionary *)jx_paramsForURLString:(NSString *)URLString; ///< 取得 URLString 里的参数
-
 - (CGFloat)jx_widthForFont:(UIFont *)font; ///< 计算字体单行宽度
 
 #pragma mark 浮点数

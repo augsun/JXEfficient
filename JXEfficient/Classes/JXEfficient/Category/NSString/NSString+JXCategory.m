@@ -57,56 +57,6 @@
     return result;
 }
 
-- (NSString *)jx_URLEncoded {
-    NSString *charactersToEscape = @"!*'();:@&=+$,/?%#[]^\"`<> {}\\|";
-    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
-    NSString *encodedUrl = [self stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-    return encodedUrl;
-
-    // deprecated in iOS 9.0
-//    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-//                                                                                 (CFStringRef)self,
-//                                                                                 NULL,
-//                                                                                 (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-//                                                                                 kCFStringEncodingUTF8));
-}
-
-- (NSString *)jx_URLDecoded {
-    NSString *decoded = [self stringByRemovingPercentEncoding];
-    return decoded;
-    
-    // deprecated in iOS 9.0
-//    return (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-//                                                                                                 (__bridge CFStringRef)self,
-//                                                                                                 CFSTR(""),
-//                                                                                                 CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-}
-
-- (NSString *)jx_URLDecoded_loop {
-    BOOL didRight = NO;
-    NSString *preStr = self;
-    for (NSInteger i = 0; i < 10; i ++) {
-        NSString *nowStr = [preStr jx_URLDecoded];
-        didRight = [nowStr isEqualToString:preStr];
-        if (didRight) {
-            break;
-        }
-        else {
-            preStr = nowStr;
-        }
-    }
-    return preStr;
-}
-
-+ (NSDictionary *)jx_paramsForURLString:(NSString *)URLString {
-    NSURLComponents *comps = [NSURLComponents componentsWithString:URLString];
-    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] init];
-    for (NSURLQueryItem *itemEnum in comps.queryItems) {
-        tempDic[itemEnum.name] = itemEnum.value;
-    }
-    return [tempDic copy];
-}
-
 - (CGFloat)jx_widthForFont:(UIFont *)font {
     if (!font || ![font isKindOfClass:[UIFont class]]) {
         return 0.0;

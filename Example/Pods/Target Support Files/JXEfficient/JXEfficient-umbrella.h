@@ -14,6 +14,7 @@
 #import "NSDate+JXCategory.h"
 #import "NSLayoutConstraint+JXCategory.h"
 #import "NSString+JXCategory.h"
+#import "NSString+JXCategory_URLString.h"
 #import "UIButton+JXCategory.h"
 #import "UICollectionView+JXCategory.h"
 #import "UIColor+JXCategory.h"

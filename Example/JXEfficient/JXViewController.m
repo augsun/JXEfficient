@@ -42,15 +42,8 @@
 }
 
 - (void)pushTest {
-    for (NSInteger i = 0; i < 100; i ++) {
-        NSString *name = [JXChowder deviceModel];
-        NSLog(@"%ld %@", i, name);
-    }
-    
-    
-    
-//    JXTestVC *vc = [[JXTestVC alloc] init];
-//    [self jx_pushVC:vc];
+    JXTestVC *vc = [[JXTestVC alloc] init];
+    [self jx_pushVC:vc];
 }
 
 @end
