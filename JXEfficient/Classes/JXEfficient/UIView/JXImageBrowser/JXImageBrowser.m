@@ -16,6 +16,7 @@
 #import "JXImageBrowserImageView.h"
 #import "JXImageBrowserPageControlView.h"
 #import "JXInline.h"
+#import "JXSystemAlert.h"
 
 static const CGFloat kInteritemSpace = 15.f;
 
@@ -260,7 +261,7 @@ static JXImageBrowser *imageBrowser_;
 }
 
 - (void)jxImageViewLongPress:(JXImageBrowserImageView *)imageBrowserImageView {
-    UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheetCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     // 取消
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -270,37 +271,41 @@ static JXImageBrowser *imageBrowser_;
     // 保存到手机
     UIAlertAction *actionSave = [UIAlertAction actionWithTitle:@"保存到手机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            switch (status) {
-                case PHAuthorizationStatusNotDetermined:
-                case PHAuthorizationStatusAuthorized:
-                {
-                    UIImageWriteToSavedPhotosAlbum(imageBrowserImageView.largeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-                } break;
-                    
-                case PHAuthorizationStatusDenied:
-                {
-                    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-                    NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
-                    NSString *message = nil;
-                    if (appName) {
-                        message = [NSString stringWithFormat:@"请在 iPhone 的\"设置-隐私-照片\"选项中，允许%@访问您的照片。", appName];
-                    }
-                    else {
-                        message = @"请在 iPhone 的\"设置-隐私-照片\"选项中，允许访问您的照片。";
-                    }
-                    
-                    UIAlertController *alertNoAuth = [UIAlertController alertControllerWithTitle:@"无法保存" message:message preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *acCalcel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                    [alertNoAuth addAction:acCalcel];
-                    UIAlertAction *acToSetting = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                    }];
-                    [alertNoAuth addAction:acToSetting];
-                    [self.bgWindow.rootViewController presentViewController:alertNoAuth animated:YES completion:nil];
-                } break;
-                    
-                default: break;
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                switch (status) {
+                    case PHAuthorizationStatusNotDetermined:
+                    case PHAuthorizationStatusAuthorized:
+                    {
+                        UIImageWriteToSavedPhotosAlbum(imageBrowserImageView.largeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                    } break;
+                        
+                    case PHAuthorizationStatusDenied:
+                    {
+                        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                        NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
+                        NSString *message = nil;
+                        if (appName) {
+                            message = [NSString stringWithFormat:@"请在 iPhone 的\"设置-隐私-照片\"选项中，允许%@访问您的照片。", appName];
+                        }
+                        else {
+                            message = @"请在 iPhone 的\"设置-隐私-照片\"选项中，允许访问您的照片。";
+                        }
+                        
+                        [JXSystemAlert alertFromVC:self.bgWindow.rootViewController
+                                             title:@"无法保存"
+                                           message:message
+                                       cancelTitle:@"取消"
+                                      defaultTitle:@"去设置"
+                                     cancelHandler:nil
+                                    defaultHandler:^
+                         {
+                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                         }];
+                    } break;
+                        
+                    default: break;
+                }
+            });
         }];
     }];
     
@@ -327,12 +332,12 @@ static JXImageBrowser *imageBrowser_;
     }
 
     //
-    [alertCtl addAction:actionSave];
+    [actionSheetCtl addAction:actionSave];
     if (scanQRCode) {
-        [alertCtl addAction:scanQRCode];
+        [actionSheetCtl addAction:scanQRCode];
     }
-    [alertCtl addAction:actionCancel];
-    [self.bgWindow.rootViewController presentViewController:alertCtl animated:YES completion:nil];
+    [actionSheetCtl addAction:actionCancel];
+    [self.bgWindow.rootViewController presentViewController:actionSheetCtl animated:YES completion:nil];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
