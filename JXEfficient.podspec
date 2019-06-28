@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JXEfficient'
-  s.version          = '0.2.65'
+  s.version          = '0.2.66'
   s.summary          = 'A short description of JXEfficient.'
 
 # This description is used to generate tags and improve search results.
@@ -33,6 +33,6 @@ Pod::Spec.new do |s|
   #  'JXEfficient' => 'JXEfficient/Classes/**/*.{xib,pdf,png}'
   #}
 
-  s.frameworks = 'UIKit', 'Foundation', 'AssetsLibrary', 'Security', 'CoreLocation'
+  s.frameworks = 'UIKit', 'Foundation', 'Security', 'CoreLocation'
 
 end

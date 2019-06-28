@@ -7,7 +7,7 @@
 //
 
 #import "JXImageBrowser.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 #import "JXMacro.h"
 #import "UIImage+JXCategory.h"
@@ -259,8 +259,8 @@ static JXImageBrowser *imageBrowser_;
 }
 
 - (void)jxImageViewLongPress:(JXImageBrowserImageView *)imageBrowserImageView {
-    ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
-    if (authStatus == ALAuthorizationStatusRestricted) { return; }
+    PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+    if (authStatus == PHAuthorizationStatusRestricted) { return; }
     
     UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -272,13 +272,13 @@ static JXImageBrowser *imageBrowser_;
     // 保存到手机
     UIAlertAction *actionSave = [UIAlertAction actionWithTitle:@"保存到手机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         switch (authStatus) {
-            case ALAuthorizationStatusNotDetermined:
-            case ALAuthorizationStatusAuthorized:
+            case PHAuthorizationStatusNotDetermined:
+            case PHAuthorizationStatusAuthorized:
             {
                 UIImageWriteToSavedPhotosAlbum(imageBrowserImageView.largeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
             } break;
                 
-            case ALAuthorizationStatusDenied:
+            case PHAuthorizationStatusDenied:
             {
                 UIAlertController *alertNoAuth = [UIAlertController alertControllerWithTitle:@"无法保存" message:@"请前往\"设置-隐私-照片\"选项中，允许访问您的照片。" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *acCalcel = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleCancel handler:nil];
