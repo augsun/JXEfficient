@@ -134,7 +134,7 @@
     if (needExtraAppend) {
         NSMutableString *tempURL = [comps.URL.absoluteString mutableCopy];
         if (!tempURL) {
-            return nil;
+            return self;
         }
         for (NSDictionary *keyEnum in tempURLEncodedParams) {
             NSString *key = jx_strValue(keyEnum);

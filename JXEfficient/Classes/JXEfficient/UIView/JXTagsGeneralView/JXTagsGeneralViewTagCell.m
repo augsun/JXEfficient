@@ -22,13 +22,6 @@ static const CGFloat kNameLabel_toLR = 1.0;
 
 + (void)customForModel:(JXTagsGeneralViewTagModel *)model {
     CGSize size = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-    UIFont *font = nil;
-    if (model.normalFont.pointSize > model.selectedFont.pointSize) {
-        font = model.normalFont;
-    }
-    else {
-        font = model.selectedFont;
-    }
     CGFloat tagName_w_normal = [model.tagName boundingRectWithSize:size
                                                            options:JX_DRAW_OPTION
                                                         attributes:@{NSFontAttributeName: model.normalFont}

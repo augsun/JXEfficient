@@ -16,17 +16,6 @@
                              disabledColor:(UIColor *)disabledColor
                                     radius:(CGFloat)radius
 {
-    CGSize size = CGSizeZero;
-    UIEdgeInsets insets = UIEdgeInsetsZero;
-    if (radius > 0) {
-        size = CGSizeMake(2 * radius + 1, 2 * radius + 1);
-        insets = UIEdgeInsetsMake(radius, radius, radius, radius);
-    }
-    else {
-        size = CGSizeMake(3, 3);
-        insets = UIEdgeInsetsMake(1, 1, 1, 1);
-    }
-    
     UIImage *normalImage = nil;
     if (normalColor) {
         normalImage = [UIImage jx_imageFromColor:normalColor radius:radius];

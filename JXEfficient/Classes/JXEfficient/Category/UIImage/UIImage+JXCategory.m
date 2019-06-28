@@ -354,9 +354,13 @@
     
     //
     CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    UIImage *uiImage = [UIImage imageWithCGImage:scaledImage scale:screenScale orientation:UIImageOrientationUp];
+    
+    CGColorSpaceRelease(cs);
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
-    UIImage *uiImage = [UIImage imageWithCGImage:scaledImage scale:screenScale orientation:UIImageOrientationUp];
+    CGImageRelease(scaledImage);
+
     return uiImage;
 }
 

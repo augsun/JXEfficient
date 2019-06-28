@@ -228,17 +228,17 @@ highlightedColor:(UIColor *)highlightedColor
                 contentWidth = title_w;
             }
         }
-        if (highlightedAttributedTitle.length > 0 &&
-            ![highlightedAttributedTitle isEqualToAttributedString:normalAttributedTitle]) {
+        BOOL ret0 = normalAttributedTitle ? (![highlightedAttributedTitle isEqualToAttributedString:normalAttributedTitle]) : YES; // 无 或 不相等 需要计算
+        if (highlightedAttributedTitle.length > 0 && ret0) {
             
             CGFloat title_w = count_title_w(highlightedAttributedTitle);
             if (title_w > contentWidth) {
                 contentWidth = title_w;
             }
         }
-        if (disabledAttributedTitle.length > 0 &&
-            ![disabledAttributedTitle isEqualToAttributedString:normalAttributedTitle] &&
-            ![disabledAttributedTitle isEqualToAttributedString:highlightedAttributedTitle]) {
+        BOOL ret1 = normalAttributedTitle ? ![disabledAttributedTitle isEqualToAttributedString:normalAttributedTitle] : YES;
+        BOOL ret2 = highlightedAttributedTitle ? ![disabledAttributedTitle isEqualToAttributedString:highlightedAttributedTitle] : YES;
+        if (disabledAttributedTitle.length > 0 && ret1 && ret2) {
             
             CGFloat title_w = count_title_w(disabledAttributedTitle);
             if (title_w > contentWidth) {

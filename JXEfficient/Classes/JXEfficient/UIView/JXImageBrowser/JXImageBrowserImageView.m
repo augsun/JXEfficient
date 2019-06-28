@@ -329,7 +329,7 @@ const CGFloat JXImageBrowserImageViewAnimationDuration = 0.25;
         CGFloat sMax = 1.0;
         CGFloat sMin = 0.3;
         
-        CGFloat sCount = sMax; // 缩放
+        CGFloat sCount = 0.0; // 缩放
         if (pointY <= 0.0) {
             sCount = sMax;
         }
