@@ -7,11 +7,161 @@
 //
 
 #import "JXSystemAlert.h"
+#import "JXMacro.h"
 
 @implementation JXSystemAlert
 
-// ====================================================================================================
-#pragma mark - UIAlertControllerStyleAlert
+#define JX_ALERT_CTL [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert]
+
++ (void)alertFromVC:(UIViewController *)vc
+              title:(NSString *)title
+            message:(NSString *)message
+        cancelTitle:(NSString *)cancelTitle
+      cancelHandler:(void (^)(void))cancelHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:cancelTitle
+                                                 style:UIAlertActionStyleCancel
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(cancelHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
++ (void)alertFromVC:(UIViewController *)vc
+              title:(NSString *)title
+            message:(NSString *)message
+       defaultTitle:(NSString *)defaultTitle
+     defaultHandler:(void (^)(void))defaultHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:defaultTitle
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(defaultHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
++ (void)alertFromVC:(UIViewController *)vc
+              title:(NSString *)title
+            message:(NSString *)message
+   destructiveTitle:(NSString *)destructiveTitle
+ destructiveHandler:(void (^)(void))destructiveHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:destructiveTitle
+                                                 style:UIAlertActionStyleDestructive
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(destructiveHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
++ (void)alertFromVC:(UIViewController *)vc
+              title:(NSString *)title
+            message:(NSString *)message
+        cancelTitle:(NSString *)cancelTitle
+       defaultTitle:(NSString *)defaultTitle
+      cancelHandler:(void (^)(void))cancelHandler
+     defaultHandler:(void (^)(void))defaultHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:cancelTitle
+                                                 style:UIAlertActionStyleCancel
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(cancelHandler);
+                         }]];
+    [alertCtl addAction:[UIAlertAction actionWithTitle:defaultTitle
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(defaultHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
++ (void)alertFromVC:(UIViewController *)vc
+              title:(NSString *)title
+            message:(NSString *)message
+        cancelTitle:(NSString *)cancelTitle
+   destructiveTitle:(NSString *)destructiveTitle
+      cancelHandler:(void (^)(void))cancelHandler
+ destructiveHandler:(void (^)(void))destructiveHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:cancelTitle
+                                                 style:UIAlertActionStyleCancel
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(cancelHandler);
+                         }]];
+    [alertCtl addAction:[UIAlertAction actionWithTitle:destructiveTitle
+                                                 style:UIAlertActionStyleDestructive
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(destructiveHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
++ (void)alertFromVC:(UIViewController *)vc title:(NSString *)title
+            message:(NSString *)message
+   leftDefaultTitle:(NSString *)leftDefaultTitle
+  rightDefaultTitle:(NSString *)rightDefaultTitle
+ leftDefaultHandler:(void (^)(void))leftDefaultHandler
+rightDefaultHandler:(void (^)(void))rightDefaultHandler
+{
+    UIAlertController *alertCtl = JX_ALERT_CTL;
+    [alertCtl addAction:[UIAlertAction actionWithTitle:leftDefaultTitle
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(leftDefaultHandler);
+                         }]];
+    [alertCtl addAction:[UIAlertAction actionWithTitle:rightDefaultTitle
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action)
+                         {
+                             JX_BLOCK_EXEC(rightDefaultHandler);
+                         }]];
+    [vc presentViewController:alertCtl animated:YES completion:nil];
+}
+
+#undef JX_ALERT_CTL
+
++ (void)sheetFromVC:(UIViewController *)viewController
+      default0Title:(NSString *)title0
+      default1Title:(NSString *)title1
+             cancel:(NSString *)cancelTitle
+   default0Callback:(void (^)(void))default0Callback
+   default1Callback:(void (^)(void))default1Callback
+     cancelCallback:(void (^)(void))cancelCallback {
+    
+    UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action0 = [UIAlertAction actionWithTitle:title0 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        !default0Callback ? : default0Callback();
+    }];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:title1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        !default1Callback ? : default1Callback();
+    }];
+    
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertCtl addAction:action0];
+    [alertCtl addAction:action1];
+    [alertCtl addAction:actionCancel];
+    [viewController presentViewController:alertCtl animated:YES completion:nil];
+}
+
+@end
+
+@implementation JXSystemAlert (Deprecated)
 
 + (void)alertFromVC:(UIViewController *)viewController
          alertTitle:(NSString *)alertTitle
@@ -74,34 +224,6 @@
     }];
     [alertCtl addAction:actionLeft];
     [alertCtl addAction:actionRight];
-    [viewController presentViewController:alertCtl animated:YES completion:nil];
-}
-
-// ====================================================================================================
-#pragma mark - UIAlertControllerStyleActionSheet
-
-+ (void)sheetFromVC:(UIViewController *)viewController
-      default0Title:(NSString *)title0
-      default1Title:(NSString *)title1
-             cancel:(NSString *)cancelTitle
-   default0Callback:(void (^)(void))default0Callback
-   default1Callback:(void (^)(void))default1Callback
-     cancelCallback:(void (^)(void))cancelCallback {
-    
-    UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *action0 = [UIAlertAction actionWithTitle:title0 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        !default0Callback ? : default0Callback();
-    }];
-    
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:title1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        !default1Callback ? : default1Callback();
-    }];
-    
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertCtl addAction:action0];
-    [alertCtl addAction:action1];
-    [alertCtl addAction:actionCancel];
     [viewController presentViewController:alertCtl animated:YES completion:nil];
 }
 

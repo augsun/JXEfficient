@@ -116,7 +116,10 @@
     NSLog(@"");
     
     
-    
+    [JXSystemAlert alertFromVC:self alertTitle:@"" alertMessage:@"" defaultTtitle:@"" defaultHandler:^{
+        
+    }];
+
     
     
     
