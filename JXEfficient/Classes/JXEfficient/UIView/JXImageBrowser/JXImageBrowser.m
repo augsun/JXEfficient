@@ -285,7 +285,7 @@ static JXImageBrowser *imageBrowser_;
                         NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
                         NSString *message = nil;
                         if (appName) {
-                            message = [NSString stringWithFormat:@"请在 iPhone 的\"设置-隐私-照片\"选项中，允许%@访问您的照片。", appName];
+                            message = [NSString stringWithFormat:@"请在 iPhone 的\"设置-隐私-照片\"选项中，允许 %@ 访问您的照片。", appName];
                         }
                         else {
                             message = @"请在 iPhone 的\"设置-隐私-照片\"选项中，允许访问您的照片。";
