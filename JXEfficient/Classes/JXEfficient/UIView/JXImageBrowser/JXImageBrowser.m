@@ -15,6 +15,7 @@
 
 #import "JXImageBrowserImageView.h"
 #import "JXImageBrowserPageControlView.h"
+#import "JXInline.h"
 
 static const CGFloat kInteritemSpace = 15.f;
 
@@ -259,9 +260,6 @@ static JXImageBrowser *imageBrowser_;
 }
 
 - (void)jxImageViewLongPress:(JXImageBrowserImageView *)imageBrowserImageView {
-    PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
-    if (authStatus == PHAuthorizationStatusRestricted) { return; }
-    
     UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     // 取消
@@ -271,23 +269,39 @@ static JXImageBrowser *imageBrowser_;
     
     // 保存到手机
     UIAlertAction *actionSave = [UIAlertAction actionWithTitle:@"保存到手机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        switch (authStatus) {
-            case PHAuthorizationStatusNotDetermined:
-            case PHAuthorizationStatusAuthorized:
-            {
-                UIImageWriteToSavedPhotosAlbum(imageBrowserImageView.largeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-            } break;
-                
-            case PHAuthorizationStatusDenied:
-            {
-                UIAlertController *alertNoAuth = [UIAlertController alertControllerWithTitle:@"无法保存" message:@"请前往\"设置-隐私-照片\"选项中，允许访问您的照片。" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *acCalcel = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleCancel handler:nil];
-                [alertNoAuth addAction:acCalcel];
-                [self.bgWindow.rootViewController presentViewController:alertNoAuth animated:YES completion:nil];
-            } break;
-                
-            default: break;
-        }
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            switch (status) {
+                case PHAuthorizationStatusNotDetermined:
+                case PHAuthorizationStatusAuthorized:
+                {
+                    UIImageWriteToSavedPhotosAlbum(imageBrowserImageView.largeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                } break;
+                    
+                case PHAuthorizationStatusDenied:
+                {
+                    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                    NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
+                    NSString *message = nil;
+                    if (appName) {
+                        message = [NSString stringWithFormat:@"请在 iPhone 的\"设置-隐私-照片\"选项中，允许%@访问您的照片。", appName];
+                    }
+                    else {
+                        message = @"请在 iPhone 的\"设置-隐私-照片\"选项中，允许访问您的照片。";
+                    }
+                    
+                    UIAlertController *alertNoAuth = [UIAlertController alertControllerWithTitle:@"无法保存" message:message preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *acCalcel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                    [alertNoAuth addAction:acCalcel];
+                    UIAlertAction *acToSetting = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                    }];
+                    [alertNoAuth addAction:acToSetting];
+                    [self.bgWindow.rootViewController presentViewController:alertNoAuth animated:YES completion:nil];
+                } break;
+                    
+                default: break;
+            }
+        }];
     }];
     
     // 二维码点击
