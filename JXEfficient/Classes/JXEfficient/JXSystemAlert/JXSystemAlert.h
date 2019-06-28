@@ -115,7 +115,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
          alertTitle:(NSString *)alertTitle
        alertMessage:(NSString *)alertMessage
       defaultTtitle:(NSString *)defaultTtitle
-     defaultHandler:(void(^)(void))defaultHandler __deprecated_msg("即将废弃, 请使用新方法.");
+     defaultHandler:(void(^)(void))defaultHandler __deprecated_msg("即将废弃, 请使用 JXSystemAlert 下对应的新方法.");
 
 /**
                            title
@@ -126,7 +126,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
         cancelTitle:(NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
- destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg("即将废弃, 请使用新方法.");
+ destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
 
 /**
                            title
@@ -139,7 +139,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
         cancelTitle:(NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
- destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg("即将废弃, 请使用新方法.");
+ destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
 
 /**
                            title
@@ -153,7 +153,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
   defaultTtitleLeft:(NSString *)defaultTtitleLeft
  defaultTtitleRight:(NSString *)defaultTtitleRight
         leftHandler:(void(^)(void))leftHandler
-       rightHandler:(void(^)(void))rightHandler __deprecated_msg("即将废弃, 请使用新方法.");
+       rightHandler:(void(^)(void))rightHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
 
 @end
 
