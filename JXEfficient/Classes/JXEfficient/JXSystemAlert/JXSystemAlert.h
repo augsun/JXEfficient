@@ -89,16 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
  leftDefaultHandler:(nullable void (^)(void))leftDefaultHandler
 rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
 
-#pragma mark - UIAlertControllerStyleActionSheet
-
-+ (void)sheetFromVC:(UIViewController *)viewController
-      default0Title:(NSString *)title0
-      default1Title:(NSString *)title1
-             cancel:(NSString *)cancelTitle
-   default0Callback:(void(^)(void))default0Callback
-   default1Callback:(void(^)(void))default1Callback
-     cancelCallback:(void(^)(void))cancelCallback;
-
 @end
 
 /**

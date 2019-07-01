@@ -17,6 +17,8 @@
 #import "NSString+JXCategory.h"
 #import "NSString+JXCategory_URLString.h"
 
+#import "JXPopupGeneralView.h"
+
 @interface JXTestVC ()
 
 @property (nonatomic, strong) JXNaviView *naviView;
@@ -83,43 +85,22 @@
 - (void)rightClick {
     //
     
-    NSURLComponents *cp = [NSURLComponents componentsWithString:@"https://www.baidu.com"];
-    NSURLQueryItem *queryItem = [[NSURLQueryItem alloc] initWithName:@"name" value:@"https%3a%2f%2fwww.baidu.com"];
-    cp.queryItems = @[queryItem];
-
-    NSLog(@"%@", cp.URL.absoluteString);
-
-    NSLog(@"%@ %@", queryItem.name, queryItem.value);
+    JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];
+    popView.titleViewContentH = 80.0;
+    popView.contentViewContentH = 600.0;
+    popView.buttonsViewContentH = 44.0;
+    popView.animation = YES;
+    popView.popupBgViewToT_min = 100.0;
+    popView.popupBgViewToB_min = 200.0;
+    popView.closeTo = JXPopupViewCloseToTop;
+    [popView show];
     
-    
-    //
-    NSString *URLString = nil;
-    URLString = @"https://app.mixcapp.com/h5/share/templates/shop.html?shopId=L0124N03&mallNo=1102A001&name=%E6%9D%A5&mixcNativeUrl=mixc%3a%2f%2fapp%2fshopDetail%3fshopId%3dL0124N03";
-    
-//    NSDictionary *dicParams = [URLString jx_URLParams];
-    
-    
-    NSString *newURLString = nil;
-    NSDictionary *params = @{
-                             @"hqsmUrl": @"%e5%85%b7",
-                             };
-    newURLString = [URLString jx_URLAddParams:params];
-    
-    NSLog(@"\n%@", newURLString);
-    // https://app.mixcapp.com/h5/share/templates/shop.html?shopId=L0124N03&mallNo=1102A001&name=%E6%9D%A5&mixcNativeUrl=mixc%3A%2F%2Fapp%2FshopDetail%3FshopId%3DL0124N03
-    // https://app.mixcapp.com/h5/share/templates/shop.html?shopId=L0124N03&mallNo=1102A001&mixcNativeUrl=mixc%3A%2F%2Fapp%2FshopDetail%3FshopId%3DL0124N03&name=%E6%9D%A5
-
-    // https://app.mixcapp.com/h5/share/templates/shop.html?shopId=L0124N03&mallNo=1102A001&mixcNativeUrl=mixc://app/shopDetail?shopId%3DL0124N03&name=%E6%9D%A5
-
-
-    
-    NSLog(@"");
-    
-    
-    [JXSystemAlert alertFromVC:self alertTitle:@"" alertMessage:@"" defaultTtitle:@"" defaultHandler:^{
-        
-    }];
-
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        popView.titleViewContentH = 40.0;
+//        popView.contentViewContentH = 100.0;
+//        popView.buttonsViewContentH = 70.0;
+//        [popView refreshAnimated:YES];
+    });
     
     
     

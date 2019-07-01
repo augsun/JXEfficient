@@ -34,6 +34,7 @@
 #import "JXLocationCoordinates.h"           // 定位
 #import "JXRegular.h"                       // 常用正则匹配
 #import "JXSystemAlert.h"                   // 系统 Alert
+#import "JXSystemActionSheet.h"             // 系统 ActionSheet
 #import "JXUpdateCheck.h"                   // 版本更新检查
 #import "JXUUIDAndKeyChain.h"               // UUID And KeyChain
 #import "JXCoreData.h"                      // 数据库操作
@@ -54,6 +55,8 @@
 #import "JXVideoPlayerView.h"               // 视频播放
 #import "JXTagFlowLayout.h"
 #import "JXPopupBaseView.h"
+#import "JXPopupView.h"
+#import "JXPopupGeneralView.h"
 #import "JXTagsView.h"
 #import "JXTagsGeneralView.h"
 #import "JXPagingView.h"

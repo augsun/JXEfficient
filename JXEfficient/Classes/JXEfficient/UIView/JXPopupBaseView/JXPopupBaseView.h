@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ 自定义弹窗的抽象类, 不直接实例化使用.
  添加到 UIWindow<[UIApplication sharedApplication].keyWindow> 上的全屏弹窗.
  内部封装实现了背景灰层的渐显渐隐, 灰色背景点击事件回调, 以及要实现动画改变<change>的回调, 以及动画结束<从 keyWindow 上移除>回调.
  */
