@@ -10,6 +10,8 @@
 #import "NSLayoutConstraint+JXCategory.h"
 #import "JXMacro.h"
 
+static const CGFloat k_cornerRadius = 12.0;
+
 static const CGFloat k_popupBgViewToT_min = 40.0;
 static const CGFloat k_popupBgViewToLR = 20.0;
 static const CGFloat k_popupBgViewToB_min = 60.0;
@@ -143,9 +145,17 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     self.buttonsViewToAboveWidget = k_buttonsViewToAboveWidget;
     self.buttonsViewEdgeInsets = k_buttonsViewEdgeInsets;
 
+    //
+    self.popupBgView.clipsToBounds = YES;
+    self.cornerRadius = k_cornerRadius;
+
 }
 
 #pragma mark - setter
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    _cornerRadius = cornerRadius;
+    self.popupBgView.layer.cornerRadius = cornerRadius;
+}
 
 #pragma mark - show
 

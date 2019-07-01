@@ -86,13 +86,17 @@
     //
     
     JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];
-    popView.titleViewContentH = 80.0;
+    popView.titleViewContentH = 40.0;
+    popView.titleViewEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
     popView.contentViewContentH = 600.0;
     popView.buttonsViewContentH = 44.0;
     popView.animation = YES;
     popView.popupBgViewToT_min = 100.0;
     popView.popupBgViewToB_min = 200.0;
     popView.closeTo = JXPopupViewCloseToTop;
+    
+    popView.titleLabel.text = @"领取";
+    
     [popView show];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

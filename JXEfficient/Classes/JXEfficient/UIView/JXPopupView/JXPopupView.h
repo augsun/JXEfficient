@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- popupBgView 位置
+ JXPopupView.popupBgView 的贴近位置.
  */
 typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
     JXPopupViewCloseToCenter, ///< 居中, 默认
@@ -25,8 +25,9 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @interface JXPopupView : JXPopupBaseView
 
 //
-@property (nonatomic, assign) JXPopupViewCloseTo closeTo;
-@property (nonatomic, assign) BOOL animation;
+@property (nonatomic, assign) JXPopupViewCloseTo closeTo; ///< popupView 的贴近位置
+@property (nonatomic, assign) BOOL animation; ///< 显示或隐藏是否动画
+@property (nonatomic, assign) CGFloat cornerRadius; ///< 圆角, 默认 12.0
 
 // popupBgView
 @property (nonatomic, readonly) UIView *popupBgView; ///< 主弹窗视图
