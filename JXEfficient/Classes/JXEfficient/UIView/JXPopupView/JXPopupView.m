@@ -152,7 +152,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
 #pragma mark - show
 
 - (void)show {
-    [self JXPopupView_prepareForShow];
+    [self refreshLayoutAnimated:NO];
 
     [self show:self.animation change:^{
         self.popupBgView.alpha = 1.0;
@@ -160,12 +160,14 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     } completion:^{
         
     }];
+    
+    _didShowed = YES;
 }
 
-- (void)refreshAnimated:(BOOL)animated {
+- (void)refreshLayoutAnimated:(BOOL)animated {
     [self JXPopupView_prepareForShow];
     if (animated) {
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:5.25 animations:^{
             [self layoutIfNeeded];
         }];
     }

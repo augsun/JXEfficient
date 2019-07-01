@@ -59,22 +59,17 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, assign) UIEdgeInsets buttonsViewEdgeInsets; ///< 默认 {0.0, 0.0, 0.0, 0.0}
 @property (nonatomic, assign) CGFloat buttonsViewContentH; ///< 不包含 buttonsViewEdgeInsets 的高度, 为 0.0 时隐藏 buttonsView.
 
-/**
- 显示 popup.
- */
-- (void)show NS_REQUIRES_SUPER;
+
+@property (nonatomic, readonly) BOOL didShowed; ///< 是否调用过 -show 方法
+- (void)show NS_REQUIRES_SUPER; ///< 显示 popup.
+- (void)hide NS_REQUIRES_SUPER; ///< 隐藏 popup.
 
 /**
- 隐藏 popup.
- */
-- (void)hide NS_REQUIRES_SUPER;
-
-/**
- 布局改变后调用
+ 布局改变后调用. <例如子类重写 layoutSubviews 以监听屏幕旋转等情况, 则调用该方法更新布局.>
 
  @param animated 是否动画调整布局
  */
-- (void)refreshAnimated:(BOOL)animated NS_REQUIRES_SUPER;
+- (void)refreshLayoutAnimated:(BOOL)animated NS_REQUIRES_SUPER;
 
 @end
 

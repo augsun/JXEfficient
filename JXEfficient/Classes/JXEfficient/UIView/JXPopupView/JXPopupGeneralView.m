@@ -15,6 +15,11 @@
 @property (nonatomic, readonly) UIButton *button0;
 @property (nonatomic, readonly) UIButton *button1;
 
+@property (nonatomic, copy) NSArray <NSLayoutConstraint *> *button0Label_cons;
+@property (nonatomic, copy) NSArray <NSLayoutConstraint *> *button1Label_cons;
+
+@property (nonatomic, assign) CGSize selfSizePre;
+
 @end
 
 @implementation JXPopupGeneralView
@@ -131,12 +136,66 @@
     }
 }
 
+- (void)setCostomTitleView:(UIView *)costomTitleView {
+    _costomTitleView = costomTitleView;
+    
+    costomTitleView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.titleView addSubview:costomTitleView];
+    [NSLayoutConstraint activateConstraints:[costomTitleView jx_con_edgeEqual:self.titleView]];
+}
+
+- (void)setCostomContentView:(UIView *)costomContentView {
+    _costomContentView = costomContentView;
+    
+    costomContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:costomContentView];
+    [NSLayoutConstraint activateConstraints:[costomContentView jx_con_edgeEqual:self.contentView]];
+}
+
+- (void)setCostomButtonsView:(UIView *)costomButtonsView {
+    _costomButtonsView = costomButtonsView;
+    
+    costomButtonsView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.buttonsView addSubview:costomButtonsView];
+    [NSLayoutConstraint activateConstraints:[costomButtonsView jx_con_edgeEqual:self.buttonsView]];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (self.frame.size.width > 0.0 && self.frame.size.height > 0.0 &&
+        (self.frame.size.width != self.selfSizePre.width || self.frame.size.height != self.selfSizePre.height) &&
+        self.didShowed) {
+        
+        self.selfSizePre = self.frame.size;
+        
+        [self JXPopupGeneralView_countLayout];
+        
+        [self refreshLayoutAnimated:YES];
+    }
+}
+
 - (void)show {
+    [self JXPopupGeneralView_countLayout];
+    
+    //
+    [super show];
+}
+
+- (void)JXPopupGeneralView_countLayout {
     
 #pragma mark 计算各部分控件高度
     
     // titleLabel
-    if (self.titleViewContentH == 0.0) { // 非外部自定义 title 情况
+    if (self.costomTitleView) {
+        if (self.heightFor_costomTitleView) {
+            self.titleViewContentH = self.heightFor_costomTitleView();
+        }
+        else {
+            self.titleViewContentH = 0.0;
+        }
+    }
+    else {
         CGFloat h = [self.titleLabel sizeThatFits:CGSizeMake(
                                                              JX_SCREEN_W - 2 * self.popupBgViewToLR - self.titleViewEdgeInsets.left - self.titleViewEdgeInsets.right,
                                                              CGFLOAT_MAX
@@ -145,7 +204,15 @@
     }
     
     // contentLabel
-    if (self.contentViewContentH == 0.0) { // 非外部自定义 content 情况
+    if (self.costomContentView) {
+        if (self.heightFor_costomContentView) {
+            self.contentViewContentH = self.heightFor_costomContentView();
+        }
+        else {
+            self.contentViewContentH = 0.0;
+        }
+    }
+    else {
         CGFloat h = [self.contentLabel sizeThatFits:CGSizeMake(
                                                                JX_SCREEN_W - 2 * self.popupBgViewToLR - self.contentViewEdgeInsets.left - self.contentViewEdgeInsets.right,
                                                                CGFLOAT_MAX
@@ -154,8 +221,23 @@
     }
     
     // button0Label & button1Label
-    BOOL customButtons = NO;
-    if (self.buttonsViewContentH == 0.0) { // 非外部自定义 buttons 情况
+    if (self.costomButtonsView) {
+        self.button0Label.hidden = YES;
+        self.button0.hidden = YES;
+        
+        self.button1Label.hidden = YES;
+        self.button1.hidden = YES;
+        
+        self.buttonVerticalLineView.hidden = YES;
+        
+        if (self.heightFor_costomButtonsView) {
+            self.buttonsViewContentH = self.heightFor_costomButtonsView();
+        }
+        else {
+            self.buttonsViewContentH = 0.0;
+        }
+    }
+    else {
         BOOL haveB0 = self.button0Label.text || self.button0Label.attributedText;
         BOOL haveB1 = self.button1Label.text || self.button1Label.attributedText;
         if (haveB0 || haveB1) {
@@ -167,44 +249,60 @@
                 self.button1Label.hidden = NO;
                 self.button1.hidden = NO;
                 
-                [NSLayoutConstraint activateConstraints:@[
-                                                          [self.button0Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
-                                                          [self.button0Label jx_con_same:NSLayoutAttributeLeft equal:self.buttonsView m:1.0 c:0.0],
-                                                          [self.button0Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
-                                                          [self.button0Label jx_con_diff:NSLayoutAttributeRight equal:self.buttonVerticalLineView att2:NSLayoutAttributeLeft m:1.0 c:0.0],
-                                                          ]];
-                [NSLayoutConstraint activateConstraints:@[
-                                                          [self.button1Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
-                                                          [self.button1Label jx_con_diff:NSLayoutAttributeLeft equal:self.buttonVerticalLineView att2:NSLayoutAttributeRight m:1.0 c:0.0],
-                                                          [self.button1Label jx_con_same:NSLayoutAttributeRight equal:self.buttonsView m:1.0 c:0.0],
-                                                          [self.button1Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
-                                                          ]];
+                {
+                    NSArray <NSLayoutConstraint *> *cons = @[
+                                                             [self.button0Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
+                                                             [self.button0Label jx_con_same:NSLayoutAttributeLeft equal:self.buttonsView m:1.0 c:0.0],
+                                                             [self.button0Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
+                                                             [self.button0Label jx_con_diff:NSLayoutAttributeRight equal:self.buttonVerticalLineView att2:NSLayoutAttributeLeft m:1.0 c:0.0],
+                                                             ];
+                    if (self.button0Label_cons.count > 0) {
+                        [NSLayoutConstraint deactivateConstraints:self.button0Label_cons];
+                    }
+                    self.button0Label_cons = cons;
+                    [NSLayoutConstraint activateConstraints:self.button0Label_cons];
+                }
+                {
+                    NSArray <NSLayoutConstraint *> *cons = @[
+                                                             [self.button1Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
+                                                             [self.button1Label jx_con_diff:NSLayoutAttributeLeft equal:self.buttonVerticalLineView att2:NSLayoutAttributeRight m:1.0 c:0.0],
+                                                             [self.button1Label jx_con_same:NSLayoutAttributeRight equal:self.buttonsView m:1.0 c:0.0],
+                                                             [self.button1Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
+                                                             ];
+                    if (self.button1Label_cons.count > 0) {
+                        [NSLayoutConstraint deactivateConstraints:self.button1Label_cons];
+                    }
+                    self.button1Label_cons = cons;
+                    [NSLayoutConstraint activateConstraints:self.button1Label_cons];
+                }
             }
             else if (haveB0 && !haveB1) {
                 self.button0Label.hidden = NO;
                 self.button0.hidden = NO;
-                [NSLayoutConstraint activateConstraints:[self.button0Label jx_con_edgeEqual:self.buttonsView]];
+                NSArray <NSLayoutConstraint *> *cons = [self.button0Label jx_con_edgeEqual:self.buttonsView];
+                if (self.button0Label_cons.count > 0) {
+                    [NSLayoutConstraint deactivateConstraints:self.button0Label_cons];
+                }
+                self.button0Label_cons = cons;
+                [NSLayoutConstraint activateConstraints:self.button0Label_cons];
             }
             else if (!haveB0 && haveB1) {
                 self.button1Label.hidden = NO;
                 self.button1.hidden = NO;
-                [NSLayoutConstraint activateConstraints:[self.button1Label jx_con_edgeEqual:self.buttonsView]];
+                NSArray <NSLayoutConstraint *> *cons = [self.button1Label jx_con_edgeEqual:self.buttonsView];
+                if (self.button1Label_cons.count > 0) {
+                    [NSLayoutConstraint deactivateConstraints:self.button1Label_cons];
+                }
+                self.button1Label_cons = cons;
+                [NSLayoutConstraint activateConstraints:self.button1Label_cons];
             }
             
             //
             self.buttonVerticalLineView.hidden = !(haveB0 && haveB1);
         }
-    }
-    else {
-        customButtons = YES;
-        
-        self.button0Label.hidden = YES;
-        self.button0.hidden = YES;
-        
-        self.button1Label.hidden = YES;
-        self.button1.hidden = YES;
-        
-        self.buttonVerticalLineView.hidden = YES;
+        else {
+            self.buttonsViewContentH = 0.0;
+        }
     }
     
 #pragma mark 边距调整
@@ -212,7 +310,7 @@
     BOOL haveTitle = self.titleViewContentH > 0.0;
     BOOL haveContent = self.contentViewContentH > 0.0;
     BOOL haveButtons = self.buttonsViewContentH > 0.0;
-
+    
     if (haveTitle && haveContent && haveButtons) {
         self.popupBgViewContentEdgeT = 20.0;
         self.contentViewToAboveWidget = 3.0;
@@ -221,7 +319,7 @@
     else if (haveTitle && haveContent && !haveButtons) {
         self.popupBgViewContentEdgeT = 20.0;
         self.contentViewToAboveWidget = 3.0;
-
+        
     }
     else if (haveTitle && !haveContent && haveButtons) {
         self.popupBgViewContentEdgeT = 20.0;
@@ -250,16 +348,13 @@
         
     }
     
-    if (customButtons) {
+    if (self.costomButtonsView) {
         self.buttonHorizontalLineView.hidden = YES;
     }
     else {
         // 只有按钮的情况 隐藏 buttonHorizontalLineView
         self.buttonHorizontalLineView.hidden = !haveTitle && !haveContent && haveButtons;
     }
-
-    //
-    [super show];
 }
 
 - (void)JXPopupGeneralView_btn0Click {

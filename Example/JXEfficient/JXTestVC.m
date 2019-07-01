@@ -92,7 +92,7 @@
     popView.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"通过APP展示H5地图"];
     
     // contentLabel
-//    popView.contentLabel.text = @"此种方法可以解决问题但是又引出了新的问题，使用此种方法，会出现本应该换行输入时，UITextView的高度并没有改变，而是再输入几个字符才会改变高度，这个问题我没有找到原因，搜索网络上，也有存在此问题的网友，如果您知道解决办法，请在下方留言，多谢!";
+    popView.contentLabel.text = @"此种方法可以解决问题但是又引出了新的问题，使用此种方法，会出现本应该换行输入时，UITextView的高度并没有改变，而是再输入几个字符才会改变高度，这个问题我没有找到原因，搜索网络上，也有存在此问题的网友，如果您知道解决办法，请在下方留言，多谢!";
     
     // button0Label | button1Label
     popView.button0Label.text = @"取消";
@@ -100,13 +100,13 @@
     
 //    popView.buttonsViewContentH = 100.0;
     
-//    UIView *vvv = [[UIView alloc] init];
-//    vvv.backgroundColor = JX_COLOR_RANDOM;
-//    [popView.buttonsView addSubview:vvv];
-//    [vvv mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(popView.buttonsView);
-//    }];
-
+    UIView *vvv = [[UIView alloc] init];
+    vvv.backgroundColor = JX_COLOR_RANDOM;
+    popView.costomButtonsView = vvv;
+    popView.heightFor_costomButtonsView = ^CGFloat{
+        return 20.0;
+    };
+    
     [popView show];
     
     popView.backgroundTap = ^{
