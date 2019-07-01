@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, readonly) UIView *contentView; ///< popupBgView -> contentBgView -> scrollView -> contentView <内容视图>, (若自定义, 加在该 View 上).
 @property (nonatomic, assign) CGFloat contentViewToAboveWidget; ///< 距上个控件的间距, 如果为第一个控件, 则取 popupBgViewContentEdgeT.
 @property (nonatomic, assign) UIEdgeInsets contentViewEdgeInsets; ///< 默认 {15.0, 15.0, 20.0, 15.0}
-@property (nonatomic, assign) CGFloat contentViewContentH; ///< 不包含 contentViewEdgeInsets 的高度, 内容区域, 可以设置很大, 将进行滚动. 为 0.0 时隐藏 contentView.
+@property (nonatomic, assign) CGFloat contentViewContentH; ///< 不包含 contentViewEdgeInsets 的高度, 为 0.0 时隐藏 contentView. <可以设置很大, 将进行滚动.>
 
 // buttonsView
 @property (nonatomic, readonly) UIView *buttonsView; ///< popupBgView -> buttonsBgView -> buttonsView <按钮视图>, (若自定义, 加在该 View 上).

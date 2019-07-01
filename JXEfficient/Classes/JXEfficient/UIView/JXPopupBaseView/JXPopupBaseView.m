@@ -55,14 +55,14 @@
     if (animated) {
         [self layoutIfNeeded];
         [UIView animateWithDuration:0.25 animations:^{
-            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.45];
             JX_BLOCK_EXEC(change);
         } completion:^(BOOL finished) {
             JX_BLOCK_EXEC(completion);
         }];
     }
     else {
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.45];
         JX_BLOCK_EXEC(change);
         JX_BLOCK_EXEC(completion);
     }

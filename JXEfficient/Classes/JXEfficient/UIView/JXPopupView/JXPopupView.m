@@ -200,7 +200,6 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     
     //
     if (self.backgroundColorForDebug) {
-//        self.popupBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
         self.titleBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
         self.titleView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
         self.contentBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];

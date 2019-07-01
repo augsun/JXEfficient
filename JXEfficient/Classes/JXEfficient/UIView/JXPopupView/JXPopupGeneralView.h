@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UILabel *titleLabel; ///< 标题
 @property (nonatomic, readonly) UILabel *contentLabel; ///< 内容
-@property (nonatomic, readonly) UILabel *button0Label; ///< 左边按钮, button0Label 与 button1Label 设置一个时则显示一个按钮.
-@property (nonatomic, readonly) UILabel *button1Label; ///< 右边按钮, button0Label 与 button1Label 设置一个时则显示一个按钮.
+@property (nonatomic, readonly) UILabel *button0Label; ///< 左边按钮, button0Label 与 button1Label 可任意只设置一个.
+@property (nonatomic, readonly) UILabel *button1Label; ///< 右边按钮, button0Label 与 button1Label 可任意只设置一个.
 
 @property (nonatomic, readonly) UIView *buttonHorizontalLineView; ///< 按钮水平线
 @property (nonatomic, readonly) UIView *buttonVerticalLineView; ///< 按钮竖直线
