@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, assign) BOOL animation; ///< 显示或隐藏是否动画
 @property (nonatomic, assign) CGFloat cornerRadius; ///< 圆角, 默认 12.0
 
+//
+@property (nonatomic, assign) BOOL backgroundColorForDebug; ///< 打开显示各层级背景颜色, 用于调试. 默认 NO. <基于该类开发其子类时, 强烈建议开启该背景色, 视图层级结构将更加清晰, 开发完后关闭即可.>
+
 // popupBgView
 @property (nonatomic, readonly) UIView *popupBgView; ///< 主弹窗视图
 @property (nonatomic, assign) CGFloat popupBgViewToT_min; ///< popupBgView 与 self 上边间距, 默认 40.0
@@ -59,14 +62,19 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 /**
  显示 popup.
  */
-- (void)show;
+- (void)show NS_REQUIRES_SUPER;
+
+/**
+ 隐藏 popup.
+ */
+- (void)hide NS_REQUIRES_SUPER;
 
 /**
  布局改变后调用
 
  @param animated 是否动画调整布局
  */
-- (void)refreshAnimated:(BOOL)animated;
+- (void)refreshAnimated:(BOOL)animated NS_REQUIRES_SUPER;
 
 @end
 

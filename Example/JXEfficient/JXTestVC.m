@@ -86,18 +86,23 @@
     //
     
     JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];
-    popView.titleViewContentH = 40.0;
-    popView.titleViewEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-    popView.contentViewContentH = 600.0;
-    popView.buttonsViewContentH = 44.0;
-    popView.animation = YES;
-    popView.popupBgViewToT_min = 100.0;
-    popView.popupBgViewToB_min = 200.0;
-    popView.closeTo = JXPopupViewCloseToTop;
+//    popView.backgroundColorForDebug = YES;
+
+    // popView.titleLabel.attributedText
+    popView.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"通过APP展示H5地图"];
     
-    popView.titleLabel.text = @"领取";
+    // contentLabel
+    popView.contentLabel.text = @"此种方法可以解决问题但是又引出了新的问题，使用此种方法，会出现本应该换行输入时，UITextView的高度并没有改变，而是再输入几个字符才会改变高度，这个问题我没有找到原因，搜索网络上，也有存在此问题的网友，如果您知道解决办法，请在下方留言，多谢!";
     
+    // button0Label | button1Label
+//    popView.button0Label.text = @"取消";
+    popView.button1Label.text = @"确定";
+
     [popView show];
+    
+    popView.backgroundTap = ^{
+        [popView hide];
+    };
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        popView.titleViewContentH = 40.0;

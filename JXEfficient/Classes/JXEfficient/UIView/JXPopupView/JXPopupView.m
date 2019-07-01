@@ -23,7 +23,7 @@ static const CGFloat k_titleViewToAboveWidget = 8.0;
 static const UIEdgeInsets k_titleViewEdgeInsets = {0.0, 8.0, 0.0, 8.0};
 
 static const CGFloat k_contentViewToAboveWidget = 8.0;
-static const UIEdgeInsets k_contentViewEdgeInsets = {15.0, 15.0, 20.0, 15.0};
+static const UIEdgeInsets k_contentViewEdgeInsets = {8.0, 15.0, 8.0, 15.0};
 
 static const CGFloat k_buttonsViewToAboveWidget = 8.0;
 static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
@@ -78,7 +78,6 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     _popupBgView = [[UIView alloc] init];
     [self addSubview:self.popupBgView];
     self.popupBgView.backgroundColor = [UIColor whiteColor];
-    self.popupBgView.backgroundColor = JX_COLOR_RANDOM;
     self.popupBgView.alpha = 0.0;
     self.popupBgView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     self.popupBgView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -86,31 +85,26 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     // titleBgView
     _titleBgView = [[UIView alloc] init];
     [self.popupBgView addSubview:self.titleBgView];
-    self.titleBgView.backgroundColor = JX_COLOR_RANDOM;
     self.titleBgView.translatesAutoresizingMaskIntoConstraints = NO;
     {
         _titleView = [[UIView alloc] init];
         [self.titleBgView addSubview:self.titleView];
         self.titleView.backgroundColor = [UIColor whiteColor];
-        self.titleView.backgroundColor = JX_COLOR_RANDOM;
         self.titleView.translatesAutoresizingMaskIntoConstraints = NO;
     }
 
     // contentBgView
     _contentBgView = [[UIView alloc] init];
     [self.popupBgView addSubview:self.contentBgView];
-    self.contentBgView.backgroundColor = JX_COLOR_RANDOM;
     self.contentBgView.translatesAutoresizingMaskIntoConstraints = NO;
     {
         _contentScrollView = [[UIScrollView alloc] init];
         [self.contentBgView addSubview:self.contentScrollView];
-        self.contentScrollView.backgroundColor = JX_COLOR_RANDOM;
         self.contentScrollView.translatesAutoresizingMaskIntoConstraints = NO;
         {
             _contentView = [[UIView alloc] init];
             [self.contentScrollView addSubview:self.contentView];
             self.contentView.backgroundColor = [UIColor whiteColor];
-            self.contentView.backgroundColor = JX_COLOR_RANDOM;
             self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
         }
     }
@@ -118,13 +112,11 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     //
     _buttonsBgView = [[UIView alloc] init];
     [self.popupBgView addSubview:self.buttonsBgView];
-    self.buttonsBgView.backgroundColor = JX_COLOR_RANDOM;
     self.buttonsBgView.translatesAutoresizingMaskIntoConstraints = NO;
     {
         _buttonsView = [[UIView alloc] init];
         [self.buttonsBgView addSubview:self.buttonsView];
         self.buttonsView.backgroundColor = [UIColor whiteColor];
-        self.buttonsView.backgroundColor = JX_COLOR_RANDOM;
         self.buttonsView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
@@ -204,6 +196,18 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
     }
     else {
         self.popupBgView.hidden = NO;
+    }
+    
+    //
+    if (self.backgroundColorForDebug) {
+//        self.popupBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.titleBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.titleView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.contentBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.contentScrollView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.contentView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.buttonsBgView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
+        self.buttonsView.backgroundColor = [JX_COLOR_RANDOM colorWithAlphaComponent:0.3];
     }
     
     // popupBgView
