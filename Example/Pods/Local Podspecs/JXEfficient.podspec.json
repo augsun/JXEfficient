@@ -1,6 +1,6 @@
 {
   "name": "JXEfficient",
-  "version": "0.2.72",
+  "version": "0.2.81",
   "summary": "A short description of JXEfficient.",
   "description": "Efficient libraries for iOS development.",
   "homepage": "https://github.com/augsun",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/augsun/JXEfficient.git",
-    "tag": "0.2.72"
+    "tag": "0.2.81"
   },
   "platforms": {
     "ios": "9.0"

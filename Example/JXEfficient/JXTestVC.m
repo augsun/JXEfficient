@@ -120,12 +120,12 @@
         [popView hide];
     };
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        popView.titleViewContentH = 100.0;
-        popView.contentViewContentH = 100.0;
-        popView.buttonsViewContentH = 70.0;
-        [popView refreshLayoutAnimated:YES];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        popView.titleViewContentH = 100.0;
+//        popView.contentViewContentH = 100.0;
+//        popView.buttonsViewContentH = 70.0;
+//        [popView refreshLayoutAnimated:YES];
+//    });
     
     
     

@@ -18,7 +18,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self jx_moreInit];
+        [self JXPopupBaseView_moreInit];
     }
     return self;
 }
@@ -26,23 +26,23 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self jx_moreInit];
+        [self JXPopupBaseView_moreInit];
     }
     return self;
 }
 
-- (void)jx_moreInit {
+- (void)JXPopupBaseView_moreInit {
     self.backgroundColor = [UIColor clearColor];
     
     UIButton *bgBtn = [[UIButton alloc] init];
     [self addSubview:bgBtn];
     bgBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:[bgBtn jx_con_edgeEqual:self]];
-    [bgBtn addTarget:self action:@selector(jx_btnBgClick) forControlEvents:UIControlEventTouchUpInside];
+    [bgBtn addTarget:self action:@selector(JXPopupBaseView_btnBgClick) forControlEvents:UIControlEventTouchUpInside];
     [self sendSubviewToBack:bgBtn];
 }
 
-- (void)jx_btnBgClick {
+- (void)JXPopupBaseView_btnBgClick {
     JX_BLOCK_EXEC(self.backgroundTap);
 }
 
@@ -85,7 +85,5 @@
         [self removeFromSuperview];
     }
 }
-
-JX_DEALLOC_TEST
 
 @end

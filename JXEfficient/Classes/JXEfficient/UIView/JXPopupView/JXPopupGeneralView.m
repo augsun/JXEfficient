@@ -9,14 +9,15 @@
 
 #import "NSLayoutConstraint+JXCategory.h"
 #import "JXMacro.h"
+#import "UIButton+JXCategory.h"
 
 @interface JXPopupGeneralView ()
 
 @property (nonatomic, readonly) UIButton *button0;
 @property (nonatomic, readonly) UIButton *button1;
 
-@property (nonatomic, copy) NSArray <NSLayoutConstraint *> *button0Label_cons;
-@property (nonatomic, copy) NSArray <NSLayoutConstraint *> *button1Label_cons;
+@property (nonatomic, strong) NSLayoutConstraint *con_button0Label_toR; ///< button0Label 右约束
+@property (nonatomic, strong) NSLayoutConstraint *con_button1Label_toL; ///< button1Label 左约束
 
 @property (nonatomic, assign) CGSize selfSizePre;
 
@@ -44,7 +45,7 @@
     self.animation = YES;
     self.popupBgViewToT_min = 30.0;
     self.popupBgViewToB_min = 30.0 + JX_UNUSE_AREA_OF_BOTTOM;
-
+    
     // titleLabel
     {
         _titleLabel = [[UILabel alloc] init];
@@ -109,13 +110,24 @@
         self.button0Label.textAlignment = NSTextAlignmentCenter;
         self.button0Label.font = [UIFont systemFontOfSize:16.0];
         self.button0Label.textColor = JX_COLOR_GRAY(51);
+        self.button0Label.userInteractionEnabled = NO;
+        self.con_button0Label_toR = [self.button0Label jx_con_diff:NSLayoutAttributeRight equal:self.buttonVerticalLineView att2:NSLayoutAttributeLeft m:1.0 c:0.0];
+        NSArray <NSLayoutConstraint *> *cons = @[
+                                                 [self.button0Label jx_con_diff:NSLayoutAttributeTop equal:self.buttonHorizontalLineView att2:NSLayoutAttributeBottom m:1.0 c:0.0],
+                                                 [self.button0Label jx_con_same:NSLayoutAttributeLeft equal:self.buttonsView m:1.0 c:0.0],
+                                                 [self.button0Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
+                                                 self.con_button0Label_toR,
+                                                 ];
+        [NSLayoutConstraint activateConstraints:cons];
         {
             _button0 = [[UIButton alloc] init];
             [self.buttonsView addSubview:self.button0];
             self.button0.translatesAutoresizingMaskIntoConstraints = NO;
             [NSLayoutConstraint activateConstraints:[self.button0 jx_con_edgeEqual:self.button0Label]];
             [self.button0 addTarget:self action:@selector(JXPopupGeneralView_btn0Click) forControlEvents:UIControlEventTouchUpInside];
+            [self.button0 jx_backgroundColorStyleNormalColor:[UIColor whiteColor] highlightedColor:JX_COLOR_GRAY(235) disabledColor:[UIColor whiteColor] radius:0.0];
         }
+        [self.buttonsView bringSubviewToFront:self.button0Label];
     }
     
     // button1Label
@@ -126,13 +138,24 @@
         self.button1Label.textAlignment = NSTextAlignmentCenter;
         self.button1Label.font = [UIFont systemFontOfSize:16.0];
         self.button1Label.textColor = JX_COLOR_GRAY(51);
+        self.button1Label.userInteractionEnabled = NO;
+        self.con_button1Label_toL = [self.button1Label jx_con_diff:NSLayoutAttributeLeft equal:self.buttonVerticalLineView att2:NSLayoutAttributeRight m:1.0 c:0.0];
+        NSArray <NSLayoutConstraint *> *cons = @[
+                                                 [self.button1Label jx_con_diff:NSLayoutAttributeTop equal:self.buttonHorizontalLineView att2:NSLayoutAttributeBottom m:1.0 c:0.0],
+                                                 self.con_button1Label_toL,
+                                                 [self.button1Label jx_con_same:NSLayoutAttributeRight equal:self.buttonsView m:1.0 c:0.0],
+                                                 [self.button1Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
+                                                 ];
+        [NSLayoutConstraint activateConstraints:cons];
         {
             _button1 = [[UIButton alloc] init];
             [self.buttonsView addSubview:self.button1];
             self.button1.translatesAutoresizingMaskIntoConstraints = NO;
             [NSLayoutConstraint activateConstraints:[self.button1 jx_con_edgeEqual:self.button1Label]];
             [self.button1 addTarget:self action:@selector(JXPopupGeneralView_btn1Click) forControlEvents:UIControlEventTouchUpInside];
+            [self.button1 jx_backgroundColorStyleNormalColor:[UIColor whiteColor] highlightedColor:JX_COLOR_GRAY(235) disabledColor:[UIColor whiteColor] radius:0.0];
         }
+        [self.buttonsView bringSubviewToFront:self.button1Label];
     }
 }
 
@@ -241,60 +264,51 @@
         BOOL haveB0 = self.button0Label.text || self.button0Label.attributedText;
         BOOL haveB1 = self.button1Label.text || self.button1Label.attributedText;
         if (haveB0 || haveB1) {
+            
+            NSLayoutConstraint *con_button0Label_toR = nil;
+            NSLayoutConstraint *con_button1Label_toL = nil;
+            
             self.buttonsViewContentH = 44.0;
             if (haveB0 && haveB1) {
                 self.button0Label.hidden = NO;
                 self.button0.hidden = NO;
-                
                 self.button1Label.hidden = NO;
                 self.button1.hidden = NO;
                 
-                {
-                    NSArray <NSLayoutConstraint *> *cons = @[
-                                                             [self.button0Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
-                                                             [self.button0Label jx_con_same:NSLayoutAttributeLeft equal:self.buttonsView m:1.0 c:0.0],
-                                                             [self.button0Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
-                                                             [self.button0Label jx_con_diff:NSLayoutAttributeRight equal:self.buttonVerticalLineView att2:NSLayoutAttributeLeft m:1.0 c:0.0],
-                                                             ];
-                    if (self.button0Label_cons.count > 0) {
-                        [NSLayoutConstraint deactivateConstraints:self.button0Label_cons];
-                    }
-                    self.button0Label_cons = cons;
-                    [NSLayoutConstraint activateConstraints:self.button0Label_cons];
-                }
-                {
-                    NSArray <NSLayoutConstraint *> *cons = @[
-                                                             [self.button1Label jx_con_same:NSLayoutAttributeTop equal:self.buttonsView m:1.0 c:0.0],
-                                                             [self.button1Label jx_con_diff:NSLayoutAttributeLeft equal:self.buttonVerticalLineView att2:NSLayoutAttributeRight m:1.0 c:0.0],
-                                                             [self.button1Label jx_con_same:NSLayoutAttributeRight equal:self.buttonsView m:1.0 c:0.0],
-                                                             [self.button1Label jx_con_same:NSLayoutAttributeBottom equal:self.buttonsView m:1.0 c:0.0],
-                                                             ];
-                    if (self.button1Label_cons.count > 0) {
-                        [NSLayoutConstraint deactivateConstraints:self.button1Label_cons];
-                    }
-                    self.button1Label_cons = cons;
-                    [NSLayoutConstraint activateConstraints:self.button1Label_cons];
-                }
+                con_button0Label_toR = [self.button0Label jx_con_diff:NSLayoutAttributeRight equal:self.buttonVerticalLineView att2:NSLayoutAttributeLeft m:1.0 c:0.0];
+                con_button1Label_toL = [self.button1Label jx_con_diff:NSLayoutAttributeLeft equal:self.buttonVerticalLineView att2:NSLayoutAttributeRight m:1.0 c:0.0];
             }
             else if (haveB0 && !haveB1) {
                 self.button0Label.hidden = NO;
                 self.button0.hidden = NO;
-                NSArray <NSLayoutConstraint *> *cons = [self.button0Label jx_con_edgeEqual:self.buttonsView];
-                if (self.button0Label_cons.count > 0) {
-                    [NSLayoutConstraint deactivateConstraints:self.button0Label_cons];
-                }
-                self.button0Label_cons = cons;
-                [NSLayoutConstraint activateConstraints:self.button0Label_cons];
+                self.button1Label.hidden = YES;
+                self.button1.hidden = YES;
+                
+                con_button0Label_toR = [self.button0Label jx_con_same:NSLayoutAttributeRight equal:self.buttonsView m:1.0 c:0.0];
             }
             else if (!haveB0 && haveB1) {
+                self.button0Label.hidden = YES;
+                self.button0.hidden = YES;
                 self.button1Label.hidden = NO;
                 self.button1.hidden = NO;
-                NSArray <NSLayoutConstraint *> *cons = [self.button1Label jx_con_edgeEqual:self.buttonsView];
-                if (self.button1Label_cons.count > 0) {
-                    [NSLayoutConstraint deactivateConstraints:self.button1Label_cons];
+                
+                con_button1Label_toL = [self.button1Label jx_con_same:NSLayoutAttributeLeft equal:self.buttonsView m:1.0 c:0.0];
+            }
+            
+            if (con_button0Label_toR) {
+                if (self.con_button0Label_toR) {
+                    [NSLayoutConstraint deactivateConstraints:@[self.con_button0Label_toR]];
                 }
-                self.button1Label_cons = cons;
-                [NSLayoutConstraint activateConstraints:self.button1Label_cons];
+                self.con_button0Label_toR = con_button0Label_toR;
+                [NSLayoutConstraint activateConstraints:@[self.con_button0Label_toR]];
+            }
+            
+            if (con_button1Label_toL) {
+                if (self.con_button1Label_toL) {
+                    [NSLayoutConstraint deactivateConstraints:@[self.con_button1Label_toL]];
+                }
+                self.con_button1Label_toL = con_button1Label_toL;
+                [NSLayoutConstraint activateConstraints:@[self.con_button1Label_toL]];
             }
             
             //
