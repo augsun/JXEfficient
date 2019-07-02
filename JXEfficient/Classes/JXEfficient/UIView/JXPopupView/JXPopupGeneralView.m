@@ -136,28 +136,28 @@
     }
 }
 
-- (void)setCostomTitleView:(UIView *)costomTitleView {
-    _costomTitleView = costomTitleView;
+- (void)setCustomTitleView:(UIView *)customTitleView {
+    _customTitleView = customTitleView;
     
-    costomTitleView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.titleView addSubview:costomTitleView];
-    [NSLayoutConstraint activateConstraints:[costomTitleView jx_con_edgeEqual:self.titleView]];
+    customTitleView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.titleView addSubview:customTitleView];
+    [NSLayoutConstraint activateConstraints:[customTitleView jx_con_edgeEqual:self.titleView]];
 }
 
-- (void)setCostomContentView:(UIView *)costomContentView {
-    _costomContentView = costomContentView;
+- (void)setCustomContentView:(UIView *)customContentView {
+    _customContentView = customContentView;
     
-    costomContentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:costomContentView];
-    [NSLayoutConstraint activateConstraints:[costomContentView jx_con_edgeEqual:self.contentView]];
+    customContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:customContentView];
+    [NSLayoutConstraint activateConstraints:[customContentView jx_con_edgeEqual:self.contentView]];
 }
 
-- (void)setCostomButtonsView:(UIView *)costomButtonsView {
-    _costomButtonsView = costomButtonsView;
+- (void)setCustomButtonsView:(UIView *)customButtonsView {
+    _customButtonsView = customButtonsView;
     
-    costomButtonsView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.buttonsView addSubview:costomButtonsView];
-    [NSLayoutConstraint activateConstraints:[costomButtonsView jx_con_edgeEqual:self.buttonsView]];
+    customButtonsView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.buttonsView addSubview:customButtonsView];
+    [NSLayoutConstraint activateConstraints:[customButtonsView jx_con_edgeEqual:self.buttonsView]];
 }
 
 - (void)layoutSubviews {
@@ -187,9 +187,9 @@
 #pragma mark 计算各部分控件高度
     
     // titleLabel
-    if (self.costomTitleView) {
-        if (self.heightFor_costomTitleView) {
-            self.titleViewContentH = self.heightFor_costomTitleView();
+    if (self.customTitleView) {
+        if (self.heightFor_customTitleView) {
+            self.titleViewContentH = self.heightFor_customTitleView();
         }
         else {
             self.titleViewContentH = 0.0;
@@ -204,9 +204,9 @@
     }
     
     // contentLabel
-    if (self.costomContentView) {
-        if (self.heightFor_costomContentView) {
-            self.contentViewContentH = self.heightFor_costomContentView();
+    if (self.customContentView) {
+        if (self.heightFor_customContentView) {
+            self.contentViewContentH = self.heightFor_customContentView();
         }
         else {
             self.contentViewContentH = 0.0;
@@ -221,7 +221,7 @@
     }
     
     // button0Label & button1Label
-    if (self.costomButtonsView) {
+    if (self.customButtonsView) {
         self.button0Label.hidden = YES;
         self.button0.hidden = YES;
         
@@ -230,8 +230,8 @@
         
         self.buttonVerticalLineView.hidden = YES;
         
-        if (self.heightFor_costomButtonsView) {
-            self.buttonsViewContentH = self.heightFor_costomButtonsView();
+        if (self.heightFor_customButtonsView) {
+            self.buttonsViewContentH = self.heightFor_customButtonsView();
         }
         else {
             self.buttonsViewContentH = 0.0;
@@ -348,7 +348,7 @@
         
     }
     
-    if (self.costomButtonsView) {
+    if (self.customButtonsView) {
         self.buttonHorizontalLineView.hidden = YES;
     }
     else {
@@ -359,10 +359,16 @@
 
 - (void)JXPopupGeneralView_btn0Click {
     JX_BLOCK_EXEC(self.button0Click);
+    if (self.hideJustByClicking) {
+        [self hide];
+    }
 }
 
 - (void)JXPopupGeneralView_btn1Click {
     JX_BLOCK_EXEC(self.button1Click);
+    if (self.hideJustByClicking) {
+        [self hide];
+    }
 }
 
 @end

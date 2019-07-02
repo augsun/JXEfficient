@@ -100,24 +100,30 @@
     
 //    popView.buttonsViewContentH = 100.0;
     
-    UIView *vvv = [[UIView alloc] init];
-    vvv.backgroundColor = JX_COLOR_RANDOM;
-    popView.costomButtonsView = vvv;
-    popView.heightFor_costomButtonsView = ^CGFloat{
-        return 20.0;
+//    UIView *vvv = [[UIView alloc] init];
+//    vvv.backgroundColor = JX_COLOR_RANDOM;
+//    popView.customContentView = vvv;
+//    popView.heightFor_customContentView = ^CGFloat{
+//        return 20.0;
+//    };
+    
+    popView.hideJustByClicking = YES;
+    popView.didDisappear = ^{
+        NSLog(@"bbbb");
     };
     
     [popView show];
-    
+    jx_weakify(popView);
     popView.backgroundTap = ^{
+        jx_strongify(popView)
         [popView hide];
     };
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        popView.titleViewContentH = 40.0;
-//        popView.contentViewContentH = 100.0;
-//        popView.buttonsViewContentH = 70.0;
-//        [popView refreshAnimated:YES];
+        popView.titleViewContentH = 100.0;
+        popView.contentViewContentH = 100.0;
+        popView.buttonsViewContentH = 70.0;
+        [popView refreshLayoutAnimated:YES];
     });
     
     

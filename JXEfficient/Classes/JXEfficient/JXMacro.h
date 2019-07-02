@@ -55,6 +55,40 @@
 #define JX_NAVBAR_H                     (JX_STATUSBAR_H_IS_44 ? 88.0 : 64.0)                            // 导航条高
 #define JX_TABBAR_H                     (JX_STATUSBAR_H_IS_44 ? 83.0 : 49.0)                            // 标签栏高
 
+#ifndef jx_weakify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+            #define jx_weakify(object) @autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+        #else
+            #define jx_weakify(object) @autoreleasepool{} __block __typeof__(object) block##_##object = object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+            #define jx_weakify(object) @try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+        #else
+            #define jx_weakify(object) @try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+        #endif
+    #endif
+#endif
+
+#ifndef jx_strongify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+            #define jx_strongify(object) @autoreleasepool{} __typeof__(object) object = weak##_##object;
+        #else
+            #define jx_strongify(object) @autoreleasepool{} __typeof__(object) object = block##_##object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+            #define jx_strongify(object) @try{} @finally{} __typeof__(object) object = weak##_##object;
+        #else
+            #define jx_strongify(object) @try{} @finally{} __typeof__(object) object = block##_##object;
+        #endif
+    #endif
+#endif
+
+//#define JX_WEAK_SELF                    jx_weakify(self)
+//#define JX_STRONG_SELF                  jx_strongify(self)
 #define JX_WEAK_SELF                    __weak __typeof(self) weakSelf = self
 #define JX_STRONG_SELF                  __strong __typeof(weakSelf) self = weakSelf
 

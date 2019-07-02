@@ -10,32 +10,32 @@
 #import "NSLayoutConstraint+JXCategory.h"
 #import "JXMacro.h"
 
-static const CGFloat k_cornerRadius = 12.0;
+static const CGFloat k_cornerRadius = 12.0; ///< 默认圆角
 
-static const CGFloat k_popupBgViewToT_min = 40.0;
-static const CGFloat k_popupBgViewToLR = 20.0;
-static const CGFloat k_popupBgViewToB_min = 60.0;
+static const CGFloat k_popupBgViewToT_min = 40.0; ///< popupBgView 距离上屏幕最小间距
+static const CGFloat k_popupBgViewToLR = 20.0; ///< popupBgView 距离左右屏幕间距
+static const CGFloat k_popupBgViewToB_min = 60.0; ///< popupBgView 距离下屏幕最小间距
 
-static const CGFloat k_popupBgViewContentEdgeT = 8.0;
-static const CGFloat k_popupBgViewContentEdgeB = 8.0;
+static const CGFloat k_popupBgViewContentEdgeT = 8.0; ///< popupBgView 子控件起始位置上边距, 默认 8.0
+static const CGFloat k_popupBgViewContentEdgeB = 8.0; ///< popupBgView 子控件结束位置下边距, 默认 8.0
 
-static const CGFloat k_titleViewToAboveWidget = 8.0;
-static const UIEdgeInsets k_titleViewEdgeInsets = {0.0, 8.0, 0.0, 8.0};
+static const CGFloat k_titleViewToAboveWidget = 8.0; ///< 标题距离上一控件距离间距
+static const UIEdgeInsets k_titleViewEdgeInsets = {0.0, 8.0, 0.0, 8.0}; ///< 标题部件 titleView 基于 titleBgView 的边距
 
-static const CGFloat k_contentViewToAboveWidget = 8.0;
-static const UIEdgeInsets k_contentViewEdgeInsets = {8.0, 15.0, 8.0, 15.0};
+static const CGFloat k_contentViewToAboveWidget = 8.0; ///< 内容距离上一控件距离间距
+static const UIEdgeInsets k_contentViewEdgeInsets = {8.0, 15.0, 8.0, 15.0}; ///< 内容部件 contentView 基于 contentBgView 的边距
 
-static const CGFloat k_buttonsViewToAboveWidget = 8.0;
-static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
+static const CGFloat k_buttonsViewToAboveWidget = 8.0; ///< 按钮距离上一控件距离间距
+static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< 按钮部件 buttonsView 基于 buttonsBgView 的边距
 
 @interface JXPopupView ()
 
 @property (nonatomic, assign) CGFloat contentContainerViewH; ///< 内容容器高度
 
 //
-@property (nonatomic, readonly) UIView *titleBgView;
-@property (nonatomic, readonly) UIView *contentBgView;
-@property (nonatomic, readonly) UIScrollView *contentScrollView;
+@property (nonatomic, readonly) UIView *titleBgView; ///< 标题部件 titleView 的容器图, 以实现 EdgeInsets
+@property (nonatomic, readonly) UIView *contentBgView; ///< 内容部件 contentView 的容器图, 以实现 EdgeInsets
+@property (nonatomic, readonly) UIScrollView *contentScrollView; ///< 所有边距贴边于 contentBgView
 @property (nonatomic, readonly) UIView *buttonsBgView;
 
 //
@@ -178,7 +178,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0};
         self.popupBgView.alpha = 0.f;
         self.popupBgView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     } completion:^{
-        
+        JX_BLOCK_EXEC(self.didDisappear);
     }];
 }
 

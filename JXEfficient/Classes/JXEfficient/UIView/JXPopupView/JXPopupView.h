@@ -38,8 +38,8 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, assign) CGFloat popupBgViewToLR; ///< popupBgView 与 self 左右边间距, 默认 20.0
 @property (nonatomic, assign) CGFloat popupBgViewToB_min; ///< popupBgView 与 self 下边间距, 默认 40.0
 
-@property (nonatomic, assign) CGFloat popupBgViewContentEdgeT; ///< popupBgView 子控件起始位置顶边距, 默认 8.0
-@property (nonatomic, assign) CGFloat popupBgViewContentEdgeB; ///< popupBgView 子控件结束位置底边距, 默认 8.0
+@property (nonatomic, assign) CGFloat popupBgViewContentEdgeT; ///< popupBgView 子控件起始位置上边距, 默认 8.0
+@property (nonatomic, assign) CGFloat popupBgViewContentEdgeB; ///< popupBgView 子控件结束位置下边距, 默认 8.0
 
 // titleView
 @property (nonatomic, readonly) UIView *titleView; ///< popupBgView -> titleBgView -> titleView <标题视图>, (若自定义, 加在该 View 上).
@@ -63,6 +63,7 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, readonly) BOOL didShowed; ///< 是否调用过 -show 方法
 - (void)show NS_REQUIRES_SUPER; ///< 显示 popup.
 - (void)hide NS_REQUIRES_SUPER; ///< 隐藏 popup.
+@property (nonatomic, copy) void (^didDisappear)(void); ///< 将要 [self removeFromSuperview] 时回调, 此时刻将定义为 self 的 didDisappear.
 
 /**
  布局改变后调用. <例如子类重写 layoutSubviews 以监听屏幕旋转等情况, 则调用该方法更新布局.>
