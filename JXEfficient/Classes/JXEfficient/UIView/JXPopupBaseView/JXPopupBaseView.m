@@ -9,6 +9,8 @@
 #import "JXMacro.h"
 #import "NSLayoutConstraint+JXCategory.h"
 
+static const CGFloat kBackgroundColorAlpha = 0.4; ///< 背景色透明度<与系统 UIAlertController 弹窗透明度一致>
+
 @interface JXPopupBaseView ()
 
 @end
@@ -55,14 +57,14 @@
     if (animated) {
         [self layoutIfNeeded];
         [UIView animateWithDuration:0.25 animations:^{
-            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.45];
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:kBackgroundColorAlpha];
             JX_BLOCK_EXEC(change);
         } completion:^(BOOL finished) {
             JX_BLOCK_EXEC(completion);
         }];
     }
     else {
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.45];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:kBackgroundColorAlpha];
         JX_BLOCK_EXEC(change);
         JX_BLOCK_EXEC(completion);
     }
