@@ -23,13 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
  popView.button1Label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
  popView.hideJustByClicking = YES;
  popView.didDisappear = ^{
- NSLog(@"didDisappear");
+    NSLog(@"didDisappear");
  };
  popView.button0Click = ^{
- NSLog(@"button0Click");
+    NSLog(@"button0Click");
  };
  popView.button1Click = ^{
- NSLog(@"button1Click");
+    NSLog(@"button1Click");
  };
  [popView show];
  @endcode
