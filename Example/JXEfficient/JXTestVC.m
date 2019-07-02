@@ -92,7 +92,7 @@
     popView.button1Label.text = @"Done";
     popView.button1Label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
     popView.hideJustByClicking = YES;
-    popView.didDisappear = ^{
+    popView.willRemoveFromSuperview = ^{
         NSLog(@"didDisappear");
     };
     popView.button0Click = ^{

@@ -178,7 +178,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
         self.popupBgView.alpha = 0.f;
         self.popupBgView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     } completion:^{
-        JX_BLOCK_EXEC(self.didDisappear);
+        JX_BLOCK_EXEC(self.willRemoveFromSuperview);
     }];
 }
 

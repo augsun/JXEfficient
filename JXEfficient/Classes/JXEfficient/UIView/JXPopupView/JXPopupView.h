@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, JXPopupViewCloseTo) {
 @property (nonatomic, readonly) BOOL didShowed; ///< 是否调用过 -show 方法
 - (void)show NS_REQUIRES_SUPER; ///< 显示 popup.
 - (void)hide NS_REQUIRES_SUPER; ///< 隐藏 popup.
-@property (nonatomic, copy) void (^didDisappear)(void); ///< 将要 [self removeFromSuperview] 时回调, 此时刻将定义为 self 的 didDisappear.
+@property (nonatomic, copy) void (^willRemoveFromSuperview)(void); ///< 将要 [self removeFromSuperview] 时回调, 此时刻将定义为 self 的 didDisappear.
 
 /**
  布局改变后调用. <例如子类重写 layoutSubviews 以监听屏幕旋转等情况, 则调用该方法更新布局.>
