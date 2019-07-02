@@ -41,7 +41,6 @@
 #import "JXLocationCoordinates.h"
 #import "JXMacro.h"
 #import "JXRegular.h"
-#import "JXSystemActionSheet.h"
 #import "JXSystemAlert.h"
 #import "JXUpdateCheck.h"
 #import "JXUUIDAndKeyChain.h"

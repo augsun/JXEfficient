@@ -89,6 +89,14 @@ NS_ASSUME_NONNULL_BEGIN
  leftDefaultHandler:(nullable void (^)(void))leftDefaultHandler
 rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
 
++ (void)sheetFromVC:(UIViewController *)vc
+      default0Title:(NSString *)title0
+      default1Title:(NSString *)title1
+             cancel:(NSString *)cancelTitle
+   default0Callback:(nullable void(^)(void))default0Callback
+   default1Callback:(nullable void(^)(void))default1Callback
+     cancelCallback:(nullable void(^)(void))cancelCallback;
+
 @end
 
 /**
