@@ -286,7 +286,7 @@
                 h = self.heightFor_customButtonsView();
             }
             else {
-                h = 44.0
+                h = 44.0;
             }
             self.buttonsViewContentH = h;
 
