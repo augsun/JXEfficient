@@ -219,10 +219,16 @@
         }
     }
     else {
-        CGFloat h = [self.titleLabel sizeThatFits:CGSizeMake(
-                                                             JX_SCREEN_W - 2 * self.popupBgViewToLR - self.titleViewEdgeInsets.left - self.titleViewEdgeInsets.right,
-                                                             CGFLOAT_MAX
-                                                             )].height;
+        CGFloat h = 0.0;
+        if (self.heightFor_customTitleView) {
+            h = self.heightFor_customTitleView();
+        }
+        else {
+            h = [self.titleLabel sizeThatFits:CGSizeMake(
+                                                         JX_SCREEN_W - 2 * self.popupBgViewToLR - self.titleViewEdgeInsets.left - self.titleViewEdgeInsets.right,
+                                                         CGFLOAT_MAX
+                                                         )].height;
+        }
         self.titleViewContentH = h > 0.0 ? h + 1.0 : 0.0;
     }
     
@@ -236,10 +242,16 @@
         }
     }
     else {
-        CGFloat h = [self.contentLabel sizeThatFits:CGSizeMake(
-                                                               JX_SCREEN_W - 2 * self.popupBgViewToLR - self.contentViewEdgeInsets.left - self.contentViewEdgeInsets.right,
-                                                               CGFLOAT_MAX
-                                                               )].height;
+        CGFloat h = 0.0;
+        if (self.heightFor_customContentView) {
+            h = self.heightFor_customContentView();
+        }
+        else {
+            h = [self.contentLabel sizeThatFits:CGSizeMake(
+                                                           JX_SCREEN_W - 2 * self.popupBgViewToLR - self.contentViewEdgeInsets.left - self.contentViewEdgeInsets.right,
+                                                           CGFLOAT_MAX
+                                                           )].height;
+        }
         self.contentViewContentH = h > 0.0 ? h + 1.0 : 0.0;
     }
     
@@ -268,7 +280,16 @@
             NSLayoutConstraint *con_button0Label_toR = nil;
             NSLayoutConstraint *con_button1Label_toL = nil;
             
-            self.buttonsViewContentH = 44.0;
+            
+            CGFloat h = 0.0;
+            if (self.heightFor_customButtonsView) {
+                h = self.heightFor_customButtonsView();
+            }
+            else {
+                h = 44.0
+            }
+            self.buttonsViewContentH = h;
+
             if (haveB0 && haveB1) {
                 self.button0Label.hidden = NO;
                 self.button0.hidden = NO;

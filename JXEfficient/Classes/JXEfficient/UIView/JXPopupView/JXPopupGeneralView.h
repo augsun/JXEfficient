@@ -40,18 +40,18 @@ NS_ASSUME_NONNULL_BEGIN
 // 标题
 @property (nonatomic, readonly) UILabel *titleLabel; ///< 标题, 默认 font(18.0), textColor gray(51), textAlignment(center), numberOfLines(0)
 @property (nonatomic, strong, nullable) UIView *customTitleView; ///< 自定义标题 <若自定义, 则必须一并实现 heightFor_customTitleView, 否则不展示.>, 如果设置 titleLabel 被忽略.
-@property (nonatomic, copy) CGFloat (^heightFor_customTitleView)(void); ///< 自定义标题 高度
+@property (nonatomic, copy) CGFloat (^heightFor_customTitleView)(void); ///< 自定义标题 高度. 若实现, 标题高度内部不做计算. <除非自定义 customTitleView, 否则建议设置好 titleLabel 相关属性, 内部计算.>
 
 // 内容
 @property (nonatomic, readonly) UILabel *contentLabel; ///< 内容 默认 font(14.0), textColor (gray 51), textAlignment(center), numberOfLines(0)
 @property (nonatomic, strong, nullable) UIView *customContentView; ///< 自定义内容 <若自定义, 则必须一并实现 heightFor_customContentView, 否则不展示.>, 如果设置 contentLabel 被忽略.
-@property (nonatomic, copy) CGFloat (^heightFor_customContentView)(void); ///< 自定义内容 高度
+@property (nonatomic, copy) CGFloat (^heightFor_customContentView)(void); ///< 自定义内容 高度. 若实现, 内容高度内部不做计算. <除非自定义 customContentView, 否则建议设置好 contentLabel 相关属性, 内部计算.>
 
 // 按钮
 @property (nonatomic, readonly) UILabel *button0Label; ///< 左边按钮, button0Label 与 button1Label 可任意只设置一个. 默认 font(16.0), textColor (gray 51), textAlignment(center)
 @property (nonatomic, readonly) UILabel *button1Label; ///< 右边按钮, button0Label 与 button1Label 可任意只设置一个. 默认 font(16.0), textColor (gray 51), textAlignment(center)
 @property (nonatomic, strong, nullable) UIView *customButtonsView; ///< 自定义按钮 <若自定义, 则必须一并实现 heightFor_customButtonsView, 否则不展示.>, 如果设置 button0Label button1Label 被忽略.
-@property (nonatomic, copy) CGFloat (^heightFor_customButtonsView)(void); ///< 自定义按钮 高度
+@property (nonatomic, copy) CGFloat (^heightFor_customButtonsView)(void); ///< 自定义按钮 高度. 若实现, 按钮高度内部不做计算. <除非自定义 customButtonsView, 内部默认 44.0>
 
 //
 @property (nonatomic, readonly) UIView *buttonHorizontalLineView; ///< 按钮水平线
