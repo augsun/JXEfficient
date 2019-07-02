@@ -112,6 +112,7 @@
         NSLog(@"bbbb");
     };
     
+    
     [popView show];
     jx_weakify(popView);
     popView.backgroundTap = ^{
