@@ -55,7 +55,7 @@
         [NSLayoutConstraint activateConstraints:cons];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.numberOfLines = 0;
-        self.titleLabel.font = [UIFont systemFontOfSize:18.0];
+        self.titleLabel.font = [UIFont systemFontOfSize:18.0 weight:UIFontWeightMedium];
         self.titleLabel.textColor = JX_COLOR_GRAY(51);
     }
     
@@ -160,27 +160,39 @@
 }
 
 - (void)setCustomTitleView:(UIView *)customTitleView {
+    if (_customTitleView) {
+        [_customTitleView removeFromSuperview];
+    }
     _customTitleView = customTitleView;
-    
+
     customTitleView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.titleView addSubview:customTitleView];
     [NSLayoutConstraint activateConstraints:[customTitleView jx_con_edgeEqual:self.titleView]];
+    [self.titleView layoutIfNeeded];
 }
 
 - (void)setCustomContentView:(UIView *)customContentView {
+    if (_customContentView) {
+        [_customContentView removeFromSuperview];
+    }
     _customContentView = customContentView;
     
     customContentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:customContentView];
     [NSLayoutConstraint activateConstraints:[customContentView jx_con_edgeEqual:self.contentView]];
+    [self.contentView layoutIfNeeded];
 }
 
 - (void)setCustomButtonsView:(UIView *)customButtonsView {
+    if (_customButtonsView) {
+        [_customButtonsView removeFromSuperview];
+    }
     _customButtonsView = customButtonsView;
     
     customButtonsView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.buttonsView addSubview:customButtonsView];
     [NSLayoutConstraint activateConstraints:[customButtonsView jx_con_edgeEqual:self.buttonsView]];
+    [self.buttonsView layoutIfNeeded];
 }
 
 - (void)layoutSubviews {
@@ -198,6 +210,11 @@
     }
 }
 
+- (void)refreshLayoutAnimated:(BOOL)animated {
+    [self JXPopupGeneralView_countLayout];
+    [super refreshLayoutAnimated:animated];
+}
+
 - (void)show {
     [self JXPopupGeneralView_countLayout];
     
@@ -211,6 +228,7 @@
     
     // titleLabel
     if (self.customTitleView) {
+        self.titleLabel.hidden = YES;
         if (self.heightFor_customTitleView) {
             self.titleViewContentH = self.heightFor_customTitleView();
         }
@@ -219,6 +237,7 @@
         }
     }
     else {
+        self.titleLabel.hidden = NO;
         CGFloat h = 0.0;
         if (self.heightFor_customTitleView) {
             h = self.heightFor_customTitleView();
@@ -234,6 +253,7 @@
     
     // contentLabel
     if (self.customContentView) {
+        self.contentLabel.hidden  = YES;
         if (self.heightFor_customContentView) {
             self.contentViewContentH = self.heightFor_customContentView();
         }
@@ -242,6 +262,7 @@
         }
     }
     else {
+        self.contentLabel.hidden  = NO;
         CGFloat h = 0.0;
         if (self.heightFor_customContentView) {
             h = self.heightFor_customContentView();
@@ -279,7 +300,6 @@
             
             NSLayoutConstraint *con_button0Label_toR = nil;
             NSLayoutConstraint *con_button1Label_toL = nil;
-            
             
             CGFloat h = 0.0;
             if (self.heightFor_customButtonsView) {
@@ -333,6 +353,9 @@
             }
             
             //
+            [self.buttonsView layoutIfNeeded];
+
+            //
             self.buttonVerticalLineView.hidden = !(haveB0 && haveB1);
         }
         else {
@@ -354,7 +377,7 @@
     else if (haveTitle && haveContent && !haveButtons) {
         self.popupBgViewContentEdgeT = 20.0;
         self.contentViewToAboveWidget = 3.0;
-        
+        self.popupBgViewContentEdgeB = 12.0;
     }
     else if (haveTitle && !haveContent && haveButtons) {
         self.popupBgViewContentEdgeT = 20.0;
@@ -368,6 +391,7 @@
     else if (!haveTitle && haveContent && haveButtons) {
         self.popupBgViewContentEdgeT = 10.0;
         self.contentViewToAboveWidget = 3.0;
+        self.buttonsViewToAboveWidget = 8.0;
         self.popupBgViewContentEdgeB = 0.0;
     }
     else if (!haveTitle && haveContent && !haveButtons) {

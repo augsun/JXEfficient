@@ -28,7 +28,7 @@
 		C86768562226631F00A87D57 /* JXHomeTagsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C86768552226631F00A87D57 /* JXHomeTagsModel.m */; };
 		C86768592226647A00A87D57 /* JXHomeTagsViewItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C86768582226647A00A87D57 /* JXHomeTagsViewItemCell.m */; };
 		C867685F22266AEE00A87D57 /* JXHomeTagsViewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C867685E22266AEE00A87D57 /* JXHomeTagsViewItemCell.xib */; };
-		C8AF4841222F971300059697 /* timg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8AF4840222F971300059697 /* timg.jpeg */; };
+		C8AF4841222F971300059697 /* timg.png in Resources */ = {isa = PBXBuildFile; fileRef = C8AF4840222F971300059697 /* timg.png */; };
 		EDEB02E9947C5C779314CCF9 /* Pods_JXEfficient_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +78,7 @@
 		C86768572226647A00A87D57 /* JXHomeTagsViewItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXHomeTagsViewItemCell.h; sourceTree = "<group>"; };
 		C86768582226647A00A87D57 /* JXHomeTagsViewItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXHomeTagsViewItemCell.m; sourceTree = "<group>"; };
 		C867685E22266AEE00A87D57 /* JXHomeTagsViewItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXHomeTagsViewItemCell.xib; sourceTree = "<group>"; };
-		C8AF4840222F971300059697 /* timg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpeg; sourceTree = "<group>"; };
+		C8AF4840222F971300059697 /* timg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timg.png; sourceTree = "<group>"; };
 		D89E0A1F09B8F94CE9D6CB0A /* Pods-JXEfficient_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JXEfficient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F040665E92E59B1F9E86B73D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				C8AF4840222F971300059697 /* timg.jpeg */,
+				C8AF4840222F971300059697 /* timg.png */,
 			);
 			name = "Example for JXEfficient";
 			path = JXEfficient;
@@ -304,7 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				C8AF4841222F971300059697 /* timg.jpeg in Resources */,
+				C8AF4841222F971300059697 /* timg.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				C867685F22266AEE00A87D57 /* JXHomeTagsViewItemCell.xib in Resources */,

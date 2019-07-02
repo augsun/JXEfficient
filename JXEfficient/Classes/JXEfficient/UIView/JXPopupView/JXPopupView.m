@@ -167,7 +167,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
 - (void)refreshLayoutAnimated:(BOOL)animated {
     [self JXPopupView_prepareForShow];
     if (animated) {
-        [UIView animateWithDuration:5.25 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             [self layoutIfNeeded];
         }];
     }
@@ -218,7 +218,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
     NSMutableArray <NSLayoutConstraint *> *popupBgView_cons = [[NSMutableArray alloc] init];
     
     switch (self.closeTo) {
-        case JXPopupViewCloseToTop:
+            case JXPopupViewCloseToTop:
         {
             [popupBgView_cons addObjectsFromArray:@[
                                                     [self.popupBgView jx_con_same:NSLayoutAttributeTop equal:self m:1.0 c:self.popupBgViewToT_min],
@@ -228,7 +228,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
                                                     ]];
         } break;
             
-        case JXPopupViewCloseToBottom:
+            case JXPopupViewCloseToBottom:
         {
             [popupBgView_cons addObjectsFromArray:@[
                                                     [self.popupBgView jx_con_same:NSLayoutAttributeLeft equal:self m:1.0 c:self.popupBgViewToLR],
@@ -261,6 +261,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
     
     // titleBgView
     CGFloat titleBgView_h = 0.0;
+    self.titleBgView.hidden = !titleShow;
     if (titleShow) {
         {
             titleBgView_h = self.titleViewContentH + self.titleViewEdgeInsets.top + self.titleViewEdgeInsets.bottom;
@@ -294,6 +295,7 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
     
     // contentBgView
     CGFloat contentBgView_h = 0.0;
+    self.contentBgView.hidden = !contentShow;
     if (contentShow) {
         // contentBgView
         {
@@ -353,9 +355,10 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
             [NSLayoutConstraint activateConstraints:self.contentView_cons];
         }
     }
-
+    
     // buttonsBgView
     CGFloat buttonsBgView_h = 0.0;
+    self.buttonsView.hidden = !buttonsShow;
     if (buttonsShow) {
         {
             CGFloat top_constant = 0.0;
