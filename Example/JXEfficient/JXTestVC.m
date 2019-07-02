@@ -86,47 +86,23 @@
     //
     
     JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];
-//    popView.backgroundColorForDebug = YES;
-
-    // popView.titleLabel.attributedText
-    popView.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"通过APP展示H5地图"];
-    
-    // contentLabel
-    popView.contentLabel.text = @"此种方法可以解决问题但是又引出了新的问题，";
-    
-    // button0Label | button1Label
-    popView.button0Label.text = @"取消";
-    popView.button1Label.text = @"确定";
-    
-//    popView.buttonsViewContentH = 100.0;
-    
-//    UIView *vvv = [[UIView alloc] init];
-//    vvv.backgroundColor = JX_COLOR_RANDOM;
-//    popView.customContentView = vvv;
-//    popView.heightFor_customContentView = ^CGFloat{
-//        return 20.0;
-//    };
-    
+    popView.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"AFNetworking"];
+    popView.contentLabel.text = @"Perhaps the most important feature of all, however, is the amazing community of developers who use and contribute to AFNetworking every day.";
+    popView.button0Label.text = @"Cancel";
+    popView.button1Label.text = @"Done";
+    popView.button1Label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
     popView.hideJustByClicking = YES;
     popView.didDisappear = ^{
-        NSLog(@"bbbb");
+        NSLog(@"didDisappear");
     };
-    
-    
+    popView.button0Click = ^{
+        NSLog(@"button0Click");
+    };
+    popView.button1Click = ^{
+        NSLog(@"button1Click");
+    };
     [popView show];
-    jx_weakify(popView);
-    popView.backgroundTap = ^{
-        jx_strongify(popView)
-        [popView hide];
-    };
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        popView.titleViewContentH = 100.0;
-//        popView.contentViewContentH = 100.0;
-//        popView.buttonsViewContentH = 70.0;
-//        [popView refreshLayoutAnimated:YES];
-//    });
-    
+
     
     
 }
