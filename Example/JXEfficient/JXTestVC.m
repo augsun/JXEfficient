@@ -54,6 +54,7 @@
         
     };
 
+    
     self.naviView.leftButtonImage = [UIImage imageNamed:@"navi_left_icon"];
     self.naviView.leftButtonTap = ^{
         JX_STRONG_SELF;
