@@ -50,20 +50,21 @@
         JX_STRONG_SELF;
         [self backClick];
         
+        // How encapsulate a flexible customization popup widget highly, not system.
         
     };
 
-    self.naviView.leftButtonTitle = @"Left";
+    self.naviView.leftButtonImage = [UIImage imageNamed:@"navi_left_icon"];
     self.naviView.leftButtonTap = ^{
         JX_STRONG_SELF;
         [self leftClick];
     };
-    self.naviView.rightButtonTitle = @"right";
+    self.naviView.rightButtonImage = [UIImage imageNamed:@"naiv_right_icon"];
     self.naviView.rightButtonTap = ^{
         JX_STRONG_SELF;
         [self rightClick];
     };
-    self.naviView.rightSubButtonImage = [UIImage imageNamed:@"timg"];
+    self.naviView.rightSubButtonImage = [UIImage imageNamed:@"navi_subRight_icon"];
     self.naviView.rightSubButtonTap = ^{
         JX_STRONG_SELF;
         [self rightSubClick];
