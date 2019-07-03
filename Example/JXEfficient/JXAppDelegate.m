@@ -9,14 +9,14 @@
 #import "JXAppDelegate.h"
 #import <JXEfficient/JXEfficient.h>
 
-#import "JXViewController.h"
+#import "JXTestHomeVC.h"
 
 @implementation JXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    JXViewController *vc = [[JXViewController alloc] init];
+    JXTestHomeVC *vc = [[JXTestHomeVC alloc] init];
     UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:vc];
     naviVC.navigationBar.hidden = YES;
     

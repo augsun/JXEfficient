@@ -16,9 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark 单个
 
 /**
- title
- message
- <UIAlertActionStyleCancel>
+ <title message Cancel>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -27,9 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
       cancelHandler:(nullable void (^)(void))cancelHandler;
 
 /**
- title
- message
- <UIAlertActionStyleDefault>
+ <title message Default>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -38,9 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
      defaultHandler:(nullable void (^)(void))defaultHandler;
 
 /**
- title
- message
- <UIAlertActionStyleDestructive>
+ <title message Destructive>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -51,9 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark 双个
 
 /**
- title
- message
- <UIAlertActionStyleCancel> <UIAlertActionStyleDefault>
+ <title message Cancel, Default>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -64,9 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
      defaultHandler:(nullable void (^)(void))defaultHandler;
 
 /**
- title
- message
- <UIAlertActionStyleCancel> <UIAlertActionStyleDestructive>
+ <title message Cancel, Destructive>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -77,9 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
  destructiveHandler:(nullable void (^)(void))destructiveHandler;
 
 /**
- title
- message
- <UIAlertActionStyleDefault> <UIAlertActionStyleDefault>
+ <title message Default, Default>
  */
 + (void)alertFromVC:(UIViewController *)vc
               title:(nullable NSString *)title
@@ -113,7 +101,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
          alertTitle:(NSString *)alertTitle
        alertMessage:(NSString *)alertMessage
       defaultTtitle:(NSString *)defaultTtitle
-     defaultHandler:(void(^)(void))defaultHandler __deprecated_msg("即将废弃, 请使用 JXSystemAlert 下对应的新方法.");
+     defaultHandler:(void(^)(void))defaultHandler __deprecated_msg("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message Default>.");
 
 /**
                            title
@@ -124,7 +112,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
         cancelTitle:(NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
- destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
+ destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message(set nil) Cancel, Destructive>."));
 
 /**
                            title
@@ -137,7 +125,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
         cancelTitle:(NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
- destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
+ destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message Cancel, Destructive>."));
 
 /**
                            title
@@ -151,7 +139,7 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
   defaultTtitleLeft:(NSString *)defaultTtitleLeft
  defaultTtitleRight:(NSString *)defaultTtitleRight
         leftHandler:(void(^)(void))leftHandler
-       rightHandler:(void(^)(void))rightHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法."));
+       rightHandler:(void(^)(void))rightHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message Default, Default>."));
 
 @end
 
