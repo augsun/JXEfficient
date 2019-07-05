@@ -251,7 +251,7 @@ static NSString *const js_closeWebPage = @"closeWebPage"; ///< 关闭页面
     if (!message) {
         return ;
     }
-    [JXSystemAlert alertFromVC:self alertTitle:nil alertMessage:message defaultTtitle:@"确定" defaultHandler:^{
+    [JXSystemAlert alertFromVC:self title:nil message:message defaultTitle:@"确定" defaultHandler:^{
         [self.alertMessages removeObject:message];
         [self showAlert];
     }];

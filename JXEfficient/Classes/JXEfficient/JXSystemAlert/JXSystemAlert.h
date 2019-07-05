@@ -98,8 +98,8 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
                  <UIAlertActionStyleDefault>
  */
 + (void)alertFromVC:(UIViewController *)viewController
-         alertTitle:(NSString *)alertTitle
-       alertMessage:(NSString *)alertMessage
+         alertTitle:(nullable NSString *)alertTitle
+       alertMessage:(nullable NSString *)alertMessage
       defaultTtitle:(NSString *)defaultTtitle
      defaultHandler:(void(^)(void))defaultHandler __deprecated_msg("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message Default>.");
 
@@ -108,8 +108,8 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
    <UIAlertActionStyleCancel> <UIAlertActionStyleDestructive>
  */
 + (void)alertFromVC:(UIViewController *)viewController
-         alertTitle:(NSString *)alertTitle
-        cancelTitle:(NSString *)cancelTitle
+         alertTitle:(nullable NSString *)alertTitle
+        cancelTitle:(nullable NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
  destructiveHandler:(void(^)(void))destructiveHandler __deprecated_msg(("即将废弃, 请使用 JXSystemAlert 下对应的新方法 <title message(set nil) Cancel, Destructive>."));
@@ -120,8 +120,8 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
    <UIAlertActionStyleCancel> <UIAlertActionStyleDestructive>
  */
 + (void)alertFromVC:(UIViewController *)viewController
-         alertTitle:(NSString *)alertTitle
-       alertMessage:(NSString *)alertMessage
+         alertTitle:(nullable NSString *)alertTitle
+       alertMessage:(nullable NSString *)alertMessage
         cancelTitle:(NSString *)cancelTitle
    destructiveTitle:(NSString *)destructiveTitle
       cancelHandler:(void(^)(void))cancelHandler
@@ -134,8 +134,8 @@ rightDefaultHandler:(nullable void (^)(void))rightDefaultHandler;
  
  */
 + (void)alertFromVC:(UIViewController *)viewController
-         alertTitle:(NSString *)alertTitle
-       alertMessage:(NSString *)alertMessage
+         alertTitle:(nullable NSString *)alertTitle
+       alertMessage:(nullable NSString *)alertMessage
   defaultTtitleLeft:(NSString *)defaultTtitleLeft
  defaultTtitleRight:(NSString *)defaultTtitleRight
         leftHandler:(void(^)(void))leftHandler
