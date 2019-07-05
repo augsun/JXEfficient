@@ -39,11 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 // carouselViewClass 和 carouselViewForIndex 可以自定义轮播内部的样式或控件
 /**
- 自定义 carouselView <类似 UITableView 注册 cell 一样> 必须继承自 JXCarouselImageView, 其子类可以自定义(或添加)每个轮播的子控件(比如给每个轮播右上角添加一个角标)<类似自定义 cell> 默认 JXCarouselImageView
+ 自定义 customCarouselViewClass <类似 UITableView 注册 cell 一样> 必须继承自 JXCarouselImageView, 其子类可以自定义(或添加)每个轮播的子控件(比如给每个轮播右上角添加一个角标)<类似自定义 cell> 默认 JXCarouselImageView
  @discussion 实例化后只对第一次设置有效 以保证 carouselViewForIndex 的回调参数 carouselView 都为同一类型实例, 且调用 reloadDataWithImageURLs: 后再设置无效
- @warning carouselViewClass 所对应的类不能关联 xib
+ @warning customCarouselViewClass 所对应的类不能关联 xib
  */
-@property (nonatomic, strong) Class carouselViewClass;
+@property (nonatomic, strong) Class customCarouselViewClass;
+@property (nonatomic, assign) BOOL setImageIfCustomCarouselView; ///< 自定义 customCarouselViewClass 的情况下是否设置图片. 默认 YES
 
 /**
  每次轮播时的回调 <类似 UITableView 的 cell 的复用方法>

@@ -13,6 +13,7 @@
 #import "JXTestHomeCell.h"
 
 //
+#import "JXTest_JXCarouselView_VC.h"
 #import "JXTest_JXPopupGeneralView_VC.h"
 
 static NSString *const kCellID = @"kCellID";
@@ -36,10 +37,14 @@ static NSString *const kCellID = @"kCellID";
     
     // JXTest_JXPopupGeneralView_VC
     {
+        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXCarouselView_VC class]];
+        [self.models addObject:model];
+    }
+    {
         JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXPopupGeneralView_VC class]];
         [self.models addObject:model];
     }
-    
+
     // 排序<升>
     [self.models sortUsingComparator:^NSComparisonResult(JXTestHomeModel * _Nonnull obj1, JXTestHomeModel * _Nonnull obj2) {
         return [obj1.title compare:obj2.title];

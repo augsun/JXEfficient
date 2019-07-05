@@ -85,4 +85,6 @@
     
 }
 
+JX_DEALLOC_TEST
+
 @end

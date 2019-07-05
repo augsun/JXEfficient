@@ -54,7 +54,7 @@ static const CGFloat kPageControlToBottomSpacingDefault = 8.0;
 
 @implementation JXCarouselView
 
-@synthesize carouselViewClass = _carouselViewClass;
+@synthesize customCarouselViewClass = _customCarouselViewClass;
 
 - (void)setAutoRollingTimeInterval:(CGFloat)autoRollingTimeInterval {
     if (autoRollingTimeInterval >= kAutoRollTimeIntervalMin &&
@@ -109,18 +109,18 @@ static const CGFloat kPageControlToBottomSpacingDefault = 8.0;
     }
 }
 
-- (void)setCarouselViewClass:(Class)carouselViewClass {
-    if (!self.didSetCarouselViewClass && [carouselViewClass isSubclassOfClass:[JXCarouselImageView class]]) {
-        _carouselViewClass = carouselViewClass;
+- (void)setCustomCarouselViewClass:(Class)customCarouselViewClass {
+    if (!self.didSetCarouselViewClass && [customCarouselViewClass isSubclassOfClass:[JXCarouselImageView class]]) {
+        _customCarouselViewClass = customCarouselViewClass;
         self.didSetCarouselViewClass = YES;
     }
 }
 
-- (Class)carouselViewClass {
+- (Class)customCarouselViewClass {
     if (!self.didSetCarouselViewClass) {
         self.didSetCarouselViewClass = YES;
     }
-    return _carouselViewClass;
+    return _customCarouselViewClass;
 }
 
 - (instancetype)init {
@@ -153,7 +153,7 @@ static const CGFloat kPageControlToBottomSpacingDefault = 8.0;
     _imageContentMode = UIViewContentModeScaleAspectFill;
     _interitemSpacing = kInteritemSpacingDefault;
     _pageControlToBottomSpacing = kPageControlToBottomSpacingDefault;
-    _carouselViewClass = [JXCarouselImageView class];
+    _setImageIfCustomCarouselView = YES;
 
     // scrollView
     self.scrollView = [[UIScrollView alloc] init];
@@ -282,17 +282,28 @@ static const CGFloat kPageControlToBottomSpacingDefault = 8.0;
         // 新增 或 释放 JXCarouselImageView
         if (didHave_count < imgView_count) {
             for (NSInteger i = 0; i < imgView_count - didHave_count; i ++) {
-                JXCarouselImageView *carouselImageView = [[self.carouselViewClass alloc] init];
+                JXCarouselImageView *carouselImageView = nil;
+                if (self.customCarouselViewClass) {
+                    carouselImageView = [[self.customCarouselViewClass alloc] init];
+                }
+                else {
+                    carouselImageView = [[JXCarouselImageView alloc] init];
+                }
                 carouselImageView.imageView.contentMode = self.imageContentMode;
                 // 加载图片
-                carouselImageView.loadImage = ^(NSURL * _Nonnull URL, void (^ _Nonnull completed)(UIImage * _Nullable, NSError * _Nullable)) {
-                    JX_STRONG_SELF;
-                    if (self.loadImage) {
-                        self.loadImage(URL, nil, ^(UIImage * _Nullable image, NSError * _Nullable error) {
-                            JX_BLOCK_EXEC(completed, image, error);
-                        });
-                    }
-                };
+                if (!self.customCarouselViewClass || (self.customCarouselViewClass && self.setImageIfCustomCarouselView)) {
+                    carouselImageView.JXCarouselImageView_loadImage = ^(NSURL * _Nonnull URL, void (^ _Nonnull completed)(UIImage * _Nullable, NSError * _Nullable)) {
+                        JX_STRONG_SELF;
+                        if (self.loadImage) {
+                            self.loadImage(URL, nil, ^(UIImage * _Nullable image, NSError * _Nullable error) {
+                                JX_BLOCK_EXEC(completed, image, error);
+                            });
+                        }
+                    };
+                }
+                else {
+                    
+                }
                 [self.carouselImageViews addObject:carouselImageView];
             }
         }
@@ -430,7 +441,7 @@ static const CGFloat kPageControlToBottomSpacingDefault = 8.0;
         NSInteger item_index = (self.numberOfPages + self.currentPage - 1 + sequence) % self.numberOfPages;
         
         // 刷新 UI
-        self.carouselImageViews[imgView_index].model = self.models[imgView_index];
+        self.carouselImageViews[imgView_index].JXCarouselImageView_model = self.models[imgView_index];
         
         // 回调
         JX_BLOCK_EXEC(self.carouselViewForIndex, self.carouselImageViews[imgView_index], item_index);

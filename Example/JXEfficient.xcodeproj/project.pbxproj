@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */ = {isa = PBXBuildFile; fileRef = C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */; };
+		C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */; };
 		C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */; };
 		C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25722CC827A006EF8AB /* JXTestHomeModel.m */; };
 		C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25A22CC8305006EF8AB /* JXTestHomeCell.m */; };
@@ -31,6 +32,10 @@
 		C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */; };
 		C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */; };
 		C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png */; };
+		C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */; };
+		C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */; };
+		C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */; };
+		C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */; };
 		EDEB02E9947C5C779314CCF9 /* Pods_JXEfficient_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +77,8 @@
 		B80575148304D160ABE3AB86 /* Pods-JXEfficient_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Tests/Pods-JXEfficient_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCD264D27962C863033E57A3 /* Pods_JXEfficient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JXEfficient_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = autoRelease_JXEfficient.py; path = ../autoRelease_JXEfficient.py; sourceTree = "<group>"; };
+		C840284D22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_VC.h; sourceTree = "<group>"; };
+		C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_VC.m; sourceTree = "<group>"; };
 		C85CF25222CC8187006EF8AB /* JXTestBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTestBaseVC.h; sourceTree = "<group>"; };
 		C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTestBaseVC.m; sourceTree = "<group>"; };
 		C85CF25622CC827A006EF8AB /* JXTestHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTestHomeModel.h; sourceTree = "<group>"; };
@@ -84,6 +91,12 @@
 		C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_subRight_icon@2x.png"; sourceTree = "<group>"; };
 		C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_naiv_right_icon@2x.png"; sourceTree = "<group>"; };
 		C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JXTestBaseVC_navi_left_icon2x.png; sourceTree = "<group>"; };
+		C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_current.pdf; sourceTree = "<group>"; };
+		C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_normal.pdf; sourceTree = "<group>"; };
+		C8C0CCD722CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomView.h; sourceTree = "<group>"; };
+		C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomView.m; sourceTree = "<group>"; };
+		C8C0CCDA22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomModel.h; sourceTree = "<group>"; };
+		C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomModel.m; sourceTree = "<group>"; };
 		D89E0A1F09B8F94CE9D6CB0A /* Pods-JXEfficient_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JXEfficient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F040665E92E59B1F9E86B73D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -216,6 +229,21 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		C840284C22CF0CC30010BB22 /* JXCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				C840284D22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.h */,
+				C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */,
+				C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */,
+				C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */,
+				C8C0CCD722CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.h */,
+				C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */,
+				C8C0CCDA22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.h */,
+				C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */,
+			);
+			path = JXCarouselView;
+			sourceTree = "<group>";
+		};
 		C85CF24C22CC805D006EF8AB /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +298,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				C840284C22CF0CC30010BB22 /* JXCarouselView */,
 				C85CF25522CC819C006EF8AB /* JXPopupGeneralView */,
 			);
 			path = Controller;
@@ -370,10 +399,12 @@
 			files = (
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png in Resources */,
+				C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */,
 				C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				C85CF25D22CC8305006EF8AB /* JXTestHomeCell.xib in Resources */,
 				C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */,
+				C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */,
 			);
@@ -399,11 +430,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JXEfficient/JXEfficient.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXEfficient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -461,7 +494,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */,
+				C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */,
 				C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */,
+				C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */,
 				C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */,
 				C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */,
 				6003F59E195388D20070C39A /* JXAppDelegate.m in Sources */,

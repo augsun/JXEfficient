@@ -27,38 +27,40 @@
     return self;
 }
 
-- (void)setModel:(JXCarouselModel *)model {
-    _model = model;
+- (void)setJXCarouselImageView_model:(JXCarouselModel *)JXCarouselImageView_model {
+    _JXCarouselImageView_model = JXCarouselImageView_model;
     
     // 清空数据
-    if (model == nil) {
+    if (JXCarouselImageView_model == nil) {
         self.imageView.image = nil;
         return;
     }
     
     // 下载成功
-    if (model.largeImage) {
-        self.imageView.image = model.largeImage;
+    if (JXCarouselImageView_model.largeImage) {
+        self.imageView.image = JXCarouselImageView_model.largeImage;
     }
     // 下载中
-    else if (model.imageDownloading) {
+    else if (JXCarouselImageView_model.imageDownloading) {
         self.imageView.image = nil;
         return;
     }
     // 下载失败或未开始下载
     else {
         self.imageView.image = nil;
-        model.imageDownloading = YES;
-        self.loadImage(model.URL, ^(UIImage * _Nullable image, NSError * _Nullable error) {
-            model.imageDownloading = NO;
-            if (image) {
-                model.largeImage = image;
-                self.imageView.image = model.largeImage;
-            }
-            else {
-                model.loadImageFailure = YES;
-            }
-        });
+        JXCarouselImageView_model.imageDownloading = YES;
+        if (self.JXCarouselImageView_loadImage) {
+            self.JXCarouselImageView_loadImage(JXCarouselImageView_model.URL, ^(UIImage * _Nullable image, NSError * _Nullable error) {
+                JXCarouselImageView_model.imageDownloading = NO;
+                if (image) {
+                    JXCarouselImageView_model.largeImage = image;
+                    self.imageView.image = JXCarouselImageView_model.largeImage;
+                }
+                else {
+                    JXCarouselImageView_model.loadImageFailure = YES;
+                }
+            });
+        }
     }
 }
 

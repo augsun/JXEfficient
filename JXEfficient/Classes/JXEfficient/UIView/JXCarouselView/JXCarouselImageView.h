@@ -12,14 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXCarouselImageView : UIView
 
+@property (nonatomic, readonly) UIImageView *imageView; ///< 图片容器
+
 /* ================================================================================================== */
 /* ======================== JXEfficient Internal Use Properties And Methods. ======================== */
 /* ================================================================================================== */
 #pragma mark - JXEfficient Internal Use Properties And Methods.
 
-@property (nonatomic, readonly) UIImageView *imageView; ///< 图片容器
-@property (nullable, nonatomic, strong) JXCarouselModel *model; ///< 传空 将清空内部数据
-@property (nonatomic, copy) void (^loadImage)(NSURL *URL, void (^completed)(UIImage * _Nullable image, NSError * _Nullable error)); ///< 加载图片
+@property (nullable, nonatomic, strong) JXCarouselModel *JXCarouselImageView_model; ///< 传空 将清空内部数据
+@property (nonatomic, copy, nullable) void (^JXCarouselImageView_loadImage)(NSURL *URL, void (^completed)(UIImage * _Nullable image, NSError * _Nullable error)); ///< 加载图片
 
 @end
 
