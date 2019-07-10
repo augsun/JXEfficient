@@ -55,12 +55,13 @@ typedef NS_ENUM(NSUInteger, JXTagsViewForRemainSpacingLayoutType) {
 @property (nonatomic, assign) JXTagsViewForRemainSpacingLayoutType forRemainSpacingLayoutType;
 
 /**
- 超出 tagsView 的宽度后强制加权压缩布局, 默认 NO
+ 超出 tagsView 的宽度百分比小于 dpercentForForceZoomOut 情况下的强制压缩布局<使用加权压缩布局>, 默认 NO
  
  @discussion 建议在可确定的宽度情况下, 不希望超出一点点而导致左右滚动的情况, 可以进行略微压缩以达到布局宽度正好等于 tagsView 的宽度
- @warning 如果超出 tagsView 的宽度大于50%, 则无法进行强制布局, 因为超过 50% 加权压缩后宽度严重减少, 严重影响展示效果, 则取 50% 作为界值. 加权只对各个 tags 的宽度加权, 边距间距不参与加权.
+ @warning 如果超出 tagsView 的宽度百分比超出 percentForForceZoomOut, 则无法进行强制布局. 加权只对各个 tags 的宽度加权, 边距间距不参与加权.
  */
 @property (nonatomic, assign) BOOL forceZoomOutLayoutWhenBeyondSpacingUsingWeightedAverage;
+@property (nonatomic, assign) CGFloat percentForForceZoomOutLayout; ///< 强制压缩布局情况下的最大超出范围百分比. 取值 [0.0, 0.5], 超过 0.5 再强制布局, 会严重导致各 tag 宽度压缩, 不符合日常使用. 默认 0.3.
 
 /**
  当前选中的 tagIndex

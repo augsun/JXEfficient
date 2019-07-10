@@ -17,6 +17,9 @@ static NSString *const kNibCellID = @"kNibCellID";
 static const CGFloat kIndicatorFixedWidthDefalut = 20.0;
 static const CGFloat kIndicatorHeightDefalut = 2.0;
 
+static const CGFloat k_percentForForceZoomOutLayout_min = 0.0;
+static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
+
 @interface JXTagsView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIView *bgView; ///< 无数据时一次性全部隐藏
@@ -219,6 +222,12 @@ static const CGFloat kIndicatorHeightDefalut = 2.0;
     }
 }
 
+- (void)setPercentForForceZoomOutLayout:(CGFloat)percentForForceZoomOutLayout {
+    if (percentForForceZoomOutLayout >= k_percentForForceZoomOutLayout_min && k_percentForForceZoomOutLayout_min <= k_percentForForceZoomOutLayout_max) {
+        _percentForForceZoomOutLayout = percentForForceZoomOutLayout;
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -292,7 +301,7 @@ static const CGFloat kIndicatorHeightDefalut = 2.0;
     CGFloat coll_edgeL = self.contentInset.left;
     CGFloat coll_edgeR = self.contentInset.right;
     CGFloat interitemSpacing = self.interitemSpacing;
-
+    
     //
     CGFloat item_totalWidth = 0.0;
     CGFloat totalWidth = 0.0;
@@ -317,7 +326,7 @@ static const CGFloat kIndicatorHeightDefalut = 2.0;
     //
     CGFloat tag_toL = coll_edgeL;
     
-    // 是否拉伸
+    // 非原始布局 && 不足宽度情况 <使用对应的增量布局样式>
     if (self.forRemainSpacingLayoutType != JXTagsViewForRemainSpacingLayoutTypeDoNothing && totalWidth < selfWidth) {
         CGFloat remainWidth = selfWidth - totalWidth;
         
@@ -355,8 +364,9 @@ static const CGFloat kIndicatorHeightDefalut = 2.0;
             indicatorWidth_showing(modelEnum);
         }
     }
-    // 是否要加权压缩 最多超出 50% 情况
-    else if (self.forceZoomOutLayoutWhenBeyondSpacingUsingWeightedAverage && totalWidth > selfWidth && totalWidth <= 1.5 * selfWidth) {
+    
+    // 需要压缩布局 && 大于宽度情况 && 超出需要压缩布局百分比 <使用加权压缩布局>
+    else if (self.forceZoomOutLayoutWhenBeyondSpacingUsingWeightedAverage && totalWidth > selfWidth && totalWidth <= (1.0 + self.percentForForceZoomOutLayout) * selfWidth) {
         CGFloat remainWidth = selfWidth - totalWidth;
         CGFloat weightedAverageUnit = 1.0 / item_totalWidth * remainWidth;
         
@@ -371,7 +381,7 @@ static const CGFloat kIndicatorHeightDefalut = 2.0;
             indicatorWidth_showing(modelEnum);
         }
     }
-    // 不作处理 原始布局
+    // 非以上两种情况按原始布局
     else {
         for (JXTagsViewTagModel *modelEnum in self.tagModels) {
             CGFloat tagWidth = modelEnum.tagWidth;
