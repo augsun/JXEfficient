@@ -30,7 +30,7 @@
 #import "JXChowder+GetTimestampFromNet.h"
 #import "JXChowder.h"
 #import "JXCoreData.h"
-#import "JXEfficient_docker.h"
+#import "JXEfficientDocker.h"
 #import "JXEncryption+AES.h"
 #import "JXEncryption+MD5.h"
 #import "JXEncryption+RSA.h"

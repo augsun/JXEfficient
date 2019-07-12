@@ -1,16 +1,16 @@
 //
-//  JXEfficient_docker.m
+//  JXEfficientDocker.m
 //  JXEfficient
 //
 //  Created by augsun on 5/17/19.
 //
 
-#import "JXEfficient_docker.h"
+#import "JXEfficientDocker.h"
 #import "JXEfficient.h"
 
-@implementation JXEfficient_docker
+@implementation JXEfficientDocker
 
-static JXEfficient_docker *singleton_;
+static JXEfficientDocker *singleton_;
 + (instancetype)sharedDocker {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

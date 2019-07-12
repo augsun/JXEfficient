@@ -1,5 +1,5 @@
 //
-//  JXEfficient_docker.h
+//  JXEfficientDocker.h
 //  JXEfficient
 //
 //  Created by augsun on 5/17/19.
@@ -9,7 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXEfficient_docker : JXBaseDocker
+#define JX_EFFICIENT_DOCKER [JXEfficientDocker sharedDocker]
+
+@interface JXEfficientDocker : JXBaseDocker
 
 @end
 
