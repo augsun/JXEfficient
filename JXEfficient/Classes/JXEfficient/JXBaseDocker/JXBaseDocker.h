@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 用于组件化项目的组件间通信的 Docker.
+ 用于组件化项目的组件间通信的 Docker, 对外理解为上层路由寻址, 对内理解为向路由寻址.
  
  @discussion 一个组件持有一个 JXBaseDocker 子类的单例. 1)组件内部持有进行组件内部的功能调用; 2)上层路由持有, 为路由提供内部功能的实现.
- @warning JXBaseDocker 为抽象类, 请使用其子类并实现父类实现的方法.
+ @warning JXBaseDocker 为抽象类, 请使用子类实现<必须>父类方法<接口>.
  */
 @interface JXBaseDocker : NSObject
 

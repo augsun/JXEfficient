@@ -184,7 +184,7 @@ static const CGFloat kDefaultPagesGap = 8.f;
     NSAssert(self.viewForPage != nil, JX_ASSERT_MSG(@"viewForPage 必须实现."));
 
     // 保存当前添加到 bgView 上的 page
-    NSString *page_string = [NSString stringWithFormat:@"%ld", page];
+    NSString *page_string = [NSString stringWithFormat:@"%ld", (long)page];
     NSString *pageNum = [self.didAddedPages objectForKey:page_string];
     if (!pageNum) {
         [self.didAddedPages setObject:page_string forKey:page_string];

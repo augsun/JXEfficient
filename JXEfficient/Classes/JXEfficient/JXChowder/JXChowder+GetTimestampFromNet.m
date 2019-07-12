@@ -100,7 +100,7 @@
             if ([json isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *data = jx_dicValue(json[@"data"]);
                 if (data) {
-                    long t = jx_longlongValue(data[@"t"]);
+                    long long t = jx_longlongValue(data[@"t"]);
                     if (t > 0) {
                         timestamp = t;
                     }
