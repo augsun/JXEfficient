@@ -9,7 +9,7 @@
 #import "UIView+JXCategory.h"
 
 static const JXCircularArcViewArcPosition k_arcPosition_default = JXCircularArcViewArcPositionBottom; ///< 默认 圆弧位置
-static const CGFloat k_arcMigration_default = 15.0; ///< 默认 弧偏移
+static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 
 @interface JXCircularArcView ()
 
@@ -44,38 +44,55 @@ static const CGFloat k_arcMigration_default = 15.0; ///< 默认 弧偏移
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self JXCircularArcView_drawArc];
+    
+    BOOL rightWH = self.jx_width > 0.0 && self.jx_height > 0.0;
+    if (rightWH) {
+        BOOL newWH = self.jx_width != self.previousSelfSize.width || self.jx_height != self.previousSelfSize.height;
+        if (newWH) {
+            self.previousSelfSize = self.jx_size;
+            [self JXCircularArcView_drawArc];
+        }
+    }
 }
 
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     [super willMoveToWindow:newWindow];
-    [self JXCircularArcView_drawArc];
+    if (newWindow) {
+        [self JXCircularArcView_drawArc];
+    }
 }
 
 - (void)setArcPosition:(JXCircularArcViewArcPosition)arcPosition {
-    if (arcPosition != JXCircularArcViewArcPositionTop &&
-        arcPosition != JXCircularArcViewArcPositionLeft &&
-        arcPosition != JXCircularArcViewArcPositionBottom &&
-        arcPosition != JXCircularArcViewArcPositionRight) {
-        NSLog(@"JXCircularArcView 的 arcPosition 设置误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
-        arcPosition = JXCircularArcViewArcPositionBottom;
+    if (_arcPosition != arcPosition) {
+        _arcPosition = arcPosition;
+        
+        if (arcPosition != JXCircularArcViewArcPositionTop &&
+            arcPosition != JXCircularArcViewArcPositionLeft &&
+            arcPosition != JXCircularArcViewArcPositionBottom &&
+            arcPosition != JXCircularArcViewArcPositionRight)
+        {
+            NSLog(@"JXCircularArcView 的 arcPosition 设置误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
+            arcPosition = JXCircularArcViewArcPositionBottom;
+        }
+        [self JXCircularArcView_drawArc];
     }
-    _arcPosition = arcPosition;
-    [self JXCircularArcView_drawArc];
 }
 
 - (void)setArcMigration:(CGFloat)arcMigration {
-    _arcMigration = arcMigration;
-    [self JXCircularArcView_drawArc];
+    if (_arcMigration != arcMigration) {
+        _arcMigration = arcMigration;
+        [self JXCircularArcView_drawArc];
+    }
 }
 
 - (void)JXCircularArcView_drawArc {
     if (!self.window) {
         return;
     }
-
-    CGFloat migration = fabs(self.arcMigration);
-    if (migration == 0.0) {
+    
+    CGFloat m_fabs = fabs(self.arcMigration);
+    CGFloat m = self.arcMigration;
+    if (m_fabs == 0.0) {
         if (self.maskLayer) {
             [self.maskLayer removeFromSuperlayer];
             self.maskLayer = nil;
@@ -83,114 +100,112 @@ static const CGFloat k_arcMigration_default = 15.0; ///< 默认 弧偏移
         return;
     }
 
-    CGFloat x = 0;
-    CGFloat y = 0;
-    CGFloat t_width = self.jx_width;
-    CGFloat t_height = self.jx_height;
+    CGFloat w = self.jx_width;
+    CGFloat h = self.jx_height;
     
-    // 计算圆弧的最大高度
+    // 计算圆弧的最大偏移
     CGFloat _maxRadian = 0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         case JXCircularArcViewArcPositionTop:
         {
-            _maxRadian = MIN(t_height, t_width / 2);
+            _maxRadian = MIN(h, w / 2);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         case JXCircularArcViewArcPositionRight:
         {
-            _maxRadian = MIN(t_height / 2, t_width);
+            _maxRadian = MIN(h / 2, w);
         } break;
             
         default: break;
     }
-    if(migration > _maxRadian){
-        NSLog(@"JXCircularArcView 的 arcMigration 圆弧半径过大, 自动设置为最大半径.");
-        migration = _maxRadian;
+    if(m_fabs > _maxRadian){
+        NSLog(@"JXCircularArcView 的 arcMigration 圆弧半径 %lf 过大, 自动设置为最大半径 %lf.", m_fabs, _maxRadian);
+        m_fabs = _maxRadian;
     }
     
     // 计算半径
-    CGFloat radius = 0;
+    CGFloat r = 0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         case JXCircularArcViewArcPositionTop:
         {
-            CGFloat c = sqrt(pow(t_width / 2, 2) + pow(migration, 2));
-            CGFloat sin_bc = migration / c;
-            radius = c / (sin_bc * 2);
+            CGFloat c = sqrt(pow(w / 2, 2) + pow(m_fabs, 2));
+            CGFloat sin_bc = m_fabs / c;
+            r = c / (sin_bc * 2);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         case JXCircularArcViewArcPositionRight:
         {
-            CGFloat c = sqrt(pow(t_height / 2, 2) + pow(migration, 2));
-            CGFloat sin_bc = migration / c;
-            radius = c / ( sin_bc * 2);
+            CGFloat c = sqrt(pow(h / 2, 2) + pow(m_fabs, 2));
+            CGFloat sin_bc = m_fabs / c;
+            r = c / (sin_bc * 2);
         } break;
             
         default: break;
     }
     
-    // 画圆
+    //
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.fillColor = [UIColor whiteColor].CGColor;
     CGMutablePathRef path = CGPathCreateMutable();
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         {
-            if(self.arcMigration > 0) {
-                CGPathMoveToPoint(path, NULL, t_width,t_height - migration);
-                CGPathAddArc(path, NULL, t_width / 2, t_height - radius, radius, asin((radius - migration) / radius), M_PI - asin((radius - migration) / radius), NO);
+            if(m > 0) {
+                CGPathMoveToPoint(path, NULL, w, h - m);
+                CGPathAddArc(path, NULL, w / 2, h - r, r, asin((r - m) / r), M_PI - asin((r - m) / r), NO);
             }
             else {
-                CGPathMoveToPoint(path, NULL, t_width,t_height);
-                CGPathAddArc(path, NULL, t_width / 2, t_height + radius - migration, radius, 2 * M_PI - asin((radius - migration) / radius), M_PI + asin((radius - migration) / radius), YES);
+                CGPathMoveToPoint(path, NULL, w, h);
+                CGPathAddArc(path, NULL, w / 2, h + r + m, r, 2 * M_PI - asin((r + m) / r), M_PI + asin((r + m) / r), YES);
             }
-            CGPathAddLineToPoint(path, NULL, x, y);
-            CGPathAddLineToPoint(path, NULL, t_width, y);
+            CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
+            CGPathAddLineToPoint(path, NULL, w, 0.0);
         } break;
             
         case JXCircularArcViewArcPositionTop:
         {
-            if(self.arcMigration > 0) {
-                CGPathMoveToPoint(path, NULL, t_width, migration);
-                CGPathAddArc(path,NULL, t_width / 2, radius, radius, 2 * M_PI - asin((radius - migration) / radius), M_PI + asin((radius - migration) / radius), YES);
+            if(m > 0) {
+                CGPathMoveToPoint(path, NULL, w, m);
+                CGPathAddArc(path,NULL, w / 2, r, r, 2 * M_PI - asin((r - m) / r), M_PI + asin((r - m) / r), YES);
             }
             else {
-                CGPathMoveToPoint(path, NULL, t_width, y);
-                CGPathAddArc(path,NULL, t_width / 2, migration - radius, radius, asin((radius - migration) / radius), M_PI - asin((radius - migration) / radius), NO);
+                CGPathMoveToPoint(path, NULL, w, 0.0);
+                CGPathAddArc(path,NULL, w / 2, -m - r, r, asin((r + m) / r), M_PI - asin((r + m) / r), NO);
             }
-            CGPathAddLineToPoint(path, NULL, x, t_height);
-            CGPathAddLineToPoint(path, NULL, t_width, t_height);
+            CGPathAddLineToPoint(path, NULL, 0.0, h);
+            CGPathAddLineToPoint(path, NULL, w, h);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         {
-            if(self.arcMigration > 0) {
-                CGPathMoveToPoint(path, NULL, migration, y);
-                CGPathAddArc(path, NULL, radius, t_height / 2, radius, M_PI + asin((radius - migration) / radius), M_PI - asin((radius - migration) / radius), YES);
+            if(m > 0) {
+                CGPathMoveToPoint(path, NULL, m, 0.0);
+                CGPathAddArc(path, NULL, r, h / 2, r, M_PI + acos((r - m) / r), M_PI / 2 + asin((r - m) / r), YES);
             }
             else {
-                CGPathMoveToPoint(path, NULL, x, y);
-                CGPathAddArc(path, NULL, migration - radius, t_height / 2, radius, 2 * M_PI - asin((radius - migration) / radius), asin((radius - migration) / radius), NO);
+                CGPathMoveToPoint(path, NULL, 0.0, 0.0);
+                CGPathAddArc(path, NULL, -m - r, h / 2, r, - acos((r + m) / r), acos((r + m) / r) + 0, NO);
             }
-            CGPathAddLineToPoint(path, NULL, t_width, t_height);
-            CGPathAddLineToPoint(path, NULL, t_width, y);
+            CGPathAddLineToPoint(path, NULL, w, h);
+            CGPathAddLineToPoint(path, NULL, w, 0.0);
         } break;
             
         case JXCircularArcViewArcPositionRight:
         {
-            if(self.arcMigration > 0) {
-                CGPathMoveToPoint(path, NULL, t_width - migration, y);
-                CGPathAddArc(path, NULL, t_width - radius, t_height / 2, radius, 1.5 * M_PI + asin((radius - migration) / radius), M_PI / 2 + asin((radius - migration) / radius), NO);
+            if(m > 0) {
+                CGPathMoveToPoint(path, NULL, w - m, 0.0);
+                CGPathAddArc(path, NULL, w - r, h / 2, r, 1.5 * M_PI + asin((r - m) / r), M_PI / 2 + asin((r - m) / r), NO);
             }
             else {
-                CGPathMoveToPoint(path, NULL, t_width, y);
-                CGPathAddArc(path, NULL, t_width  + radius - migration, t_height / 2, radius, M_PI + asin((radius - migration) / radius), M_PI - asin((radius - migration) / radius), YES);
+                CGPathMoveToPoint(path, NULL, w, 0.0);
+                CGPathAddArc(path, NULL, w + r + m, h / 2, r, M_PI + acos((r + m) / r), M_PI - acos((r + m) / r), YES);
             }
-            CGPathAddLineToPoint(path, NULL, x, t_height);
-            CGPathAddLineToPoint(path, NULL, x, y);
+            CGPathAddLineToPoint(path, NULL, 0.0, h);
+            CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
         } break;
             
         default: break;

@@ -26,41 +26,119 @@
     self.rightSubButton_enable = YES;
     
     
-    self.arcView = [[JXCircularArcView alloc] init];
-    [self.view addSubview:self.arcView];
-    [self.arcView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view).with.offset(200.0);
-        make.left.mas_equalTo(self.view).with.offset(20.0);
-        make.right.mas_equalTo(self.view).with.offset(-20.0);
-        make.height.mas_equalTo(200.0);
-    }];
-    self.arcView.backgroundColor = JX_COLOR_RANDOM;
-    self.arcView.arcMigration = 30.0;
-    self.arcView.arcPosition = JXCircularArcViewArcPositionTop;
     
 }
 
 - (void)rightSubButton_click {
-    self.arcView.arcMigration = 40.0;
-    self.arcView.arcPosition = JXCircularArcViewArcPositionLeft;
+    if (!self.arcView) {
+        self.arcView = [[JXCircularArcView alloc] init];
+        [self.view addSubview:self.arcView];
+        [self.arcView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view).with.offset(100.0);
+            
+            // t0
+//            make.centerX.mas_equalTo(self.view);
+//            make.width.mas_equalTo(300.0);
+//            make.height.mas_equalTo(300.0);
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self t0];
-    });
+            // t1
+            make.left.mas_equalTo(self.view).with.offset(20.0);
+            make.right.mas_equalTo(self.view).with.offset(-20.0);
+            make.bottom.mas_equalTo(self.view).with.offset(-80.0);
+        }];
+        self.arcView.backgroundColor = JX_COLOR_RANDOM;
+    }
+
+    //
+    NSArray <NSDictionary *> *tempArr = @[
+                                          // Top
+                                          @{
+                                              @"arcMigration": @(100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
+                                              },
+                                          @{
+                                              @"arcMigration": @(50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
+                                              },
+
+                                          // Left
+                                          @{
+                                              @"arcMigration": @(100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
+                                              },
+                                          @{
+                                              @"arcMigration": @(50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
+                                              },
+
+                                          // Bottom
+                                          @{
+                                              @"arcMigration": @(20.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-20.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
+                                              },
+                                          @{
+                                              @"arcMigration": @(20.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-20.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
+                                              },
+
+                                          // Right
+                                          @{
+                                              @"arcMigration": @(100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-100.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
+                                              },
+                                          @{
+                                              @"arcMigration": @(50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
+                                              },
+                                          @{
+                                              @"arcMigration": @(-50.0),
+                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
+                                              },
+                                          ];
+
+    [self testData:tempArr i:0];
 }
 
-- (void)t0 {
-    self.arcView.arcMigration = 20.0;
-    self.arcView.arcPosition = JXCircularArcViewArcPositionBottom;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self t1];
-    });
-}
+- (void)testData:(NSArray <NSDictionary *> *)data i:(NSInteger)i {
+    if (i >= data.count) {
+        
+    }
+    else {
+        self.arcView.arcMigration = jx_floValue(data[i][@"arcMigration"]);
+        self.arcView.arcPosition = jx_intValue(data[i][@"arcPosition"]);
 
-- (void)t1 {
-    self.arcView.arcMigration = 50.0;
-    self.arcView.arcPosition = JXCircularArcViewArcPositionRight;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self testData:data i:i + 1];
+        });
+    }
 }
 
 @end
