@@ -116,18 +116,18 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     CGFloat h = self.jx_height;
     
     // 是否超出最大可设置的 弧偏移
-    CGFloat _max_arcMigration = 0;
+    CGFloat _max_arcMigration = 0.0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         case JXCircularArcViewArcPositionTop:
         {
-            _max_arcMigration = MIN(h, w / 2);
+            _max_arcMigration = MIN(h, w / 2.0);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         case JXCircularArcViewArcPositionRight:
         {
-            _max_arcMigration = MIN(h / 2, w);
+            _max_arcMigration = MIN(h / 2.0, w);
         } break;
             
         default: break;
@@ -143,22 +143,22 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     }
 
     // 计算半径
-    CGFloat r = 0;
+    CGFloat r = 0.0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         case JXCircularArcViewArcPositionTop:
         {
-            CGFloat c = sqrt(pow(w / 2, 2) + pow(m_fabs, 2));
+            CGFloat c = sqrt(pow(w / 2.0, 2.0) + pow(m_fabs, 2.0));
             CGFloat sin_bc = m_fabs / c;
-            r = c / (sin_bc * 2);
+            r = c / (sin_bc * 2.0);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         case JXCircularArcViewArcPositionRight:
         {
-            CGFloat c = sqrt(pow(h / 2, 2) + pow(m_fabs, 2));
+            CGFloat c = sqrt(pow(h / 2.0, 2.0) + pow(m_fabs, 2.0));
             CGFloat sin_bc = m_fabs / c;
-            r = c / (sin_bc * 2);
+            r = c / (sin_bc * 2.0);
         } break;
             
         default: break;
@@ -171,15 +171,15 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         {
-            if(m > 0) {
+            if(m > 0.0) {
                 CGPathMoveToPoint(path, NULL, w, h - m);
                 CGFloat angle = asin((r - m) / r);
-                CGPathAddArc(path, NULL, w / 2, h - r, r, angle, M_PI - angle, NO);
+                CGPathAddArc(path, NULL, w / 2.0, h - r, r, angle, M_PI - angle, NO);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, h);
                 CGFloat angle = asin((r + m) / r);
-                CGPathAddArc(path, NULL, w / 2, h + r + m, r, 2 * M_PI - angle, M_PI + angle, YES);
+                CGPathAddArc(path, NULL, w / 2.0, h + r + m, r, 2.0 * M_PI - angle, M_PI + angle, YES);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
             CGPathAddLineToPoint(path, NULL, w, 0.0);
@@ -187,15 +187,15 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             
         case JXCircularArcViewArcPositionTop:
         {
-            if(m > 0) {
+            if(m > 0.0) {
                 CGPathMoveToPoint(path, NULL, w, m);
                 CGFloat angle = asin((r - m) / r);
-                CGPathAddArc(path,NULL, w / 2, r, r, 2 * M_PI - angle, M_PI + angle, YES);
+                CGPathAddArc(path,NULL, w / 2.0, r, r, 2.0 * M_PI - angle, M_PI + angle, YES);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, 0.0);
                 CGFloat angle = asin((r + m) / r);
-                CGPathAddArc(path,NULL, w / 2, - m - r, r, angle, M_PI - angle, NO);
+                CGPathAddArc(path,NULL, w / 2.0, - m - r, r, angle, M_PI - angle, NO);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, h);
             CGPathAddLineToPoint(path, NULL, w, h);
@@ -203,15 +203,15 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             
         case JXCircularArcViewArcPositionLeft:
         {
-            if(m > 0) {
+            if(m > 0.0) {
                 CGPathMoveToPoint(path, NULL, m, 0.0);
                 CGFloat angle = acos((r - m) / r);
-                CGPathAddArc(path, NULL, r, h / 2, r, M_PI + angle, M_PI - angle, YES);
+                CGPathAddArc(path, NULL, r, h / 2.0, r, M_PI + angle, M_PI - angle, YES);
             }
             else {
                 CGPathMoveToPoint(path, NULL, 0.0, 0.0);
                 CGFloat angle = acos((r + m) / r);
-                CGPathAddArc(path, NULL, - m - r, h / 2, r, - angle, angle, NO);
+                CGPathAddArc(path, NULL, - m - r, h / 2.0, r, - angle, angle, NO);
             }
             CGPathAddLineToPoint(path, NULL, w, h);
             CGPathAddLineToPoint(path, NULL, w, 0.0);
@@ -219,15 +219,15 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             
         case JXCircularArcViewArcPositionRight:
         {
-            if(m > 0) {
+            if(m > 0.0) {
                 CGPathMoveToPoint(path, NULL, w - m, 0.0);
                 CGFloat angle = asin((r - m) / r);
-                CGPathAddArc(path, NULL, w - r, h / 2, r, 1.5 * M_PI + angle, M_PI / 2 + angle, NO);
+                CGPathAddArc(path, NULL, w - r, h / 2.0, r, 1.5 * M_PI + angle, M_PI / 2.0 + angle, NO);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, 0.0);
                 CGFloat angle = acos((r + m) / r);
-                CGPathAddArc(path, NULL, w + r + m, h / 2, r, M_PI + angle, M_PI - angle, YES);
+                CGPathAddArc(path, NULL, w + r + m, h / 2.0, r, M_PI + angle, M_PI - angle, YES);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, h);
             CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
