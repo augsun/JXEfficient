@@ -9,12 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** 位置 */
+/** 圆弧位置 */
 typedef NS_ENUM(NSInteger, JXCircularArcViewArcPosition) {
-    JXCircularArcViewArcPositionTop        = 1, ///< 上
-    JXCircularArcViewArcPositionLeft       = 2, ///< 左
-    JXCircularArcViewArcPositionBottom     = 3, ///< 下
-    JXCircularArcViewArcPositionRight      = 4, ///< 右
+    JXCircularArcViewArcPositionTop = 1, ///< 上
+    JXCircularArcViewArcPositionLeft, ///< 左
+    JXCircularArcViewArcPositionBottom, ///< 下
+    JXCircularArcViewArcPositionRight, ///< 右
 };
 
 /**
@@ -22,8 +22,8 @@ typedef NS_ENUM(NSInteger, JXCircularArcViewArcPosition) {
  */
 @interface JXCircularArcView : UIView
 
-@property (nonatomic, assign) JXCircularArcViewArcPosition position; ///< 位置 [上 | 左 | 下 | 右], 默认 下
-@property (nonatomic, assign) CGFloat radian; ///< 圆弧高 或 宽, 可为负值, 正值凸 负值凹, 默认 15.0
+@property (nonatomic, assign) JXCircularArcViewArcPosition arcPosition; ///< 圆弧位置 [上 | 左 | 下 | 右], 默认 下
+@property (nonatomic, assign) CGFloat arcMigration; ///< 弧偏移 [高 | 宽], 可为负值, 正值凸 负值凹, 默认 15.0
 
 @end
 

@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.rightButton_enable = YES;
+    self.rightSubButton_enable = YES;
     
     
     self.arcView = [[JXCircularArcView alloc] init];
@@ -35,14 +35,14 @@
         make.height.mas_equalTo(200.0);
     }];
     self.arcView.backgroundColor = JX_COLOR_RANDOM;
-    self.arcView.radian = 30.0;
-    self.arcView.position = JXCircularArcViewArcPositionTop;
+    self.arcView.arcMigration = 30.0;
+    self.arcView.arcPosition = JXCircularArcViewArcPositionTop;
     
 }
 
-- (void)rightButton_click {
-    self.arcView.radian = 40.0;
-    self.arcView.position = JXCircularArcViewArcPositionLeft;
+- (void)rightSubButton_click {
+    self.arcView.arcMigration = 40.0;
+    self.arcView.arcPosition = JXCircularArcViewArcPositionLeft;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self t0];
@@ -50,8 +50,8 @@
 }
 
 - (void)t0 {
-    self.arcView.radian = 20.0;
-    self.arcView.position = JXCircularArcViewArcPositionBottom;
+    self.arcView.arcMigration = 20.0;
+    self.arcView.arcPosition = JXCircularArcViewArcPositionBottom;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self t1];
@@ -59,8 +59,8 @@
 }
 
 - (void)t1 {
-    self.arcView.radian = 50.0;
-    self.arcView.position = JXCircularArcViewArcPositionRight;
+    self.arcView.arcMigration = 50.0;
+    self.arcView.arcPosition = JXCircularArcViewArcPositionRight;
 }
 
 @end
