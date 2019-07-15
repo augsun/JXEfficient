@@ -13,7 +13,11 @@
 
 - (void)setVcClass:(Class)vcClass {
     _vcClass = vcClass;
-    self.title = NSStringFromClass(vcClass);
+    NSString *fullClassString = NSStringFromClass(vcClass);
+    NSString *string = fullClassString;
+    string = [string stringByReplacingOccurrencesOfString:@"JXTest_" withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:@"_VC" withString:@""];
+    self.title = string;
 }
 
 + (instancetype)modelFromVcClass:(Class)vcClass {

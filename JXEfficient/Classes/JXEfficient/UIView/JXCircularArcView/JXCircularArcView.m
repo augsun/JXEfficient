@@ -70,7 +70,7 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             arcPosition != JXCircularArcViewArcPositionBottom &&
             arcPosition != JXCircularArcViewArcPositionRight)
         {
-            NSLog(@"JXCircularArcView 的 arcPosition 设置误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
+            NSLog(@"JXCircularArcView 的 arcPosition 设置有误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
             arcPosition = JXCircularArcViewArcPositionBottom;
         }
         [self JXCircularArcView_drawArc];
@@ -108,25 +108,25 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     CGFloat h = self.jx_height;
     
     // 计算圆弧的最大偏移
-    CGFloat _maxRadian = 0;
+    CGFloat _max_arcMigration = 0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
         case JXCircularArcViewArcPositionTop:
         {
-            _maxRadian = MIN(h, w / 2);
+            _max_arcMigration = MIN(h, w / 2);
         } break;
             
         case JXCircularArcViewArcPositionLeft:
         case JXCircularArcViewArcPositionRight:
         {
-            _maxRadian = MIN(h / 2, w);
+            _max_arcMigration = MIN(h / 2, w);
         } break;
             
         default: break;
     }
-    if(m_fabs > _maxRadian){
-        NSLog(@"JXCircularArcView 的 arcMigration 圆弧半径 %lf 过大, 自动设置为最大半径 %lf.", m_fabs, _maxRadian);
-        m_fabs = _maxRadian;
+    if(m_fabs > _max_arcMigration){
+        NSLog(@"JXCircularArcView 的 arcMigration 圆弧半径 %lf 过大, 自动设置为最大半径 %lf.", m_fabs, _max_arcMigration);
+        m_fabs = _max_arcMigration;
     }
     
     // 计算半径
@@ -224,7 +224,7 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     }
     
     CGPathCloseSubpath(path);
-    [maskLayer setPath:path];
+    maskLayer.path = path;
     CFRelease(path);
     self.layer.mask = maskLayer;
     

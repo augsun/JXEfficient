@@ -37,6 +37,7 @@
 		C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */; };
 		C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */; };
 		C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */; };
+		C8E3330D22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */; };
 		EDEB02E9947C5C779314CCF9 /* Pods_JXEfficient_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,8 @@
 		C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomView.m; sourceTree = "<group>"; };
 		C8C0CCDA22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomModel.h; sourceTree = "<group>"; };
 		C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomModel.m; sourceTree = "<group>"; };
+		C8E3330B22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXNaviView_VC.h; sourceTree = "<group>"; };
+		C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXNaviView_VC.m; sourceTree = "<group>"; };
 		D89E0A1F09B8F94CE9D6CB0A /* Pods-JXEfficient_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JXEfficient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F040665E92E59B1F9E86B73D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -310,6 +313,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
 				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
 				C840284C22CF0CC30010BB22 /* JXCarouselView */,
 				C85CF25522CC819C006EF8AB /* JXPopupGeneralView */,
@@ -324,6 +328,15 @@
 				C85CF25F22CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m */,
 			);
 			path = JXPopupGeneralView;
+			sourceTree = "<group>";
+		};
+		C8E3330A22DCD44800CC7C11 /* JXNaviView */ = {
+			isa = PBXGroup;
+			children = (
+				C8E3330B22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.h */,
+				C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */,
+			);
+			path = JXNaviView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,6 +529,7 @@
 				C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */,
 				6003F59E195388D20070C39A /* JXAppDelegate.m in Sources */,
 				C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */,
+				C8E3330D22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m in Sources */,
 				6003F5A7195388D20070C39A /* JXTestHomeVC.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

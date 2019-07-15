@@ -13,6 +13,7 @@
 #import "JXTestHomeCell.h"
 
 //
+#import "JXTest_JXNaviView_VC.h"
 #import "JXTest_JXCircularArcView_VC.h"
 #import "JXTest_JXCarouselView_VC.h"
 #import "JXTest_JXPopupGeneralView_VC.h"
@@ -36,24 +37,21 @@ static NSString *const kCellID = @"kCellID";
     self.view.backgroundColor = JX_COLOR_SYS_SECTION;
     self.models = [[NSMutableArray alloc] init];
     
-    // JXTest_JXPopupGeneralView_VC
-    {
-        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXCircularArcView_VC class]];
+    void (^addTestVC)(Class) = ^ (Class aClass) {
+        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:aClass];
         [self.models addObject:model];
-    }
-    {
-        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXCarouselView_VC class]];
-        [self.models addObject:model];
-    }
-    {
-        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXPopupGeneralView_VC class]];
-        [self.models addObject:model];
-    }
+    };
+    
+    //
+    addTestVC([JXTest_JXNaviView_VC class]);
+    addTestVC([JXTest_JXCircularArcView_VC class]);
+    addTestVC([JXTest_JXCarouselView_VC class]);
+    addTestVC([JXTest_JXPopupGeneralView_VC class]);
 
     // 排序<升>
-    [self.models sortUsingComparator:^NSComparisonResult(JXTestHomeModel * _Nonnull obj1, JXTestHomeModel * _Nonnull obj2) {
-        return [obj1.title compare:obj2.title];
-    }];
+//    [self.models sortUsingComparator:^NSComparisonResult(JXTestHomeModel * _Nonnull obj1, JXTestHomeModel * _Nonnull obj2) {
+//        return [obj1.title compare:obj2.title];
+//    }];
     
     // naviView
     self.naviView = [JXNaviView naviView];
