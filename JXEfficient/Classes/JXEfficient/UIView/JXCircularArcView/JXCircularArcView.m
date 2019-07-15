@@ -84,7 +84,9 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             arcPosition != JXCircularArcViewArcPositionBottom &&
             arcPosition != JXCircularArcViewArcPositionRight)
         {
+#ifdef DEBUG
             NSLog(@"JXCircularArcView 的 arcPosition 设置有误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
+#endif
             arcPosition = JXCircularArcViewArcPositionBottom;
         }
         [self setNeedsLayout];
@@ -133,7 +135,9 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     if (m_fabs > _max_arcMigration) {
         NSString *s = m > 0.0 ? @"大" : @"小";
         CGFloat m_set_to = m > 0.0 ? _max_arcMigration : - _max_arcMigration;
+#ifdef DEBUG
         NSLog(@"JXCircularArcView 的 arcMigration 弧偏移 %lf 过%@, 自动设置为最%@弧偏移 %lf.", m, s, s, m_set_to);
+#endif
         m = m_set_to;
         m_fabs = _max_arcMigration;
     }
