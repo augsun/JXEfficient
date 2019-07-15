@@ -53,14 +53,6 @@
     NSArray <NSDictionary *> *tempArr = @[
                                           // Top
                                           @{
-                                              @"arcMigration": @(100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
-                                              },
-                                          @{
                                               @"arcMigration": @(50.0),
                                               @"arcPosition": @(JXCircularArcViewArcPositionTop),
                                               },
@@ -70,14 +62,6 @@
                                               },
 
                                           // Left
-                                          @{
-                                              @"arcMigration": @(100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
-                                              },
                                           @{
                                               @"arcMigration": @(50.0),
                                               @"arcPosition": @(JXCircularArcViewArcPositionLeft),
@@ -96,24 +80,8 @@
                                               @"arcMigration": @(-20.0),
                                               @"arcPosition": @(JXCircularArcViewArcPositionBottom),
                                               },
-                                          @{
-                                              @"arcMigration": @(20.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-20.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
-                                              },
 
                                           // Right
-                                          @{
-                                              @"arcMigration": @(100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-100.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
-                                              },
                                           @{
                                               @"arcMigration": @(50.0),
                                               @"arcPosition": @(JXCircularArcViewArcPositionRight),

@@ -8,6 +8,8 @@
 #import "JXCircularArcView.h"
 #import "UIView+JXCategory.h"
 
+#import "JXMacro.h"
+
 static const JXCircularArcViewArcPosition k_arcPosition_default = JXCircularArcViewArcPositionBottom; ///< 默认 圆弧位置
 static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 
@@ -45,13 +47,10 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    BOOL rightWH = self.jx_width > 0.0 && self.jx_height > 0.0;
-    if (rightWH) {
-        BOOL newWH = self.jx_width != self.previousSelfSize.width || self.jx_height != self.previousSelfSize.height;
-        if (newWH) {
-            self.previousSelfSize = self.jx_size;
-            [self JXCircularArcView_drawArc];
-        }
+    BOOL newWH = self.jx_width != self.previousSelfSize.width || self.jx_height != self.previousSelfSize.height;
+    if (newWH) {
+        self.previousSelfSize = self.jx_size;
+        [self JXCircularArcView_drawArc];
     }
 }
 
@@ -89,7 +88,12 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     if (!self.window) {
         return;
     }
-    
+
+    BOOL rightWH = self.jx_width > 0.0 && self.jx_height > 0.0;
+    if (!rightWH) {
+        return;
+    }
+
     CGFloat m_fabs = fabs(self.arcMigration);
     CGFloat m = self.arcMigration;
     if (m_fabs == 0.0) {
