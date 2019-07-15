@@ -49,6 +49,7 @@
 #import "JXCarouselModel.h"
 #import "JXCarouselPageControlView.h"
 #import "JXCarouselView.h"
+#import "JXCircularArcView.h"
 #import "JXFlowView.h"
 #import "JXFlowViewItemModel.h"
 #import "JXFlowViewItemView.h"

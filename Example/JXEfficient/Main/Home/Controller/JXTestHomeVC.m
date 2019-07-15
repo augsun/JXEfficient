@@ -13,6 +13,7 @@
 #import "JXTestHomeCell.h"
 
 //
+#import "JXTest_JXCircularArcView_VC.h"
 #import "JXTest_JXCarouselView_VC.h"
 #import "JXTest_JXPopupGeneralView_VC.h"
 
@@ -36,6 +37,10 @@ static NSString *const kCellID = @"kCellID";
     self.models = [[NSMutableArray alloc] init];
     
     // JXTest_JXPopupGeneralView_VC
+    {
+        JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXCircularArcView_VC class]];
+        [self.models addObject:model];
+    }
     {
         JXTestHomeModel *model = [JXTestHomeModel modelFromVcClass:[JXTest_JXCarouselView_VC class]];
         [self.models addObject:model];

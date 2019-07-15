@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */ = {isa = PBXBuildFile; fileRef = C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */; };
 		C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */; };
+		C84D2BA822DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C84D2BA722DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m */; };
 		C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */; };
 		C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25722CC827A006EF8AB /* JXTestHomeModel.m */; };
 		C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25A22CC8305006EF8AB /* JXTestHomeCell.m */; };
@@ -79,6 +80,8 @@
 		C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = autoRelease_JXEfficient.py; path = ../autoRelease_JXEfficient.py; sourceTree = "<group>"; };
 		C840284D22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_VC.h; sourceTree = "<group>"; };
 		C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_VC.m; sourceTree = "<group>"; };
+		C84D2BA622DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCircularArcView_VC.h; sourceTree = "<group>"; };
+		C84D2BA722DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCircularArcView_VC.m; sourceTree = "<group>"; };
 		C85CF25222CC8187006EF8AB /* JXTestBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTestBaseVC.h; sourceTree = "<group>"; };
 		C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTestBaseVC.m; sourceTree = "<group>"; };
 		C85CF25622CC827A006EF8AB /* JXTestHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTestHomeModel.h; sourceTree = "<group>"; };
@@ -244,6 +247,15 @@
 			path = JXCarouselView;
 			sourceTree = "<group>";
 		};
+		C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */ = {
+			isa = PBXGroup;
+			children = (
+				C84D2BA622DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.h */,
+				C84D2BA722DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m */,
+			);
+			path = JXCircularArcView;
+			sourceTree = "<group>";
+		};
 		C85CF24C22CC805D006EF8AB /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +310,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
 				C840284C22CF0CC30010BB22 /* JXCarouselView */,
 				C85CF25522CC819C006EF8AB /* JXPopupGeneralView */,
 			);
@@ -495,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */,
+				C84D2BA822DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m in Sources */,
 				C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */,
 				C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */,
 				C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */,
