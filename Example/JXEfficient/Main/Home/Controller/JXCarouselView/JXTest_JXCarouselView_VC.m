@@ -37,7 +37,7 @@ static const CGFloat kCarouseToLR = 8.0;
     JX_WEAK_SELF;
     
     //
-    self.rightButton_enable = YES;
+    self.rightSubButton_enable = YES;
     self.models = [[NSMutableArray alloc] init];
     
     //
@@ -141,8 +141,8 @@ static const CGFloat kCarouseToLR = 8.0;
 
 }
 
-- (void)rightButton_click {
-    
+- (void)rightSubButton_click {
+
     NSInteger total_count = self.URLs.count;
     NSAssert(total_count > 0, @"请先初始化 self.URLs 且 self.URLs.count > 0");
     

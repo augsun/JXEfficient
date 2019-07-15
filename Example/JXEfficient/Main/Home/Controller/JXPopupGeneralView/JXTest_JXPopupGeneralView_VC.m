@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rightButton_enable = YES;
+    self.rightSubButton_enable = YES;
 }
 
-- (void)rightButton_click {
+- (void)rightSubButton_click {
     //
     
     JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];

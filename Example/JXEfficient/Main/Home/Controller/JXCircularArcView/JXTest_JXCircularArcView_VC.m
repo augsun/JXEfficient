@@ -41,7 +41,7 @@
 //            make.width.mas_equalTo(300.0);
 //            make.height.mas_equalTo(300.0);
 
-            // t1
+            // or t1
             make.left.mas_equalTo(self.view).with.offset(20.0);
             make.right.mas_equalTo(self.view).with.offset(-20.0);
             make.bottom.mas_equalTo(self.view).with.offset(-80.0);
@@ -49,49 +49,28 @@
         self.arcView.backgroundColor = JX_COLOR_RANDOM;
     }
 
+    NSArray <NSDictionary *> * (^randomMigration)(JXCircularArcViewArcPosition) = ^ NSArray <NSDictionary *> * (JXCircularArcViewArcPosition arcPosition) {
+        CGFloat tempNum = [JXChowder randomUIntegerFrom:20 to:80] * 1.0;
+        return @[
+                 @{
+                     @"arcMigration": @(tempNum),
+                     @"arcPosition": @(arcPosition),
+                     },
+                 @{
+                     @"arcMigration": @(-tempNum),
+                     @"arcPosition": @(arcPosition),
+                     },
+                 ];
+    };
+    
     //
-    NSArray <NSDictionary *> *tempArr = @[
-                                          // Top
-                                          @{
-                                              @"arcMigration": @(50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionTop),
-                                              },
+    NSMutableArray <NSDictionary *> *tempArr = [[NSMutableArray alloc] init];
+    [tempArr addObjectsFromArray:randomMigration(JXCircularArcViewArcPositionTop)];
+    [tempArr addObjectsFromArray:randomMigration(JXCircularArcViewArcPositionLeft)];
+    [tempArr addObjectsFromArray:randomMigration(JXCircularArcViewArcPositionBottom)];
+    [tempArr addObjectsFromArray:randomMigration(JXCircularArcViewArcPositionRight)];
 
-                                          // Left
-                                          @{
-                                              @"arcMigration": @(50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionLeft),
-                                              },
-
-                                          // Bottom
-                                          @{
-                                              @"arcMigration": @(20.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-20.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionBottom),
-                                              },
-
-                                          // Right
-                                          @{
-                                              @"arcMigration": @(50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
-                                              },
-                                          @{
-                                              @"arcMigration": @(-50.0),
-                                              @"arcPosition": @(JXCircularArcViewArcPositionRight),
-                                              },
-                                          ];
-
+    //
     [self testData:tempArr i:0];
 }
 

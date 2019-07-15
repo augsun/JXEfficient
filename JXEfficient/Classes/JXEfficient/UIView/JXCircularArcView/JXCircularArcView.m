@@ -160,11 +160,13 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
         {
             if(m > 0) {
                 CGPathMoveToPoint(path, NULL, w, h - m);
-                CGPathAddArc(path, NULL, w / 2, h - r, r, asin((r - m) / r), M_PI - asin((r - m) / r), NO);
+                CGFloat angle = asin((r - m) / r);
+                CGPathAddArc(path, NULL, w / 2, h - r, r, angle, M_PI - angle, NO);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, h);
-                CGPathAddArc(path, NULL, w / 2, h + r + m, r, 2 * M_PI - asin((r + m) / r), M_PI + asin((r + m) / r), YES);
+                CGFloat angle = asin((r + m) / r);
+                CGPathAddArc(path, NULL, w / 2, h + r + m, r, 2 * M_PI - angle, M_PI + angle, YES);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
             CGPathAddLineToPoint(path, NULL, w, 0.0);
@@ -174,11 +176,13 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
         {
             if(m > 0) {
                 CGPathMoveToPoint(path, NULL, w, m);
-                CGPathAddArc(path,NULL, w / 2, r, r, 2 * M_PI - asin((r - m) / r), M_PI + asin((r - m) / r), YES);
+                CGFloat angle = asin((r - m) / r);
+                CGPathAddArc(path,NULL, w / 2, r, r, 2 * M_PI - angle, M_PI + angle, YES);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, 0.0);
-                CGPathAddArc(path,NULL, w / 2, -m - r, r, asin((r + m) / r), M_PI - asin((r + m) / r), NO);
+                CGFloat angle = asin((r + m) / r);
+                CGPathAddArc(path,NULL, w / 2, - m - r, r, angle, M_PI - angle, NO);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, h);
             CGPathAddLineToPoint(path, NULL, w, h);
@@ -188,11 +192,13 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
         {
             if(m > 0) {
                 CGPathMoveToPoint(path, NULL, m, 0.0);
-                CGPathAddArc(path, NULL, r, h / 2, r, M_PI + acos((r - m) / r), M_PI / 2 + asin((r - m) / r), YES);
+                CGFloat angle = acos((r - m) / r);
+                CGPathAddArc(path, NULL, r, h / 2, r, M_PI + angle, M_PI - angle, YES);
             }
             else {
                 CGPathMoveToPoint(path, NULL, 0.0, 0.0);
-                CGPathAddArc(path, NULL, -m - r, h / 2, r, - acos((r + m) / r), acos((r + m) / r) + 0, NO);
+                CGFloat angle = acos((r + m) / r);
+                CGPathAddArc(path, NULL, - m - r, h / 2, r, - angle, angle, NO);
             }
             CGPathAddLineToPoint(path, NULL, w, h);
             CGPathAddLineToPoint(path, NULL, w, 0.0);
@@ -202,11 +208,13 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
         {
             if(m > 0) {
                 CGPathMoveToPoint(path, NULL, w - m, 0.0);
-                CGPathAddArc(path, NULL, w - r, h / 2, r, 1.5 * M_PI + asin((r - m) / r), M_PI / 2 + asin((r - m) / r), NO);
+                CGFloat angle = asin((r - m) / r);
+                CGPathAddArc(path, NULL, w - r, h / 2, r, 1.5 * M_PI + angle, M_PI / 2 + angle, NO);
             }
             else {
                 CGPathMoveToPoint(path, NULL, w, 0.0);
-                CGPathAddArc(path, NULL, w + r + m, h / 2, r, M_PI + acos((r + m) / r), M_PI - acos((r + m) / r), YES);
+                CGFloat angle = acos((r + m) / r);
+                CGPathAddArc(path, NULL, w + r + m, h / 2, r, M_PI + angle, M_PI - angle, YES);
             }
             CGPathAddLineToPoint(path, NULL, 0.0, h);
             CGPathAddLineToPoint(path, NULL, 0.0, 0.0);
