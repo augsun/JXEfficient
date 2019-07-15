@@ -133,9 +133,9 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
         default: break;
     }
     if (m_fabs > _max_arcMigration) {
-        NSString *s = m > 0.0 ? @"大" : @"小";
         CGFloat m_set_to = m > 0.0 ? _max_arcMigration : - _max_arcMigration;
 #ifdef DEBUG
+        NSString *s = m > 0.0 ? @"大" : @"小";
         NSLog(@"JXCircularArcView 的 arcMigration 弧偏移 %lf 过%@, 自动设置为最%@弧偏移 %lf.", m, s, s, m_set_to);
 #endif
         m = m_set_to;
