@@ -113,7 +113,7 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     CGFloat w = self.jx_width;
     CGFloat h = self.jx_height;
     
-    // 计算圆弧的最大偏移
+    // 是否超出最大可设置的 弧偏移
     CGFloat _max_arcMigration = 0;
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
@@ -130,11 +130,14 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             
         default: break;
     }
-    if(m_fabs > _max_arcMigration){
-        NSLog(@"JXCircularArcView 的 arcMigration 圆弧半径 %lf 过大, 自动设置为最大半径 %lf.", m_fabs, _max_arcMigration);
+    if (m_fabs > _max_arcMigration) {
+        NSString *s = m > 0.0 ? @"大" : @"小";
+        CGFloat set_to = m > 0.0 ? _max_arcMigration : - _max_arcMigration;
+        NSLog(@"JXCircularArcView 的 arcMigration 弧偏移 %lf 过%@, 自动设置为最%@弧偏移 %lf.", m, s, s, set_to);
+        m = set_to;
         m_fabs = _max_arcMigration;
     }
-    
+
     // 计算半径
     CGFloat r = 0;
     switch (self.arcPosition) {
