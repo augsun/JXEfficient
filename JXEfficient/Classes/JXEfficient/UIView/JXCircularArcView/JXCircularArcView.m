@@ -8,15 +8,17 @@
 #import "JXCircularArcView.h"
 #import "UIView+JXCategory.h"
 
-#import "JXMacro.h"
-
 static const JXCircularArcViewArcPosition k_arcPosition_default = JXCircularArcViewArcPositionBottom; ///< 默认 圆弧位置
 static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 
 @interface JXCircularArcView ()
 
 @property (nonatomic, strong) CAShapeLayer *maskLayer;
-@property (nonatomic, assign) CGSize previousSelfSize;
+
+@property (nonatomic, assign) CGSize previous_selfSize;
+
+@property (nonatomic, assign) JXCircularArcViewArcPosition previous_arcPosition;
+@property (nonatomic, assign) CGFloat previous_arcMigration;
 
 @end
 
@@ -39,24 +41,36 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 }
 
 - (void)JXCircularArcView_moreInit {
-    self.autoresizingMask = UIViewAutoresizingNone;
     _arcPosition = k_arcPosition_default;
     _arcMigration = k_arcMigration_default;
+    
+    _previous_arcPosition = k_arcPosition_default;
+    _previous_arcMigration = k_arcMigration_default;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    BOOL newWH = self.jx_width != self.previousSelfSize.width || self.jx_height != self.previousSelfSize.height;
-    if (newWH) {
-        self.previousSelfSize = self.jx_size;
-        [self JXCircularArcView_drawArc];
+    BOOL need = NO;
+    
+    if (self.jx_width <= 0.0 || self.jx_height <= 0.0) {
+        return;
     }
-}
 
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    [super willMoveToWindow:newWindow];
-    if (newWindow) {
+    if (self.jx_width != self.previous_selfSize.width || self.jx_height != self.previous_selfSize.height) {
+        self.previous_selfSize = self.jx_size;
+        need = YES;
+    }
+    if (self.arcPosition != self.previous_arcPosition) {
+        self.previous_arcPosition = self.arcPosition;
+        need = YES;
+    }
+    if (self.arcMigration != self.previous_arcMigration) {
+        self.previous_arcMigration = self.arcMigration;
+        need = YES;
+    }
+    
+    if (need) {
         [self JXCircularArcView_drawArc];
     }
 }
@@ -73,34 +87,26 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
             NSLog(@"JXCircularArcView 的 arcPosition 设置有误, 将默认设置为 JXCircularArcViewArcPositionBottom.");
             arcPosition = JXCircularArcViewArcPositionBottom;
         }
-        [self JXCircularArcView_drawArc];
+        [self setNeedsLayout];
     }
 }
 
 - (void)setArcMigration:(CGFloat)arcMigration {
     if (_arcMigration != arcMigration) {
         _arcMigration = arcMigration;
-        [self JXCircularArcView_drawArc];
+        [self setNeedsLayout];
     }
 }
 
 - (void)JXCircularArcView_drawArc {
-    if (!self.window) {
-        return;
+    if (self.maskLayer) {
+        [self.maskLayer removeFromSuperlayer];
+        self.maskLayer = nil;
     }
-
-    BOOL rightWH = self.jx_width > 0.0 && self.jx_height > 0.0;
-    if (!rightWH) {
-        return;
-    }
-
+    
     CGFloat m_fabs = fabs(self.arcMigration);
     CGFloat m = self.arcMigration;
     if (m_fabs == 0.0) {
-        if (self.maskLayer) {
-            [self.maskLayer removeFromSuperlayer];
-            self.maskLayer = nil;
-        }
         return;
     }
 
@@ -152,8 +158,8 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     }
     
     //
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.fillColor = [UIColor whiteColor].CGColor;
+    self.maskLayer = [[CAShapeLayer alloc] init];
+    self.maskLayer.fillColor = [UIColor whiteColor].CGColor;
     CGMutablePathRef path = CGPathCreateMutable();
     switch (self.arcPosition) {
         case JXCircularArcViewArcPositionBottom:
@@ -224,11 +230,9 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
     }
     
     CGPathCloseSubpath(path);
-    maskLayer.path = path;
+    self.maskLayer.path = path;
     CFRelease(path);
-    self.layer.mask = maskLayer;
-    
-    self.maskLayer = maskLayer;
+    self.layer.mask = self.maskLayer;
 }
 
 @end

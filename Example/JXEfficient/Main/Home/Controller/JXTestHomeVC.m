@@ -61,7 +61,7 @@ static NSString *const kCellID = @"kCellID";
         make.height.mas_equalTo(JX_NAVBAR_H);
     }];
     self.naviView.title = @"Test Page";
-    self.naviView.rightButtonTitle = @"Fast Test";
+//    self.naviView.rightButtonTitle = @"Fast Test";
     self.naviView.backButtonHidden = YES;
     self.naviView.bottomLineHidden = NO;
     self.naviView.rightButtonTap = ^{
