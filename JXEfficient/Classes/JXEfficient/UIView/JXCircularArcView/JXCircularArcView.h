@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, JXCircularArcViewArcPosition) {
 @interface JXCircularArcView : UIView
 
 @property (nonatomic, assign) JXCircularArcViewArcPosition arcPosition; ///< 圆弧位置 [上 | 左 | 下 | 右], 默认 下
-@property (nonatomic, assign) CGFloat arcMigration; ///< 弧偏移 [高 | 宽], 可为负值, 正值凸 负值凹, 默认 15.0
+@property (nonatomic, assign) CGFloat arcMigration; ///< 弧偏移 [高 | 宽], 可为负值, 正值凸 负值凹, 默认 20.0
 
 @end
 
