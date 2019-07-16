@@ -1,21 +1,31 @@
-### 目前版本 API 还未稳定, 将在版本 1.0.0 中稳定API. 目前可以接入使用, 后期只调整 API 调用. 
 
-### 文档后期会持续补充更新，敬请期待~
-
-# JXEfficient
+## JXEfficient
 
 [![CI Status](https://img.shields.io/travis/452720799@qq.com/JXEfficient.svg?style=flat)](https://travis-ci.org/452720799@qq.com/JXEfficient)
 [![Version](https://img.shields.io/cocoapods/v/JXEfficient.svg?style=flat)](https://cocoapods.org/pods/JXEfficient)
 [![License](https://img.shields.io/cocoapods/l/JXEfficient.svg?style=flat)](https://cocoapods.org/pods/JXEfficient)
 [![Platform](https://img.shields.io/cocoapods/p/JXEfficient.svg?style=flat)](https://cocoapods.org/pods/JXEfficient)
 
-## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+> 目前版本 API 还未稳定, 将在版本 1.0.0 中稳定API. 目前可以接入使用, 后期只调整 API 调用. 
+>
+> 文档后期会持续补充更新，敬请期待~
 
-## Installation
+
+
+### Example
+
+To run the exaemple project, clone the repo, and run `pod install` from the Example directory first.
+
+
+
+### Requirements
+iOS 9.0 +.
+
+
+
+### Installation
 
 JXEfficient is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -24,7 +34,24 @@ it, simply add the following line to your Podfile:
 pod 'JXEfficient'
 ```
 
-## ClassTree 
+[TOC]
+
+### Preview and description
+
+以下针对一些控件或类进行效果图及简要阐述.
+
+
+
+#### JXCircularArcView
+![JXCircularArcView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXCircularArcView/JXCircularArcView.gif)
+
+#### JXPopupBaseView -> JXPopupView -> JXPopupGeneralView
+
+![JXPopupGeneralView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXPopupGeneralView/JXPopupGeneralView.gif)
+
+
+
+### ClassTree 
 
 Continuous updates will be made.
 
@@ -205,16 +232,10 @@ Continuous updates will be made.
 
 
 
-### JXPopupBaseView -> JXPopupView -> JXPopupGeneralView
-
-![JXPopupGeneralView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXPopupGeneralView/JXPopupGeneralView.gif)
-
-
-
-## Author
+### Author
 
 codersun@126.com
 
-## License
+### License
 
 JXEfficient is available under the MIT license. See the LICENSE file for more info.
