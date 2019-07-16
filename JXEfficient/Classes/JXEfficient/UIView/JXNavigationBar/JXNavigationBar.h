@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
  JXNavigationBar 的布局如下:
        返回按钮           左边按钮           标题              右边子按钮            右边按钮
  < -- backItem -- | -- leftItem-- | -- titleItem -- | -- subRightItem -- | -- rightItem -- >
+ 
+ @discussion 其内部各 抗压优先级为 [back > right > left > subRight > title], 即优先级高的最后被压缩<理解为硬度最高>.
  */
 @interface JXNavigationBar : UIView
 

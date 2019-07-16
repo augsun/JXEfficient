@@ -14,6 +14,15 @@ static const CGFloat kLeftSpacingDefault = 4.0;
 static const CGFloat kRightSpacingDefault = 4.0;
 static const CGFloat kInteritemDefault = 4.0;
 
+// 抗压优先级 [back > right > left > subRight > title]
+static const UILayoutPriority k_min_w_p_back = UILayoutPriorityDefaultHigh + 10.0;
+static const UILayoutPriority k_min_w_p_left = UILayoutPriorityDefaultHigh + 8.0;
+static const UILayoutPriority k_min_w_p_title = UILayoutPriorityDefaultHigh + 0.0;
+static const UILayoutPriority k_min_w_p_subRight = UILayoutPriorityDefaultHigh + 7.0;
+static const UILayoutPriority k_min_w_p_right = UILayoutPriorityDefaultHigh + 9.0;
+
+static const CGFloat k_item_min_w = 20.0; ///< Item 的最小宽度
+
 @interface JXUINavigationBar : UINavigationBar
 
 @end
@@ -22,7 +31,7 @@ static const CGFloat kInteritemDefault = 4.0;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
+    
     for (UIView *view in self.subviews) {
         if([NSStringFromClass([view class]) containsString:@"Background"]) {
             view.frame = self.bounds;
@@ -70,7 +79,7 @@ bottomLineView = _bottomLineView;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self jx_moreInit];
+        [self JXNavigationBar_moreInit];
     }
     return self;
 }
@@ -78,7 +87,7 @@ bottomLineView = _bottomLineView;
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self jx_moreInit];
+        [self JXNavigationBar_moreInit];
     }
     return self;
 }
@@ -89,14 +98,14 @@ bottomLineView = _bottomLineView;
         [self addSubview:_uiNavigationBar];
         _uiNavigationBar.translatesAutoresizingMaskIntoConstraints = NO;
         [NSLayoutConstraint activateConstraints:[_uiNavigationBar jx_con_edgeEqual:self]];
-
+        
         _uiNavigationBar.clipsToBounds = YES; // 可以隐藏系统导航条底部默认线
-        [self reAddSubviews];
+        [self JXNavigationBar_reAddSubviews];
     }
     return _uiNavigationBar;
 }
 
-- (void)jx_moreInit {
+- (void)JXNavigationBar_moreInit {
     self.backgroundColor = [UIColor whiteColor];
     _leftSpacing = kLeftSpacingDefault;
     _rightSpacing = kRightSpacingDefault;
@@ -127,7 +136,7 @@ bottomLineView = _bottomLineView;
         [self addSubview:_backgroundImageView];
         _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [NSLayoutConstraint activateConstraints:[_backgroundImageView jx_con_edgeEqual:self]];
-        [self reAddSubviews];
+        [self JXNavigationBar_reAddSubviews];
     }
     return _backgroundImageView;
 }
@@ -136,14 +145,13 @@ bottomLineView = _bottomLineView;
     if (!_backItem) {
         JXNavigationBarItem *itemView = [self createOneItemView];
         self.con_backItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self.itemsBgView m:1.0 c:0.0];
-        self.con_backItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0];
-        self.con_backItem_w.priority = UILayoutPriorityDefaultHigh;
+        self.con_backItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_back];
         [NSLayoutConstraint activateConstraints:@[
                                                   [itemView jx_con_same:NSLayoutAttributeBottom equal:self.itemsBgView m:1.0 c:0.0],
                                                   [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:44.0],
                                                   self.con_backItem_toL,
                                                   self.con_backItem_w,
-                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:20.0],
+                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:k_item_min_w],
                                                   ]];
         _backItem = itemView;
     }
@@ -154,14 +162,13 @@ bottomLineView = _bottomLineView;
     if (!_leftItem) {
         JXNavigationBarItem *itemView = [self createOneItemView];
         self.con_leftItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self.itemsBgView m:1.0 c:0.0];
-        self.con_leftItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0];
-        self.con_leftItem_w.priority = UILayoutPriorityDefaultHigh;
+        self.con_leftItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_left];
         [NSLayoutConstraint activateConstraints:@[
                                                   [itemView jx_con_same:NSLayoutAttributeBottom equal:self.itemsBgView m:1.0 c:0.0],
                                                   [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:44.0],
                                                   self.con_leftItem_toL,
                                                   self.con_leftItem_w,
-                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:20.0],
+                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:k_item_min_w],
                                                   ]];
         _leftItem = itemView;
     }
@@ -174,8 +181,7 @@ bottomLineView = _bottomLineView;
         self.con_titleItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft greaterEqual:self.itemsBgView m:1.0 c:0.0];
         self.con_titleItem_toR = [itemView jx_con_same:NSLayoutAttributeRight lessEqual:self.itemsBgView m:1.0 c:0.0];
         
-        self.con_titleItem_w = [itemView jx_con_same:NSLayoutAttributeWidth lessEqual:nil m:1.0 c:0.0];
-        self.con_titleItem_w.priority = UILayoutPriorityDefaultHigh;
+        self.con_titleItem_w = [itemView jx_con_same:NSLayoutAttributeWidth lessEqual:nil m:1.0 c:0.0 p:k_min_w_p_title];
         
         NSLayoutConstraint *con_titleItem_cX = [itemView jx_con_same:NSLayoutAttributeCenterX equal:self.itemsBgView m:1.0 c:0.0];
         con_titleItem_cX.priority = UILayoutPriorityDefaultLow;
@@ -187,7 +193,7 @@ bottomLineView = _bottomLineView;
                                                   self.con_titleItem_toL,
                                                   self.con_titleItem_toR,
                                                   self.con_titleItem_w,
-                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:20.0],
+                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:k_item_min_w],
                                                   ]];
         _titleItem = itemView;
     }
@@ -198,14 +204,13 @@ bottomLineView = _bottomLineView;
     if (!_rightItem) {
         JXNavigationBarItem *itemView = [self createOneItemView];
         self.con_rightItem_toR = [itemView jx_con_same:NSLayoutAttributeRight equal:self.itemsBgView m:1.0 c:0.0];
-        self.con_rightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0];
-        self.con_rightItem_w.priority = UILayoutPriorityDefaultHigh;
+        self.con_rightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_right];
         [NSLayoutConstraint activateConstraints:@[
                                                   [itemView jx_con_same:NSLayoutAttributeBottom equal:self.itemsBgView m:1.0 c:0.0],
                                                   [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:44.0],
                                                   self.con_rightItem_toR,
                                                   self.con_rightItem_w,
-                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:20.0],
+                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:k_item_min_w],
                                                   ]];
         _rightItem = itemView;
     }
@@ -216,14 +221,13 @@ bottomLineView = _bottomLineView;
     if (!_subRightItem) {
         JXNavigationBarItem *itemView = [self createOneItemView];
         self.con_subRightItem_toR = [itemView jx_con_same:NSLayoutAttributeRight equal:self.itemsBgView m:1.0 c:0.0];
-        self.con_subRightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0];
-        self.con_subRightItem_w.priority = UILayoutPriorityDefaultHigh;
+        self.con_subRightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_subRight];
         [NSLayoutConstraint activateConstraints:@[
                                                   [itemView jx_con_same:NSLayoutAttributeBottom equal:self.itemsBgView m:1.0 c:0.0],
                                                   [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:44.0],
                                                   self.con_subRightItem_toR,
                                                   self.con_subRightItem_w,
-                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:20.0],
+                                                  [itemView jx_con_same:NSLayoutAttributeWidth greaterEqual:nil m:1.0 c:k_item_min_w],
                                                   ]];
         _subRightItem = itemView;
     }
@@ -231,16 +235,15 @@ bottomLineView = _bottomLineView;
 }
 
 - (JXNavigationBarItem *)createOneItemView {
-    JXNavigationBarItem *button = [[JXNavigationBarItem alloc] init];
-    [self.itemsBgView addSubview:button];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
+    JXNavigationBarItem *itemView = [[JXNavigationBarItem alloc] init];
+    [self.itemsBgView addSubview:itemView];
+    itemView.translatesAutoresizingMaskIntoConstraints = NO;
     JX_WEAK_SELF;
-    button.needLayout = ^{
+    itemView.setNeedsLayoutInHoldingView = ^{
         JX_STRONG_SELF;
-        [self jx_layout];
+        [self setNeedsLayout];
     };
-    
-    return button;
+    return itemView;
 }
 
 - (UIView *)bottomLineView {
@@ -278,27 +281,37 @@ bottomLineView = _bottomLineView;
 }
 
 - (void)setLeftSpacing:(CGFloat)leftSpacing {
-    if (leftSpacing >= 0.0) { _leftSpacing = leftSpacing; [self jx_layout]; }
+    if (leftSpacing >= 0.0 && _leftSpacing != leftSpacing) {
+        _leftSpacing = leftSpacing;
+        [self setNeedsLayout];
+    }
 }
 
 - (void)setRightSpacing:(CGFloat)rightSpacing {
-    if (rightSpacing >= 0.0) { _rightSpacing = rightSpacing; [self jx_layout]; }
+    if (rightSpacing >= 0.0 && _rightSpacing != rightSpacing) {
+        _rightSpacing = rightSpacing;
+        [self setNeedsLayout];
+    }
 }
 
 - (void)setInteritemSpacing:(CGFloat)interitemSpacing {
-    if (interitemSpacing >= 0.0) { _interitemSpacing = interitemSpacing; [self jx_layout]; }
+    if (interitemSpacing >= 0.0 && _interitemSpacing != interitemSpacing) {
+        _interitemSpacing = interitemSpacing;
+        [self setNeedsLayout];
+    }
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self jx_layout];
-}
-
-- (void)jx_layout {
-    if (self.jx_width == 0) {
+    
+    if (self.jx_width <= 0.0 || self.jx_height <= 0.0) {
         return;
     }
     
+    [self JXNavigationBar_layout];
+}
+
+- (void)JXNavigationBar_layout {
     CGFloat leftSpacing = self.leftSpacing;
     CGFloat rightSpacing = self.rightSpacing;
     CGFloat interitemSpacing = self.interitemSpacing;
@@ -372,7 +385,7 @@ bottomLineView = _bottomLineView;
             self.con_rightItem_w.constant = 0.0;
         }
     }
-
+    
     if (subRight_show) {
         self.con_subRightItem_w.constant = self.subRightItem.itemWidth;
         if (right_show) {
@@ -396,7 +409,7 @@ bottomLineView = _bottomLineView;
             self.con_subRightItem_w.constant = 0.0;
         }
     }
-
+    
     if (title_show) {
         self.con_titleItem_w.constant = self.titleItem.itemWidth;
         if (left_show || back_show) {
@@ -421,12 +434,12 @@ bottomLineView = _bottomLineView;
             self.con_titleItem_w.constant = 0.0;
         }
     }
-
+    
     [NSLayoutConstraint deactivateConstraints:cons_deactivate];
     [NSLayoutConstraint activateConstraints:cons_activate];
 }
 
-- (void)reAddSubviews {
+- (void)JXNavigationBar_reAddSubviews {
     if (_uiNavigationBar) {
         [self addSubview:_uiNavigationBar];
     }
@@ -442,5 +455,6 @@ bottomLineView = _bottomLineView;
 }
 
 @end
+
 
 

@@ -30,9 +30,10 @@
 		C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25A22CC8305006EF8AB /* JXTestHomeCell.m */; };
 		C85CF25D22CC8305006EF8AB /* JXTestHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85CF25B22CC8305006EF8AB /* JXTestHomeCell.xib */; };
 		C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25F22CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m */; };
-		C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */; };
-		C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */; };
-		C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png */; };
+		C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */; };
+		C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */; };
+		C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */; };
+		C867925322DDEC5300EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */; };
 		C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */; };
 		C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */; };
 		C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */; };
@@ -92,9 +93,10 @@
 		C85CF25B22CC8305006EF8AB /* JXTestHomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXTestHomeCell.xib; sourceTree = "<group>"; };
 		C85CF25E22CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPopupGeneralView_VC.h; sourceTree = "<group>"; };
 		C85CF25F22CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPopupGeneralView_VC.m; sourceTree = "<group>"; };
-		C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_subRight_icon@2x.png"; sourceTree = "<group>"; };
-		C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_naiv_right_icon@2x.png"; sourceTree = "<group>"; };
-		C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JXTestBaseVC_navi_left_icon2x.png; sourceTree = "<group>"; };
+		C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_naiv_right_icon@2x.png"; sourceTree = "<group>"; };
+		C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_subRight_icon@2x.png"; sourceTree = "<group>"; };
+		C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_left_icon@2x.png"; sourceTree = "<group>"; };
+		C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTest_JXNaviView_VC_icon@2x.png"; sourceTree = "<group>"; };
 		C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_current.pdf; sourceTree = "<group>"; };
 		C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_normal.pdf; sourceTree = "<group>"; };
 		C8C0CCD722CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomView.h; sourceTree = "<group>"; };
@@ -264,9 +266,9 @@
 			children = (
 				C85CF25222CC8187006EF8AB /* JXTestBaseVC.h */,
 				C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */,
-				C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */,
-				C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png */,
-				C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */,
+				C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */,
+				C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */,
+				C85CF26122CC8E9F006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png */,
 			);
 			path = BaseVC;
 			sourceTree = "<group>";
@@ -335,6 +337,7 @@
 			children = (
 				C8E3330B22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.h */,
 				C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */,
+				C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */,
 			);
 			path = JXNaviView;
 			sourceTree = "<group>";
@@ -424,12 +427,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon2x.png in Resources */,
+				C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png in Resources */,
 				C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */,
-				C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */,
+				C85CF26422CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				C867925322DDEC5300EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png in Resources */,
 				C85CF25D22CC8305006EF8AB /* JXTestHomeCell.xib in Resources */,
-				C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_naiv_right_icon@2x.png in Resources */,
+				C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */,
 				C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */,

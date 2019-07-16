@@ -115,12 +115,12 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
 - (void)JXNaviView_moreInit {
     UIEdgeInsets insets = self.backItem.contentEdgeInsets;
     self.backItem.contentEdgeInsets = UIEdgeInsetsMake(insets.top, 11.0, insets.bottom, 24.0);
-    [self jx_setBackClick];
+    [self JXNaviView_setBackClick];
     
     [self checkAndSet_back];
 }
 
-- (void)jx_setBackClick {
+- (void)JXNaviView_setBackClick {
     self.back_item = self.backItem;
     JX_WEAK_SELF;
     self.backItem.click = ^{

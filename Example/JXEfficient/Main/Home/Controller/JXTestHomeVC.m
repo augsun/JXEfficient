@@ -44,8 +44,8 @@ static NSString *const kCellID = @"kCellID";
     
     //
     addTestVC([JXTest_JXNaviView_VC class]);
-    addTestVC([JXTest_JXCircularArcView_VC class]);
     addTestVC([JXTest_JXCarouselView_VC class]);
+    addTestVC([JXTest_JXCircularArcView_VC class]);
     addTestVC([JXTest_JXPopupGeneralView_VC class]);
 
     // 排序<升>
