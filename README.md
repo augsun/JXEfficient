@@ -42,6 +42,9 @@ pod 'JXEfficient'
 
 
 
+#### JXCarouselView
+![JXCarouselView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXCarouselView/JXCarouselView.gif)
+
 #### JXCircularArcView
 ![JXCircularArcView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXCircularArcView/JXCircularArcView.gif)
 

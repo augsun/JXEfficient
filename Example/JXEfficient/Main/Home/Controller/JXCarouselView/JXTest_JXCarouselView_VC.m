@@ -14,7 +14,6 @@
 
 #import "JXTest_JXCarouselView_CustomView.h"
 
-static const CGFloat kCarouseRate = 3.0;
 static const CGFloat kCarouseToLR = 8.0;
 
 @interface JXTest_JXCarouselView_VC ()
@@ -68,14 +67,14 @@ static const CGFloat kCarouseToLR = 8.0;
         }];
     };
 
-    // carouselView_normal
+    // 样式一 carouselView_normal
     self.carouselView_normal = [[JXCarouselView alloc] init];
     [self.view addSubview:self.carouselView_normal];
     [self.carouselView_normal mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view).with.offset(JX_NAVBAR_H + 10.0 + 50.0 + 20.0);
         make.left.mas_equalTo(self.view).with.offset(kCarouseToLR);
         make.right.mas_equalTo(self.view).with.offset(-kCarouseToLR);
-        make.height.mas_equalTo((JX_SCREEN_W - 2 * kCarouseToLR) / kCarouseRate);
+        make.height.mas_equalTo(160.0);
     }];
     self.carouselView_normal.autoRolling = NO;
     self.carouselView_normal.interitemSpacing = 8.0;
@@ -89,14 +88,14 @@ static const CGFloat kCarouseToLR = 8.0;
         
     };
     
-    // carouselView_customIndicator
+    // 样式二 carouselView_customIndicator
     self.carouselView_customIndicator = [[JXCarouselView alloc] init];
     [self.view addSubview:self.carouselView_customIndicator];
     [self.carouselView_customIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.carouselView_normal.mas_bottom).with.offset(30.0);
         make.left.mas_equalTo(self.view).with.offset(kCarouseToLR);
         make.right.mas_equalTo(self.view).with.offset(-kCarouseToLR);
-        make.height.mas_equalTo((JX_SCREEN_W - 2 * kCarouseToLR) / kCarouseRate);
+        make.height.mas_equalTo(100.0);
     }];
     self.carouselView_customIndicator.autoRolling = NO;
     self.carouselView_customIndicator.interitemSpacing = 8.0;
@@ -110,14 +109,14 @@ static const CGFloat kCarouseToLR = 8.0;
         
     };
     
-    // carouselView_customView
+    // 样式三 carouselView_customView
     self.carouselView_customView = [[JXCarouselView alloc] init];
     [self.view addSubview:self.carouselView_customView];
     [self.carouselView_customView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.carouselView_customIndicator.mas_bottom).with.offset(30.0);
         make.left.mas_equalTo(self.view).with.offset(kCarouseToLR);
         make.right.mas_equalTo(self.view).with.offset(-kCarouseToLR);
-        make.height.mas_equalTo((JX_SCREEN_W - 2 * kCarouseToLR) / kCarouseRate);
+        make.height.mas_equalTo(120.0);
     }];
     self.carouselView_customView.autoRolling = NO;
     self.carouselView_customView.interitemSpacing = 8.0;
