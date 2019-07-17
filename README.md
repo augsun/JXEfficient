@@ -44,7 +44,7 @@ pod 'JXEfficient'
 
 #### JXNaviView
 
-![JXNaviView](https://gitee.com/codersun/Resources/raw/master/JXEfficient/JXNaviView/JXNaviView.gif)
+![JXNaviView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXNaviView/JXNaviView.gif)
 
 
 
