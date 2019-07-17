@@ -21,7 +21,7 @@ static const UILayoutPriority k_min_w_p_title = UILayoutPriorityDefaultHigh + 0.
 static const UILayoutPriority k_min_w_p_subRight = UILayoutPriorityDefaultHigh + 7.0;
 static const UILayoutPriority k_min_w_p_right = UILayoutPriorityDefaultHigh + 9.0;
 
-static const CGFloat k_item_min_w = 20.0; ///< Item 的最小宽度
+static const CGFloat k_item_min_w = 30.0; ///< Item 的最小宽度
 
 @interface JXUINavigationBar : UINavigationBar
 
@@ -325,9 +325,8 @@ bottomLineView = _bottomLineView;
     NSMutableArray <NSLayoutConstraint *> *cons_deactivate = [[NSMutableArray alloc] init];
     NSMutableArray <NSLayoutConstraint *> *cons_activate = [[NSMutableArray alloc] init];
     
-    NSLayoutConstraint * (^deal_con)(NSLayoutConstraint *,
-                                     NSLayoutConstraint *) = ^ NSLayoutConstraint * (NSLayoutConstraint *con_old,
-                                                                                     NSLayoutConstraint *con_new)
+    NSLayoutConstraint * (^deal_con)(NSLayoutConstraint *, NSLayoutConstraint *) =
+    ^ NSLayoutConstraint * (NSLayoutConstraint *con_old, NSLayoutConstraint *con_new)
     {
         [cons_deactivate addObject:con_old];
         [cons_activate addObject:con_new];
@@ -336,11 +335,10 @@ bottomLineView = _bottomLineView;
     
     if (back_show) {
         self.con_backItem_w.constant = self.backItem.itemWidth;
-        self.con_backItem_toL = deal_con(self.con_backItem_toL,
-                                         [self.backItem jx_con_same:NSLayoutAttributeLeft
-                                                              equal:self.itemsBgView
-                                                                  m:1.0
-                                                                  c:leftSpacing]);
+        self.con_backItem_toL = deal_con(self.con_backItem_toL, [self.backItem jx_con_same:NSLayoutAttributeLeft
+                                                                                     equal:self.itemsBgView
+                                                                                         m:1.0
+                                                                                         c:leftSpacing]);
     }
     else {
         if (_backItem) {
@@ -351,19 +349,17 @@ bottomLineView = _bottomLineView;
     if (left_show) {
         self.con_leftItem_w.constant = self.leftItem.itemWidth;
         if (back_show) {
-            self.con_leftItem_toL = deal_con(self.con_leftItem_toL,
-                                             [self.leftItem jx_con_diff:NSLayoutAttributeLeft
-                                                                  equal:self.backItem
-                                                                   att2:NSLayoutAttributeRight
-                                                                      m:1.0
-                                                                      c:interitemSpacing]);
+            self.con_leftItem_toL = deal_con(self.con_leftItem_toL, [self.leftItem jx_con_diff:NSLayoutAttributeLeft
+                                                                                         equal:self.backItem
+                                                                                          att2:NSLayoutAttributeRight
+                                                                                             m:1.0
+                                                                                             c:interitemSpacing]);
         }
         else {
-            self.con_leftItem_toL = deal_con(self.con_leftItem_toL,
-                                             [self.leftItem jx_con_same:NSLayoutAttributeLeft
-                                                                  equal:self.itemsBgView
-                                                                      m:1.0
-                                                                      c:leftSpacing]);
+            self.con_leftItem_toL = deal_con(self.con_leftItem_toL, [self.leftItem jx_con_same:NSLayoutAttributeLeft
+                                                                                         equal:self.itemsBgView
+                                                                                             m:1.0
+                                                                                             c:leftSpacing]);
         }
     }
     else {
@@ -374,11 +370,10 @@ bottomLineView = _bottomLineView;
     
     if (right_show) {
         self.con_rightItem_w.constant = self.rightItem.itemWidth;
-        self.con_rightItem_toR = deal_con(self.con_rightItem_toR,
-                                          [self.rightItem jx_con_same:NSLayoutAttributeRight
-                                                                equal:self.itemsBgView
-                                                                    m:1.0
-                                                                    c:-rightSpacing]);
+        self.con_rightItem_toR = deal_con(self.con_rightItem_toR, [self.rightItem jx_con_same:NSLayoutAttributeRight
+                                                                                        equal:self.itemsBgView
+                                                                                            m:1.0
+                                                                                            c:-rightSpacing]);
     }
     else {
         if (_rightItem) {
@@ -389,19 +384,17 @@ bottomLineView = _bottomLineView;
     if (subRight_show) {
         self.con_subRightItem_w.constant = self.subRightItem.itemWidth;
         if (right_show) {
-            self.con_subRightItem_toR = deal_con(self.con_subRightItem_toR,
-                                                 [self.subRightItem jx_con_diff:NSLayoutAttributeRight
-                                                                          equal:self.rightItem
-                                                                           att2:NSLayoutAttributeLeft
-                                                                              m:1.0
-                                                                              c:-interitemSpacing]);
+            self.con_subRightItem_toR = deal_con(self.con_subRightItem_toR, [self.subRightItem jx_con_diff:NSLayoutAttributeRight
+                                                                                                     equal:self.rightItem
+                                                                                                      att2:NSLayoutAttributeLeft
+                                                                                                         m:1.0
+                                                                                                         c:-interitemSpacing]);
         }
         else {
-            self.con_subRightItem_toR = deal_con(self.con_subRightItem_toR,
-                                                 [self.subRightItem jx_con_same:NSLayoutAttributeRight
-                                                                          equal:self.itemsBgView
-                                                                              m:1.0
-                                                                              c:-rightSpacing]);
+            self.con_subRightItem_toR = deal_con(self.con_subRightItem_toR, [self.subRightItem jx_con_same:NSLayoutAttributeRight
+                                                                                                     equal:self.itemsBgView
+                                                                                                         m:1.0
+                                                                                                         c:-rightSpacing]);
         }
     }
     else {
@@ -413,20 +406,18 @@ bottomLineView = _bottomLineView;
     if (title_show) {
         self.con_titleItem_w.constant = self.titleItem.itemWidth;
         if (left_show || back_show) {
-            self.con_titleItem_toL = deal_con(self.con_titleItem_toL,
-                                              [self.titleItem jx_con_diff:NSLayoutAttributeLeft
-                                                             greaterEqual:left_show ? self.leftItem : self.backItem
-                                                                     att2:NSLayoutAttributeRight
-                                                                        m:1.0
-                                                                        c:interitemSpacing]);
+            self.con_titleItem_toL = deal_con(self.con_titleItem_toL, [self.titleItem jx_con_diff:NSLayoutAttributeLeft
+                                                                                     greaterEqual:left_show ? self.leftItem : self.backItem
+                                                                                             att2:NSLayoutAttributeRight
+                                                                                                m:1.0
+                                                                                                c:interitemSpacing]);
         }
         if (subRight_show || right_show) {
-            self.con_titleItem_toR = deal_con(self.con_titleItem_toR,
-                                              [self.titleItem jx_con_diff:NSLayoutAttributeRight
-                                                                lessEqual:subRight_show ? self.subRightItem : self.rightItem
-                                                                     att2:NSLayoutAttributeLeft
-                                                                        m:1.0
-                                                                        c:-interitemSpacing]);
+            self.con_titleItem_toR = deal_con(self.con_titleItem_toR, [self.titleItem jx_con_diff:NSLayoutAttributeRight
+                                                                                        lessEqual:subRight_show ? self.subRightItem : self.rightItem
+                                                                                             att2:NSLayoutAttributeLeft
+                                                                                                m:1.0
+                                                                                                c:-interitemSpacing]);
         }
     }
     else {

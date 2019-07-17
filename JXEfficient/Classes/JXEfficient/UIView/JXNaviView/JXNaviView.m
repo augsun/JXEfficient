@@ -156,6 +156,8 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     self.backItem.hidden = backButtonHidden;
 }
 
+#pragma mark title
+
 - (void)setTitle:(NSString *)title {
     title = jx_strValue(title);
     if (title.length > 0) {
@@ -189,6 +191,7 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
 }
 
 #pragma mark left
+
 - (void)setLeftButtonTitle:(NSString *)leftButtonTitle {
     _leftButtonTitle = leftButtonTitle;
     [self jx_setLeftClick];
@@ -230,7 +233,13 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     }
 }
 
+- (void)setLeftButtonHidden:(BOOL)leftButtonHidden {
+    _leftButtonHidden = leftButtonHidden;
+    self.leftItem.hidden = leftButtonHidden;
+}
+
 #pragma mark right
+
 - (void)setRightButtonTitle:(NSString *)rightButtonTitle {
     _rightButtonTitle = rightButtonTitle;
     [self jx_setRightClick];
@@ -276,6 +285,62 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     }
 }
 
+- (void)setRightButtonHidden:(BOOL)rightButtonHidden {
+    _rightButtonHidden = rightButtonHidden;
+    self.rightItem.hidden = rightButtonHidden;
+}
+
+#pragma mark subRightButtonTitle
+
+- (void)setSubRightButtonTitle:(NSString *)subRightButtonTitle {
+    _subRightButtonTitle = subRightButtonTitle;
+    [self jx_setSubRightClick];
+    
+    self.subRight_is_title = YES;
+    [self checkAndSet_subRight];
+}
+
+- (void)setSubRightButtonImage:(UIImage *)subRightButtonImage {
+    _subRightButtonImage = subRightButtonImage;
+    [self jx_setSubRightClick];
+    
+    [self.subRightItem setImageForNormal:subRightButtonImage highlighted:subRightButtonImage disabled:subRightButtonImage];
+    
+    self.subRight_is_title = NO;
+    [self checkAndSet_subRight];
+}
+
+- (void)jx_setSubRightClick {
+    self.subRight_item = self.subRightItem;
+    JX_WEAK_SELF;
+    self.subRightItem.click = ^{
+        JX_STRONG_SELF;
+        JX_BLOCK_EXEC(self.subRightButtonTap);
+        JX_BLOCK_EXEC(self.rightSubButtonTap);
+    };
+}
+
+- (void)checkAndSet_subRight {
+    if (!self.subRight_item) {
+        return;
+    }
+    if (self.subRight_is_title) {
+        NSString *subRightButtonTitle = self.subRightButtonTitle ? self.subRightButtonTitle : self.rightSubButtonTitle;
+        if (self.bgColorStyle) {
+            [self.subRightItem setTitle:subRightButtonTitle color:[UIColor whiteColor] font:nil];
+        }
+        else {
+            [self.subRightItem setTitle:subRightButtonTitle color:nil font:nil];
+        }
+    }
+}
+
+- (void)setSubRightButtonHidden:(BOOL)subRightButtonHidden {
+    _subRightButtonHidden = subRightButtonHidden;
+    self.subRightItem.hidden = YES;
+}
+
+// deprecated
 - (void)setRightSubButtonTitle:(NSString *)rightSubButtonTitle {
     _rightSubButtonTitle = rightSubButtonTitle;
     [self jx_setSubRightClick];
@@ -294,27 +359,9 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     [self checkAndSet_subRight];
 }
 
-- (void)jx_setSubRightClick {
-    self.subRight_item = self.subRightItem;
-    JX_WEAK_SELF;
-    self.subRightItem.click = ^{
-        JX_STRONG_SELF;
-        JX_BLOCK_EXEC(self.rightSubButtonTap);
-    };
-}
-
-- (void)checkAndSet_subRight {
-    if (!self.subRight_item) {
-        return;
-    }
-    if (self.subRight_is_title) {
-        if (self.bgColorStyle) {
-            [self.subRightItem setTitle:self.rightSubButtonTitle color:[UIColor whiteColor] font:nil];
-        }
-        else {
-            [self.subRightItem setTitle:self.rightSubButtonTitle color:nil font:nil];
-        }
-    }
+- (void)setRightSubButtonHidden:(BOOL)rightSubButtonHidden {
+    _rightSubButtonHidden = rightSubButtonHidden;
+    self.subRightItem.hidden = YES;
 }
 
 @end

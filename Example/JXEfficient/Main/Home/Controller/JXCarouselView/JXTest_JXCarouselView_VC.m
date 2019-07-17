@@ -41,16 +41,16 @@ static const CGFloat kCarouseToLR = 8.0;
     
     //
     self.URLs = @[
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/101749.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/107500.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/108389.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/111258.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/112793.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/355362.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/931282.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/969118.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/970400.375.jpg"],
-                  [NSURL URLWithString:@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/986765.375.jpg"],
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/101749.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/107500.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/108389.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/111258.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/112793.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/355362.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/931282.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/969118.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/970400.375.jpg"),
+                  jx_URLValue(@"https://raw.githubusercontent.com/augsun/Resources/master/JXCarouselView/986765.375.jpg"),
                   ];
     
     void (^loadImage)(NSURL *,

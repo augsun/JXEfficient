@@ -18,10 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)naviView; ///< 便利初始化器
 
-@property (nonatomic, assign) BOOL bgColorStyle; ///< 背景样式 def. NO (标题按钮控件置白色) <YES 时 内部文字控件反白, NO 时 内部文字控件为 defaultStyleTitleColor 颜色>
+@property (nonatomic, assign) BOOL bgColorStyle; ///< 背景样式 def. NO (标题按钮控件置白色) <YES 时 内部文字控件反白, NO 时 内部文字控件为 defaultStyleTitleColor 颜色>. translucent 样式下无效.
 
 @property (nonatomic, assign) BOOL backButtonHidden; ///< 返回按钮 def. NO <默认显示返回按钮>
-@property (nullable, nonatomic, copy) void (^backClick)(void);
+@property (nullable, nonatomic, copy) void (^backClick)(void); ///< 返回事件回调
 
 @property (nullable, nonatomic, copy) NSString *title; ///< 标题def. nil, 设置为 nil 隐藏
 
@@ -38,10 +38,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) void (^rightButtonTap)(void); ///< 事件回调
 @property (nonatomic, assign) BOOL rightButtonHidden; ///< 是否隐藏按钮
 
-@property (nullable, nonatomic, copy) NSString *rightSubButtonTitle; ///< 右二按钮 同上
-@property (nullable, nonatomic, strong) UIImage *rightSubButtonImage; ///< 图片按钮
-@property (nullable, nonatomic, copy) void (^rightSubButtonTap)(void); ///< 事件回调
-@property (nonatomic, assign) BOOL rightSubButtonHidden; ///< 是否隐藏按钮
+@property (nullable, nonatomic, copy) NSString *subRightButtonTitle; ///< 右二按钮 同上
+@property (nullable, nonatomic, strong) UIImage *subRightButtonImage; ///< 图片按钮
+@property (nullable, nonatomic, copy) void (^subRightButtonTap)(void); ///< 事件回调
+@property (nonatomic, assign) BOOL subRightButtonHidden; ///< 是否隐藏按钮
+
+// deprecated
+@property (nullable, nonatomic, copy) NSString *rightSubButtonTitle __deprecated_msg("将废弃, 请使用 subRightButtonTitle");
+@property (nullable, nonatomic, strong) UIImage *rightSubButtonImage __deprecated_msg("将废弃, 请使用 subRightButtonImage");
+@property (nullable, nonatomic, copy) void (^rightSubButtonTap)(void) __deprecated_msg("将废弃, 请使用 subRightButtonTap");
+@property (nonatomic, assign) BOOL rightSubButtonHidden __deprecated_msg("将废弃, 请使用 rightSubButtonHidden");
 
 @end
 

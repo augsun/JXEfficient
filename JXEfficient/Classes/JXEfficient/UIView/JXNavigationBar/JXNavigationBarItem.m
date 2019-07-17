@@ -136,13 +136,13 @@ highlightedColor:(UIColor *)highlightedColor
         }
         
         // color
-        if (!normalColor || [normalColor isKindOfClass:[UIColor class]]) {
+        if (!normalColor || ![normalColor isKindOfClass:[UIColor class]]) {
             normalColor = JX_COLOR_HEX(JXNavigationBarItemNormalTitleColorDefault);
         }
-        if (!highlightedColor || [highlightedColor isKindOfClass:[UIColor class]]) {
+        if (!highlightedColor || ![highlightedColor isKindOfClass:[UIColor class]]) {
             highlightedColor = JX_COLOR_HEX(JXNavigationBarItemHighlightedColorDefault);
         }
-        if (!disabledColor || [disabledColor isKindOfClass:[UIColor class]]) {
+        if (!disabledColor || ![disabledColor isKindOfClass:[UIColor class]]) {
             disabledColor = JX_COLOR_HEX(JXNavigationBarItemDisabledColorDefault);
         }
         
@@ -223,10 +223,10 @@ highlightedColor:(UIColor *)highlightedColor
 {
     if (normalAttributedTitle && [normalAttributedTitle isKindOfClass:[NSAttributedString class]]) {
         
-        if (!highlightedAttributedTitle || [highlightedAttributedTitle isKindOfClass:[NSAttributedString class]]) {
+        if (!highlightedAttributedTitle || ![highlightedAttributedTitle isKindOfClass:[NSAttributedString class]]) {
             highlightedAttributedTitle = normalAttributedTitle;
         }
-        if (!disabledAttributedTitle || [disabledAttributedTitle isKindOfClass:[NSAttributedString class]]) {
+        if (!disabledAttributedTitle || ![disabledAttributedTitle isKindOfClass:[NSAttributedString class]]) {
             disabledAttributedTitle = normalAttributedTitle;
         }
         
@@ -288,7 +288,7 @@ highlightedColor:(UIColor *)highlightedColor
               highlighted:(UIImage *)highlightedImage
                  disabled:(UIImage *)disabledImage
 {
-    BOOL (^rightImage)(UIImage *) = ^ BOOL (UIImage *img) {
+    static BOOL (^rightImage)(UIImage *) = ^ BOOL (UIImage *img) {
         BOOL ret = img && [img isKindOfClass:[UIImage class]] && img.size.width > 0.0 && img.size.height > 0.0;
         return ret;
     };
@@ -400,13 +400,6 @@ highlightedColor:(UIColor *)highlightedColor
     if (self.hidden != hidden) {
         [super setHidden:hidden];
         [self JXNavigationBarItem_needLayout];
-    }
-}
-
-- (void)setTitleMinimumScaleFactor:(CGFloat)titleMinimumScaleFactor {
-    if (titleMinimumScaleFactor > 0.0 && titleMinimumScaleFactor <= 1.0 && _titleMinimumScaleFactor != titleMinimumScaleFactor) {
-        _titleMinimumScaleFactor = titleMinimumScaleFactor;
-        self.button.titleLabel.minimumScaleFactor = titleMinimumScaleFactor;
     }
 }
 

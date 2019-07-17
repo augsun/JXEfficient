@@ -20,16 +20,15 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemContentMinWidth; ///< 最小内�
 /**
  导航条的 Item.
  
- @discussion 最小内容宽度不会小于 20pt, contentEdgeInsets.left 和 contentEdgeInsets.right 默认 4pt. 需要隐藏可以调用 JXNavigationBarItem.hidden 属性.
+ @discussion 最小内容宽度不会小于 20pt, 高度固定 44pt, contentEdgeInsets.left 和 contentEdgeInsets.right 默认 4pt. 需要隐藏可以调用 JXNavigationBarItem.hidden 属性.
  */
 @interface JXNavigationBarItem : UIView
 
 @property (nonatomic, readonly) BOOL rightForShowing; ///< 是否符合展示
 
-@property (nonatomic, readonly) UIButton *button;
+@property (nonatomic, readonly) UIButton *button; ///< 按钮, 其 minimumScaleFactor 默认 0.65.
 @property (nonatomic, copy, nullable) void (^click)(void); ///< 点击事件响应回调
 @property (nonatomic, assign) BOOL enable; ///< 是否能响应点击事件(非隐藏该 Item)
-@property (nonatomic, assign) CGFloat titleMinimumScaleFactor; ///< 标题 UILabel 的 minimumScaleFactor 属性, 默认 0.65
 
 @property (nonatomic, readonly) CGFloat contentWidth; ///< 内容宽度, 最小不低于 JXNavigationBarItemContentMinWidth.
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets; ///< 内容边距, 默认 [0, 4, 0, 4]
