@@ -42,7 +42,7 @@ pod 'JXEfficient'
 
 
 
-#### JXNaviView
+#### JXNavigationBar -> JXNaviView
 
 ![JXNaviView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXNaviView/JXNaviView.gif)
 
