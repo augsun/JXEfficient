@@ -143,7 +143,7 @@ bottomLineView = _bottomLineView;
 
 - (JXNavigationBarItem *)backItem {
     if (!_backItem) {
-        JXNavigationBarItem *itemView = [self createOneItemView];
+        JXNavigationBarItem *itemView = [self JXNavigationBar_createOneItemView];
         self.con_backItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self.itemsBgView m:1.0 c:0.0];
         self.con_backItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_back];
         [NSLayoutConstraint activateConstraints:@[
@@ -160,7 +160,7 @@ bottomLineView = _bottomLineView;
 
 - (JXNavigationBarItem *)leftItem {
     if (!_leftItem) {
-        JXNavigationBarItem *itemView = [self createOneItemView];
+        JXNavigationBarItem *itemView = [self JXNavigationBar_createOneItemView];
         self.con_leftItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self.itemsBgView m:1.0 c:0.0];
         self.con_leftItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_left];
         [NSLayoutConstraint activateConstraints:@[
@@ -177,7 +177,7 @@ bottomLineView = _bottomLineView;
 
 - (JXNavigationBarItem *)titleItem {
     if (!_titleItem) {
-        JXNavigationBarItem *itemView = [self createOneItemView];
+        JXNavigationBarItem *itemView = [self JXNavigationBar_createOneItemView];
         self.con_titleItem_toL = [itemView jx_con_same:NSLayoutAttributeLeft greaterEqual:self.itemsBgView m:1.0 c:0.0];
         self.con_titleItem_toR = [itemView jx_con_same:NSLayoutAttributeRight lessEqual:self.itemsBgView m:1.0 c:0.0];
         
@@ -202,7 +202,7 @@ bottomLineView = _bottomLineView;
 
 - (JXNavigationBarItem *)rightItem {
     if (!_rightItem) {
-        JXNavigationBarItem *itemView = [self createOneItemView];
+        JXNavigationBarItem *itemView = [self JXNavigationBar_createOneItemView];
         self.con_rightItem_toR = [itemView jx_con_same:NSLayoutAttributeRight equal:self.itemsBgView m:1.0 c:0.0];
         self.con_rightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_right];
         [NSLayoutConstraint activateConstraints:@[
@@ -219,7 +219,7 @@ bottomLineView = _bottomLineView;
 
 - (JXNavigationBarItem *)subRightItem {
     if (!_subRightItem) {
-        JXNavigationBarItem *itemView = [self createOneItemView];
+        JXNavigationBarItem *itemView = [self JXNavigationBar_createOneItemView];
         self.con_subRightItem_toR = [itemView jx_con_same:NSLayoutAttributeRight equal:self.itemsBgView m:1.0 c:0.0];
         self.con_subRightItem_w = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:0.0 p:k_min_w_p_subRight];
         [NSLayoutConstraint activateConstraints:@[
@@ -234,7 +234,7 @@ bottomLineView = _bottomLineView;
     return _subRightItem;
 }
 
-- (JXNavigationBarItem *)createOneItemView {
+- (JXNavigationBarItem *)JXNavigationBar_createOneItemView {
     JXNavigationBarItem *itemView = [[JXNavigationBarItem alloc] init];
     [self.itemsBgView addSubview:itemView];
     itemView.translatesAutoresizingMaskIntoConstraints = NO;

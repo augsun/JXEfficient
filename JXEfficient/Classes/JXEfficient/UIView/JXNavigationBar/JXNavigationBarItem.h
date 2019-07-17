@@ -15,8 +15,6 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemDisabledColorDefault; ///< Disab
 
 UIKIT_EXTERN const NSInteger JXNavigationBarItemFontSizeDefault; ///< 默认 Item 的 fontSize, 15.0pt
 
-UIKIT_EXTERN const NSInteger JXNavigationBarItemContentMinWidth; ///< 最小内容宽度, 20.0pt
-
 /**
  导航条的 Item.
  

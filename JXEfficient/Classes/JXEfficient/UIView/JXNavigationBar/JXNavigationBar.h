@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UIImageView *backgroundImageView; ///< 背景图片
 
-@property (nonatomic, readonly) JXNavigationBarItem *backItem; /// 返回按钮
+@property (nonatomic, readonly) JXNavigationBarItem *backItem; ///< 返回按钮
 @property (nonatomic, readonly) JXNavigationBarItem *leftItem; ///< 左边按钮
 
 @property (nonatomic, readonly) JXNavigationBarItem *titleItem; ///< 标题
