@@ -119,45 +119,49 @@
                                                               @{
                                                                   @"leftButtonImage": [UIImage imageNamed:@"JXTestBaseVC_navi_left_icon"],
                                                                   },
-                                                              @{@"toast": @"当一或多个 Item 内容过大时, 执行抗压优先 [back > right > left > subRight > title]", },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJ",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJX",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXN",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNa",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNav",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNavi",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNaviV",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNaviVi",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
-                                                              @{
-                                                                  @"title": @"JXNaviViewJXNaviVie",
-                                                                  @"usingTime": @(0.1),
-                                                                  },
                                                               @{
                                                                   @"title": @"JXNaviViewJXNaviView",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{@"toast": @"当一或多个 Item 内容过大时, 执行抗压优先 [back > right > left > subRight > title]", },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJ",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJX",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXN",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNa",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNav",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNavi",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNaviV",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNaviVi",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNaviVie",
+                                                                  @"usingTime": @(0.1),
+                                                                  },
+                                                              @{
+                                                                  @"title": @"JXNaviViewJXNaviViewJXNaviView",
                                                                   },
                                                               @{@"toast": @"背景颜色样式导航条", },
                                                               @{
@@ -385,7 +389,8 @@
     }
     if ([key isEqualToString:@"backgroundImageView_image_url"]) {
         self.testNaviView.backgroundImageView.image = value;
-        
+        self.testNaviView.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.testNaviView.backgroundImageView.clipsToBounds = YES;
     }
     if ([key isEqualToString:@"contentEdgeInsets_right"]) {
         self.testNaviView.rightItem.contentEdgeInsets = UIEdgeInsetsFromString(value);

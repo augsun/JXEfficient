@@ -42,6 +42,12 @@ pod 'JXEfficient'
 
 
 
+#### JXNaviView
+
+![JXNaviView](https://gitee.com/codersun/Resources/raw/master/JXEfficient/JXNaviView/JXNaviView.gif)
+
+
+
 #### JXCarouselView
 ![JXCarouselView](https://raw.githubusercontent.com/augsun/Resources/master/JXEfficient/JXCarouselView/JXCarouselView.gif)
 
@@ -142,8 +148,6 @@ Continuous updates will be made.
 │   │   ├── JXRegular.h
 │   │   └── JXRegular.m
 │   ├── JXSystemAlert
-│   │   ├── JXSystemActionSheet.h
-│   │   ├── JXSystemActionSheet.m
 │   │   ├── JXSystemAlert.h
 │   │   └── JXSystemAlert.m
 │   ├── JXUUIDAndKeyChain
@@ -164,6 +168,9 @@ Continuous updates will be made.
 │       │   ├── JXCarouselPageControlView.m
 │       │   ├── JXCarouselView.h
 │       │   └── JXCarouselView.m
+│       ├── JXCircularArcView
+│       │   ├── JXCircularArcView.h
+│       │   └── JXCircularArcView.m
 │       ├── JXFlowView
 │       │   ├── JXFlowView.h
 │       │   ├── JXFlowView.m
