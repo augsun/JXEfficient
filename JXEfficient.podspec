@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JXEfficient'
-  s.version          = '0.2.119'
+  s.version          = '0.2.120'
   s.summary          = 'A short description of JXEfficient.'
 
 # This description is used to generate tags and improve search results.

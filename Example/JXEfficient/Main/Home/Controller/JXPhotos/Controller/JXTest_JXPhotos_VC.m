@@ -35,6 +35,12 @@
         make.bottom.mas_equalTo(self.view).with.offset(-JX_UNUSE_AREA_OF_BOTTOM);
     }];
     
+    NSArray <JXPhotosAssetCollection *> *tempArr = [JXPhotos fetchImageAssetCollectionsWithFetchOptions:nil
+                                                                                    imageRequestOptions:nil
+                                                                                   assetCollectionClass:[NSString class]
+                                                                                             assetClass:nil];
+    
+    NSLog(@"%ld", tempArr.count);
     
 }
 

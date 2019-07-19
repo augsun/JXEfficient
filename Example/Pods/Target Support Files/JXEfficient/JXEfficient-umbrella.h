@@ -42,6 +42,7 @@
 #import "JXMacro.h"
 #import "JXPhotos.h"
 #import "JXPhotosAsset.h"
+#import "JXPhotosAssetCollection.h"
 #import "JXPhotosViewCell.h"
 #import "JXPhotosView.h"
 #import "JXPhotosViewFlowLayout.h"
