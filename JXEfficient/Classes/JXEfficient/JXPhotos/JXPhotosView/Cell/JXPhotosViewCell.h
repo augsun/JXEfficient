@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXAsset.h"
+#import "JXPhotosAsset.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UIImageView *thumbImageView; ///< 预览图
 
-- (void)refreshUI:(__kindof JXAsset *)asset; ///< 子类想自定义刷新, 可以不用调用 [super refreshUI];
+- (void)refreshUI:(__kindof JXPhotosAsset *)asset; ///< 子类想自定义刷新, 可以不用调用 [super refreshUI];
 
 @end
 

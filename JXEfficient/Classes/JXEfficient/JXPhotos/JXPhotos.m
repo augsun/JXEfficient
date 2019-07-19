@@ -7,7 +7,7 @@
 //
 
 #import "JXPhotos.h"
-#import <JXEfficient/JXEfficient.h>
+#import "JXMacro.h"
 
 @implementation JXPhotos
 
@@ -28,7 +28,7 @@
     }];
 }
 
-+ (NSArray<JXAsset *> *)fetchImageAssetsWithFetchOptions:(PHFetchOptions *)fetchOptions
++ (NSArray<JXPhotosAsset *> *)fetchImageAssetsWithFetchOptions:(PHFetchOptions *)fetchOptions
                                      imageRequestOptions:(PHImageRequestOptions *)imageRequestOptions
                                               assetClass:(Class)assetClass
 {
@@ -38,10 +38,10 @@
         return nil;
     }
     
-    NSMutableArray <JXAsset *> *tempArr = [[NSMutableArray alloc] init];
+    NSMutableArray <JXPhotosAsset *> *tempArr = [[NSMutableArray alloc] init];
     
     for (PHAsset *assetEnum in result) {
-        JXAsset *jxAsset = [[assetClass alloc] init];
+        JXPhotosAsset *jxAsset = [[assetClass alloc] init];
         jxAsset.phAsset = assetEnum;
         jxAsset.imageRequestOptions = imageRequestOptions;
         [tempArr addObject:jxAsset];

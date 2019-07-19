@@ -6,11 +6,11 @@
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXAsset.h"
+#import "JXPhotosAsset.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXTest_JXPhotos_AlbumImageModel : JXAsset
+@interface JXTest_JXPhotos_AlbumImageModel : JXPhotosAsset
 
 @end
 

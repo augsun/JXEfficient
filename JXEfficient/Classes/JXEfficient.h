@@ -43,6 +43,8 @@
 #import "JXEncryption+MD5.h"
 #import "JXEncryption+AES.h"
 #import "JXEncryption+RSA.h"
+#import "JXPhotos.h"
+#import "JXPhotosView.h"
 
 // UIView
 #import "JXQRCodeScanView.h"                // 二维码扫描

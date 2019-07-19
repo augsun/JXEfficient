@@ -24,10 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGSize expectItemSize; ///< 期望 item 的大小. 默认 60.0, 在屏幕旋转及 JXPhotosView 的大小改变的时候会先(保证 lineSpacing, interitemSpacing, sectionInset 不变化的情况下)进行布局微调
 
 @property (nonatomic, assign) BOOL rollToBottomForFirstTime; ///< 初次刷新滚动于底部[最近的图片在于列表底部], 默认 YES. 在设置 assets 后再设置无效, 且其效果只执行一次.
-@property (nonatomic, copy) NSArray <__kindof JXAsset *> *assets; ///< 获取的图片
-@property (nonatomic, copy) void (^didSelectItemAtIndex)(NSInteger index, __kindof JXAsset *asset); ///< 图片点击回调
+@property (nonatomic, copy) NSArray <__kindof JXPhotosAsset *> *assets; ///< 获取的图片
+@property (nonatomic, copy) void (^didSelectItemAtIndex)(NSInteger index, __kindof JXPhotosAsset *asset); ///< 图片点击回调
 
-@property (nonatomic, copy) void (^refreshCellUsingBlock)(__kindof JXPhotosViewCell *jxCell, __kindof JXAsset *jxAsset); ///< 上层用于刷新 Cell <自定义 JXPhotosViewCell 子类>
+@property (nonatomic, copy) void (^refreshCellUsingBlock)(__kindof JXPhotosViewCell *jxCell, __kindof JXPhotosAsset *jxAsset); ///< 上层用于刷新 Cell <自定义 JXPhotosViewCell 子类>
 
 @end
 

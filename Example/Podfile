@@ -2,7 +2,7 @@ use_frameworks!
 
 platform :ios, '8.0'
 
-target 'JXEfficient_Example' do
+target 'JXEfficient' do
   pod 'JXEfficient', :path => '../'
   
   pod 'Masonry',  '1.1.0'

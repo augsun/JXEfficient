@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_JXEfficient_ExampleVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_JXEfficient_ExampleVersionString[];
+FOUNDATION_EXPORT double Pods_JXEfficientVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_JXEfficientVersionString[];
 

@@ -7,11 +7,13 @@
 //
 
 #import "JXPhotosViewCell.h"
-#import <JXEfficient/JXEfficient.h>
+
+#import "JXMacro.h"
+#import "NSLayoutConstraint+JXCategory.h"
 
 @interface JXPhotosViewCell ()
 
-@property (nonatomic, strong) JXAsset *asset;
+@property (nonatomic, strong) JXPhotosAsset *asset;
 @property (nonatomic, assign) CGSize previous_bestSizeOfThumbImageForCurrentLayout;
 
 @end
@@ -46,7 +48,7 @@
     
 }
 
-- (void)refreshUI:(__kindof JXAsset *)asset {
+- (void)refreshUI:(__kindof JXPhotosAsset *)asset {
     _asset = asset;
     
     if (asset.image)

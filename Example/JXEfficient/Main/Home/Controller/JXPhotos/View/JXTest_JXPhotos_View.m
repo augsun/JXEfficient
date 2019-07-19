@@ -33,7 +33,7 @@
             make.bottom.mas_equalTo(self).with.offset(-40.0);
         }];
         self.photosView.nibCellClass = [JXTest_JXPhotos_Cell class];
-        self.photosView.refreshCellUsingBlock = ^(__kindof JXPhotosViewCell * _Nonnull jxCell, __kindof JXAsset * _Nonnull jxAsset) {
+        self.photosView.refreshCellUsingBlock = ^(__kindof JXPhotosViewCell * _Nonnull jxCell, __kindof JXPhotosAsset * _Nonnull jxAsset) {
             JXTest_JXPhotos_Cell *cell = (JXTest_JXPhotos_Cell *)jxCell;
             JXTest_JXPhotos_AlbumImageModel *model = (JXTest_JXPhotos_AlbumImageModel *)jxAsset;
             [cell refreshUI:model];

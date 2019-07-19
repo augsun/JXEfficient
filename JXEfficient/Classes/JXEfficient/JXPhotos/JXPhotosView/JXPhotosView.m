@@ -8,7 +8,10 @@
 
 #import "JXPhotosView.h"
 
-#import <JXEfficient/JXEfficient.h>
+#import "UICollectionView+JXCategory.h"
+#import "UIView+JXCategory.h"
+#import "NSLayoutConstraint+JXCategory.h"
+#import "JXMacro.h"
 
 #import "JXPhotosViewFlowLayout.h"
 
@@ -177,7 +180,7 @@ static NSString *const kCellID = @"kCellID";
     }
 }
 
-- (void)setAssets:(NSArray<__kindof JXAsset *> *)assets {
+- (void)setAssets:(NSArray<__kindof JXPhotosAsset *> *)assets {
     _assets = assets;
     
     //
@@ -214,7 +217,7 @@ static NSString *const kCellID = @"kCellID";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    JXAsset *asset = self.assets[indexPath.item];
+    JXPhotosAsset *asset = self.assets[indexPath.item];
     asset.thumbImageViewSize = self.thumbImageViewSize;
     JXPhotosViewCell *cell = COLLECTIONVIEW_DEQUEUE(kCellID);
     JX_BLOCK_EXEC(self.refreshCellUsingBlock, cell, asset);
@@ -222,7 +225,7 @@ static NSString *const kCellID = @"kCellID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    JXAsset *asset = self.assets[indexPath.item];
+    JXPhotosAsset *asset = self.assets[indexPath.item];
     JX_BLOCK_EXEC(self.didSelectItemAtIndex, indexPath.item, asset);
 }
 

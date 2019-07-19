@@ -1,5 +1,5 @@
 //
-//  JXAsset.h
+//  JXPhotosAsset.h
 //  JXEfficient
 //
 //  Created by augsun on 7/18/19.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXAsset : NSObject
+@interface JXPhotosAsset : NSObject
 
 @property (nonatomic, strong) PHAsset *phAsset; ///< 获取的系统  PHAsset
 @property (nonatomic, strong) PHImageRequestOptions *imageRequestOptions; ///< 用于获取图片配置

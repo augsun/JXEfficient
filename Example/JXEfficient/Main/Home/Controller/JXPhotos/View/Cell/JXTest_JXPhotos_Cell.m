@@ -19,7 +19,7 @@
     
 }
 
-- (void)refreshUI:(__kindof JXAsset *)asset {
+- (void)refreshUI:(__kindof JXPhotosAsset *)asset {
     [super refreshUI:asset];
     
 }

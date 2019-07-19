@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Photos/Photos.h>
-
-#import "JXAsset.h"
+#import "JXPhotosAsset.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,10 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param fetchOptions 获取配置
  @param imageRequestOptions 请求图片配置
- @param assetClass JXAsset 类 或其子类
- @return 获取的 JXAsset 实例
+ @param assetClass JXPhotosAsset 类 或其子类
+ @return 获取的 JXPhotosAsset 实例
  */
-+ (NSArray <__kindof JXAsset *> *)fetchImageAssetsWithFetchOptions:(nullable PHFetchOptions *)fetchOptions
++ (NSArray <__kindof JXPhotosAsset *> *)fetchImageAssetsWithFetchOptions:(nullable PHFetchOptions *)fetchOptions
                                                imageRequestOptions:(nullable PHImageRequestOptions *)imageRequestOptions
                                                         assetClass:(nullable Class)assetClass;
 
