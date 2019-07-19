@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray <__kindof JXPhotosAsset *> *assets; ///< 获取的图片
 @property (nonatomic, copy) void (^didSelectItemAtIndex)(NSInteger index, __kindof JXPhotosAsset *asset); ///< 图片点击回调
 
-@property (nonatomic, copy) void (^refreshCellUsingBlock)(__kindof JXPhotosViewCell *jxCell, __kindof JXPhotosAsset *jxAsset); ///< 上层用于刷新 Cell <自定义 JXPhotosViewCell 子类>
+@property (nonatomic, copy) void (^refreshCellUsingBlock)(__kindof JXPhotosViewCell *cell, __kindof JXPhotosAsset *asset); ///< 上层用于刷新 Cell <自定义 JXPhotosViewCell 子类>
 
 @end
 

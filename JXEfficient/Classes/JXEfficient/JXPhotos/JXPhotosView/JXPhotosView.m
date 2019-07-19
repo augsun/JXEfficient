@@ -29,7 +29,6 @@ static NSString *const kCellID = @"kCellID";
 @property (nonatomic, assign) BOOL didSetAssets;
 
 @property (nonatomic, assign) CGSize showingItemSize;
-@property (nonatomic, assign) CGSize thumbImageViewSize;
 
 @property (nonatomic, assign) NSInteger countPerRow;
 
@@ -109,7 +108,6 @@ static NSString *const kCellID = @"kCellID";
 
 - (void)setShowingItemSize:(CGSize)showingItemSize {
     _showingItemSize = showingItemSize;
-    self.thumbImageViewSize = CGSizeMake(showingItemSize.width * JX_SCREEN_SCALE, showingItemSize.height * JX_SCREEN_SCALE);
 }
 
 - (void)layoutSubviews {
@@ -218,7 +216,6 @@ static NSString *const kCellID = @"kCellID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JXPhotosAsset *asset = self.assets[indexPath.item];
-    asset.thumbImageViewSize = self.thumbImageViewSize;
     JXPhotosViewCell *cell = COLLECTIONVIEW_DEQUEUE(kCellID);
     JX_BLOCK_EXEC(self.refreshCellUsingBlock, cell, asset);
     return cell;

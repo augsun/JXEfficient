@@ -19,8 +19,8 @@
     
 }
 
-- (void)refreshUI:(__kindof JXPhotosAsset *)asset {
-    [super refreshUI:asset];
+- (void)refreshUI:(__kindof JXPhotosAsset *)asset thumbImageSize:(CGSize)thumbImageSize {
+    [super refreshUI:asset thumbImageSize:thumbImageSize];
     
 }
 

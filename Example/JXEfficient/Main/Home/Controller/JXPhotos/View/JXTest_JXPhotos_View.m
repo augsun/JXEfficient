@@ -33,11 +33,6 @@
             make.bottom.mas_equalTo(self).with.offset(-40.0);
         }];
         self.photosView.nibCellClass = [JXTest_JXPhotos_Cell class];
-        self.photosView.refreshCellUsingBlock = ^(__kindof JXPhotosViewCell * _Nonnull jxCell, __kindof JXPhotosAsset * _Nonnull jxAsset) {
-            JXTest_JXPhotos_Cell *cell = (JXTest_JXPhotos_Cell *)jxCell;
-            JXTest_JXPhotos_AlbumImageModel *model = (JXTest_JXPhotos_AlbumImageModel *)jxAsset;
-            [cell refreshUI:model];
-        };
         CGFloat leftW =
         JX_SCREEN_W -
         self.photosView.collectionView.contentInset.left -
@@ -48,9 +43,16 @@
         NSInteger count = 4;
         CGFloat w = (leftW - (count - 1) * self.photosView.interitemSpacing) / count;
         CGFloat h = w;
-        self.photosView.expectItemSize = CGSizeMake(w, h);
+        CGSize expectItemSize = CGSizeMake(w, h);
+        self.photosView.expectItemSize = expectItemSize;
         self.photosView.rollToBottomForFirstTime = YES;
         
+        CGSize thumbImageSize = CGSizeMake(expectItemSize.width * JX_SCREEN_SCALE, expectItemSize.height * JX_SCREEN_SCALE);
+        self.photosView.refreshCellUsingBlock = ^(__kindof JXPhotosViewCell * _Nonnull jxCell, __kindof JXPhotosAsset * _Nonnull jxAsset) {
+            JXTest_JXPhotos_Cell *cell = (JXTest_JXPhotos_Cell *)jxCell;
+            JXTest_JXPhotos_AlbumImageModel *model = (JXTest_JXPhotos_AlbumImageModel *)jxAsset;
+            [cell refreshUI:model thumbImageSize:thumbImageSize];
+        };
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            self.photosView.lineSpacing = 20.0;
 //            self.photosView.interitemSpacing = 30.0;

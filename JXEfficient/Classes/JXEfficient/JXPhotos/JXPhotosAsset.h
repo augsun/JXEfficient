@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) UIImage *image; ///< 获取图片后返回的图片, 上层使用
 @property (nonatomic, strong, nullable) NSDictionary *info; ///< 获取图片后返回的 info, 上层使用
 
-@property (nonatomic, assign) CGSize thumbImageViewSize; ///< 获取图片期望的大小<用于预览图的获取>
+@property (nonatomic, assign) BOOL selected; ///< 只用于子类自定义标记 是否选中
+@property (nonatomic, assign) NSInteger selectedIndex; ///< 只用于子类自定义标记 所有选中的 index
 
 @end
 

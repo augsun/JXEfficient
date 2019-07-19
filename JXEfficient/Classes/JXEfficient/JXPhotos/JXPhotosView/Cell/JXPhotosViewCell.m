@@ -13,9 +13,6 @@
 
 @interface JXPhotosViewCell ()
 
-@property (nonatomic, strong) JXPhotosAsset *asset;
-@property (nonatomic, assign) CGSize previous_bestSizeOfThumbImageForCurrentLayout;
-
 @end
 
 @implementation JXPhotosViewCell
@@ -48,7 +45,7 @@
     
 }
 
-- (void)refreshUI:(__kindof JXPhotosAsset *)asset {
+- (void)refreshUI:(__kindof JXPhotosAsset *)asset thumbImageSize:(CGSize)thumbImageSize {
     _asset = asset;
     
     if (asset.image)
@@ -58,7 +55,7 @@
     else {
         self.thumbImageView.image = nil;
         [[PHImageManager defaultManager] requestImageForAsset:asset.phAsset
-                                                   targetSize:asset.thumbImageViewSize
+                                                   targetSize:thumbImageSize
                                                   contentMode:PHImageContentModeAspectFill
                                                       options:asset.imageRequestOptions
                                                 resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info)

@@ -37,7 +37,7 @@
     
     NSArray <JXPhotosAssetCollection *> *tempArr = [JXPhotos fetchImageAssetCollectionsWithFetchOptions:nil
                                                                                     imageRequestOptions:nil
-                                                                                   assetCollectionClass:[NSString class]
+                                                                                   assetCollectionClass:nil
                                                                                              assetClass:nil];
     
     NSLog(@"%ld", tempArr.count);
