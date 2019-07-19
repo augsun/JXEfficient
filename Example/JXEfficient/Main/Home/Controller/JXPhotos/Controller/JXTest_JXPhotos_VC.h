@@ -1,8 +1,8 @@
 //
-//  JXTest_JXCarouselView_VC.h
+//  JXTest_JXPhotos_VC.h
 //  JXEfficient
 //
-//  Created by augsun on 7/5/19.
+//  Created by augsun on 7/18/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXTest_JXCarouselView_VC : JXTestBaseVC
+@interface JXTest_JXPhotos_VC : JXTestBaseVC
 
 @end
 

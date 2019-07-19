@@ -23,6 +23,11 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */ = {isa = PBXBuildFile; fileRef = C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */; };
+		C8296E1222E008CF00C33089 /* JXPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8296E1122E008CF00C33089 /* JXPhotos.m */; };
+		C8296E1522E00D1E00C33089 /* JXAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C8296E1422E00D1E00C33089 /* JXAsset.m */; };
+		C82B11CF22E051B0007FA929 /* JXTest_JXPhotos_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82B11CD22E051B0007FA929 /* JXTest_JXPhotos_Cell.m */; };
+		C82B11D022E051B0007FA929 /* JXTest_JXPhotos_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82B11CE22E051B0007FA929 /* JXTest_JXPhotos_Cell.xib */; };
+		C82D3B4022E02E4100E0628B /* JXPhotosViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82D3B3F22E02E4100E0628B /* JXPhotosViewCell.m */; };
 		C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */; };
 		C84D2BA822DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C84D2BA722DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m */; };
 		C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CF25322CC8187006EF8AB /* JXTestBaseVC.m */; };
@@ -34,10 +39,15 @@
 		C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */; };
 		C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */; };
 		C867925322DDEC5300EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */; };
+		C87ECB5022E0B25F005353CD /* JXPhotosViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C87ECB4F22E0B25F005353CD /* JXPhotosViewFlowLayout.m */; };
 		C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */; };
 		C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */; };
 		C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */; };
 		C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */; };
+		C8D0028A22E026B4006D08A5 /* JXPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0028922E026B4006D08A5 /* JXPhotosView.m */; };
+		C8D0028D22E0274C006D08A5 /* JXTest_JXPhotos_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0028C22E0274C006D08A5 /* JXTest_JXPhotos_VC.m */; };
+		C8D0029022E02835006D08A5 /* JXTest_JXPhotos_View.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0028F22E02835006D08A5 /* JXTest_JXPhotos_View.m */; };
+		C8D0029922E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0029822E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m */; };
 		C8E3330D22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */; };
 		EDEB02E9947C5C779314CCF9 /* Pods_JXEfficient_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A372EE811AF93E9FC68BDB /* Pods_JXEfficient_Example.framework */; };
 /* End PBXBuildFile section */
@@ -54,7 +64,7 @@
 
 /* Begin PBXFileReference section */
 		5CFF714FCB724CF7EC395083 /* Pods-JXEfficient_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Tests/Pods-JXEfficient_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* JXEfficient_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JXEfficient_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* JXEfficient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JXEfficient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -80,6 +90,15 @@
 		B80575148304D160ABE3AB86 /* Pods-JXEfficient_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Tests/Pods-JXEfficient_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCD264D27962C863033E57A3 /* Pods_JXEfficient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JXEfficient_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = autoRelease_JXEfficient.py; path = ../autoRelease_JXEfficient.py; sourceTree = "<group>"; };
+		C8296E1022E008CF00C33089 /* JXPhotos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPhotos.h; sourceTree = "<group>"; };
+		C8296E1122E008CF00C33089 /* JXPhotos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXPhotos.m; sourceTree = "<group>"; };
+		C8296E1322E00D1E00C33089 /* JXAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXAsset.h; sourceTree = "<group>"; };
+		C8296E1422E00D1E00C33089 /* JXAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXAsset.m; sourceTree = "<group>"; };
+		C82B11CC22E051B0007FA929 /* JXTest_JXPhotos_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPhotos_Cell.h; sourceTree = "<group>"; };
+		C82B11CD22E051B0007FA929 /* JXTest_JXPhotos_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPhotos_Cell.m; sourceTree = "<group>"; };
+		C82B11CE22E051B0007FA929 /* JXTest_JXPhotos_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXTest_JXPhotos_Cell.xib; sourceTree = "<group>"; };
+		C82D3B3E22E02E4100E0628B /* JXPhotosViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPhotosViewCell.h; sourceTree = "<group>"; };
+		C82D3B3F22E02E4100E0628B /* JXPhotosViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXPhotosViewCell.m; sourceTree = "<group>"; };
 		C840284D22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_VC.h; sourceTree = "<group>"; };
 		C840284E22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_VC.m; sourceTree = "<group>"; };
 		C84D2BA622DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCircularArcView_VC.h; sourceTree = "<group>"; };
@@ -97,12 +116,22 @@
 		C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_subRight_icon@2x.png"; sourceTree = "<group>"; };
 		C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_left_icon@2x.png"; sourceTree = "<group>"; };
 		C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTest_JXNaviView_VC_icon@2x.png"; sourceTree = "<group>"; };
+		C87ECB4E22E0B25F005353CD /* JXPhotosViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPhotosViewFlowLayout.h; sourceTree = "<group>"; };
+		C87ECB4F22E0B25F005353CD /* JXPhotosViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXPhotosViewFlowLayout.m; sourceTree = "<group>"; };
 		C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_current.pdf; sourceTree = "<group>"; };
 		C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_normal.pdf; sourceTree = "<group>"; };
 		C8C0CCD722CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomView.h; sourceTree = "<group>"; };
 		C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomView.m; sourceTree = "<group>"; };
 		C8C0CCDA22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomModel.h; sourceTree = "<group>"; };
 		C8C0CCDB22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXCarouselView_CustomModel.m; sourceTree = "<group>"; };
+		C8D0028822E026B4006D08A5 /* JXPhotosView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXPhotosView.h; sourceTree = "<group>"; };
+		C8D0028922E026B4006D08A5 /* JXPhotosView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXPhotosView.m; sourceTree = "<group>"; };
+		C8D0028B22E0274C006D08A5 /* JXTest_JXPhotos_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPhotos_VC.h; sourceTree = "<group>"; };
+		C8D0028C22E0274C006D08A5 /* JXTest_JXPhotos_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPhotos_VC.m; sourceTree = "<group>"; };
+		C8D0028E22E02835006D08A5 /* JXTest_JXPhotos_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPhotos_View.h; sourceTree = "<group>"; };
+		C8D0028F22E02835006D08A5 /* JXTest_JXPhotos_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPhotos_View.m; sourceTree = "<group>"; };
+		C8D0029722E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPhotos_AlbumImageModel.h; sourceTree = "<group>"; };
+		C8D0029822E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPhotos_AlbumImageModel.m; sourceTree = "<group>"; };
 		C8E3330B22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXNaviView_VC.h; sourceTree = "<group>"; };
 		C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXNaviView_VC.m; sourceTree = "<group>"; };
 		D89E0A1F09B8F94CE9D6CB0A /* Pods-JXEfficient_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,7 +191,7 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* JXEfficient_Example.app */,
+				6003F58A195388D20070C39A /* JXEfficient.app */,
 				6003F5AE195388D20070C39A /* JXEfficient_Tests.xctest */,
 			);
 			name = Products;
@@ -235,6 +264,48 @@
 				9E99CA329A5BEA7F1C013779 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		C8296E0F22E0079900C33089 /* JXPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				C8D0029122E028C4006D08A5 /* Controller */,
+				C8D0029322E028D3006D08A5 /* Model */,
+				C8D0029222E028CF006D08A5 /* View */,
+				C82D3B3C22E0297500E0628B /* Lib */,
+			);
+			path = JXPhotos;
+			sourceTree = "<group>";
+		};
+		C82B11CB22E05199007FA929 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C82B11CC22E051B0007FA929 /* JXTest_JXPhotos_Cell.h */,
+				C82B11CD22E051B0007FA929 /* JXTest_JXPhotos_Cell.m */,
+				C82B11CE22E051B0007FA929 /* JXTest_JXPhotos_Cell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C82D3B3C22E0297500E0628B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				C8296E1322E00D1E00C33089 /* JXAsset.h */,
+				C8296E1422E00D1E00C33089 /* JXAsset.m */,
+				C8296E1022E008CF00C33089 /* JXPhotos.h */,
+				C8296E1122E008CF00C33089 /* JXPhotos.m */,
+				C8D0028722E026A5006D08A5 /* JXPhotosView */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		C82D3B3D22E02E1100E0628B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C82D3B3E22E02E4100E0628B /* JXPhotosViewCell.h */,
+				C82D3B3F22E02E4100E0628B /* JXPhotosViewCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C840284C22CF0CC30010BB22 /* JXCarouselView */ = {
@@ -315,6 +386,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				C8296E0F22E0079900C33089 /* JXPhotos */,
 				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
 				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
 				C840284C22CF0CC30010BB22 /* JXCarouselView */,
@@ -332,6 +404,46 @@
 			path = JXPopupGeneralView;
 			sourceTree = "<group>";
 		};
+		C8D0028722E026A5006D08A5 /* JXPhotosView */ = {
+			isa = PBXGroup;
+			children = (
+				C8D0028822E026B4006D08A5 /* JXPhotosView.h */,
+				C8D0028922E026B4006D08A5 /* JXPhotosView.m */,
+				C87ECB4E22E0B25F005353CD /* JXPhotosViewFlowLayout.h */,
+				C87ECB4F22E0B25F005353CD /* JXPhotosViewFlowLayout.m */,
+				C82D3B3D22E02E1100E0628B /* Cell */,
+			);
+			path = JXPhotosView;
+			sourceTree = "<group>";
+		};
+		C8D0029122E028C4006D08A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C8D0028B22E0274C006D08A5 /* JXTest_JXPhotos_VC.h */,
+				C8D0028C22E0274C006D08A5 /* JXTest_JXPhotos_VC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C8D0029222E028CF006D08A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8D0028E22E02835006D08A5 /* JXTest_JXPhotos_View.h */,
+				C8D0028F22E02835006D08A5 /* JXTest_JXPhotos_View.m */,
+				C82B11CB22E05199007FA929 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8D0029322E028D3006D08A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8D0029722E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.h */,
+				C8D0029822E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C8E3330A22DCD44800CC7C11 /* JXNaviView */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,9 +457,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* JXEfficient_Example */ = {
+		6003F589195388D20070C39A /* JXEfficient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "JXEfficient_Example" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "JXEfficient" */;
 			buildPhases = (
 				7D6012591D527E275AFB2E81 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
@@ -359,9 +471,9 @@
 			);
 			dependencies = (
 			);
-			name = JXEfficient_Example;
+			name = JXEfficient;
 			productName = JXEfficient;
-			productReference = 6003F58A195388D20070C39A /* JXEfficient_Example.app */;
+			productReference = 6003F58A195388D20070C39A /* JXEfficient.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6003F5AD195388D20070C39A /* JXEfficient_Tests */ = {
@@ -415,7 +527,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* JXEfficient_Example */,
+				6003F589195388D20070C39A /* JXEfficient */,
 				6003F5AD195388D20070C39A /* JXEfficient_Tests */,
 			);
 		};
@@ -426,6 +538,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82B11D022E051B0007FA929 /* JXTest_JXPhotos_Cell.xib in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png in Resources */,
 				C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */,
@@ -526,15 +639,24 @@
 			files = (
 				C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */,
 				C84D2BA822DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m in Sources */,
+				C87ECB5022E0B25F005353CD /* JXPhotosViewFlowLayout.m in Sources */,
 				C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */,
 				C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */,
 				C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */,
 				C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */,
+				C8296E1522E00D1E00C33089 /* JXAsset.m in Sources */,
+				C8D0028D22E0274C006D08A5 /* JXTest_JXPhotos_VC.m in Sources */,
+				C8D0028A22E026B4006D08A5 /* JXPhotosView.m in Sources */,
 				C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */,
 				6003F59E195388D20070C39A /* JXAppDelegate.m in Sources */,
 				C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */,
+				C8D0029922E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m in Sources */,
 				C8E3330D22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m in Sources */,
+				C82D3B4022E02E4100E0628B /* JXPhotosViewCell.m in Sources */,
+				C8296E1222E008CF00C33089 /* JXPhotos.m in Sources */,
+				C82B11CF22E051B0007FA929 /* JXTest_JXPhotos_Cell.m in Sources */,
 				6003F5A7195388D20070C39A /* JXTestHomeVC.m in Sources */,
+				C8D0029022E02835006D08A5 /* JXTest_JXPhotos_View.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +674,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* JXEfficient_Example */;
+			target = 6003F589195388D20070C39A /* JXEfficient */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -780,7 +902,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "JXEfficient_Example" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "JXEfficient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  JXTest_JXPopupGeneralView_VC.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/3/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rightSubButton_enable = YES;
+    self.rightButton_enable = YES;
 }
 
-- (void)rightSubButton_click {
+- (void)rightButton_click {
     //
     
     JXPopupGeneralView *popView = [[JXPopupGeneralView alloc] init];

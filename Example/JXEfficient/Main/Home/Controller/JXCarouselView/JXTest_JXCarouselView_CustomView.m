@@ -1,6 +1,6 @@
 //
 //  JXTest_JXCarouselView_CustomView.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/5/19.
 //  Copyright © 2019 CoderSun. All rights reserved.

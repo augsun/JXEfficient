@@ -1,6 +1,6 @@
 //
 //  JXTest_JXNaviView_VC.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/15/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
@@ -27,11 +27,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = JX_COLOR_SYS_IMG_BG;
     
-    self.rightSubButton_enable = YES;
+    self.rightButton_enable = YES;
     
 }
 
-- (void)rightSubButton_click {
+- (void)rightButton_click {
     //
     void (^show_testNaviView)(void) = ^ {
         //

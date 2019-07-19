@@ -1,6 +1,6 @@
 //
 //  JXTest_JXCarouselView_VC.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/5/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
@@ -36,7 +36,7 @@ static const CGFloat kCarouseToLR = 8.0;
     JX_WEAK_SELF;
     
     //
-    self.rightSubButton_enable = YES;
+    self.rightButton_enable = YES;
     self.models = [[NSMutableArray alloc] init];
     
     //
@@ -140,7 +140,7 @@ static const CGFloat kCarouseToLR = 8.0;
 
 }
 
-- (void)rightSubButton_click {
+- (void)rightButton_click {
 
     NSInteger total_count = self.URLs.count;
     NSAssert(total_count > 0, @"请先初始化 self.URLs 且 self.URLs.count > 0");

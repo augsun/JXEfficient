@@ -1,6 +1,6 @@
 //
 //  JXTestBaseVC.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/3/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
@@ -62,8 +62,8 @@
     _rightSubButton_enable = rightSubButton_enable;
     
     JX_WEAK_SELF;
-    self.naviView.rightSubButtonImage = [UIImage imageNamed:@"JXTestBaseVC_navi_subRight_icon"];
-    self.naviView.rightSubButtonTap = ^{
+    self.naviView.subRightButtonImage = [UIImage imageNamed:@"JXTestBaseVC_navi_subRight_icon"];
+    self.naviView.subRightButtonTap = ^{
         JX_STRONG_SELF;
         [self rightSubButton_click];
     };

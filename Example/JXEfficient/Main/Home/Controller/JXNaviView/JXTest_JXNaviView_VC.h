@@ -1,6 +1,6 @@
 //
 //  JXTest_JXNaviView_VC.h
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/15/19.
 //  Copyright © 2019 CoderSun. All rights reserved.

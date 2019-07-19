@@ -1,6 +1,6 @@
 //
 //  JXTagsGeneralView.h
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 5/2/18.
 //  Copyright © 2018 CoderSun. All rights reserved.

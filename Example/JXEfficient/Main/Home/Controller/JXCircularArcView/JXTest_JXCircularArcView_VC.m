@@ -1,6 +1,6 @@
 //
 //  JXTest_JXCircularArcView_VC.m
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/15/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
@@ -26,13 +26,13 @@
     [super viewDidLoad];
     self.testData = [[NSMutableArray alloc] init];
 
-    self.rightSubButton_enable = YES;
+    self.rightButton_enable = YES;
     
     
     
 }
 
-- (void)rightSubButton_click {
+- (void)rightButton_click {
     if (!self.arcView) {
         self.arcView = [[JXCircularArcView alloc] init];
         [self.view addSubview:self.arcView];

@@ -1,6 +1,6 @@
 //
 //  JXTest_JXPopupGeneralView_VC.h
-//  JXEfficient_Example
+//  JXEfficient
 //
 //  Created by augsun on 7/3/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
