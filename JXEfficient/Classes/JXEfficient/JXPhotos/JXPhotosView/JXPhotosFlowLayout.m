@@ -1,15 +1,15 @@
 //
-//  JXPhotosViewFlowLayout.m
+//  JXPhotosFlowLayout.m
 //  JXEfficient
 //
 //  Created by augsun on 7/18/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXPhotosViewFlowLayout.h"
+#import "JXPhotosFlowLayout.h"
 #import <JXEfficient/JXEfficient.h>
 
-@implementation JXPhotosViewFlowLayout
+@implementation JXPhotosFlowLayout
 
 // 用于屏幕旋转
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {

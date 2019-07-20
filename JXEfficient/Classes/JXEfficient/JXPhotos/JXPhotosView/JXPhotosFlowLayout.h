@@ -1,5 +1,5 @@
 //
-//  JXPhotosViewFlowLayout.h
+//  JXPhotosFlowLayout.h
 //  JXEfficient
 //
 //  Created by augsun on 7/18/19.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXPhotosViewFlowLayout : UICollectionViewFlowLayout
+@interface JXPhotosFlowLayout : UICollectionViewFlowLayout
 
 @end
 

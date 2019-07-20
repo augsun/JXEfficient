@@ -44,7 +44,7 @@
 #import "JXEncryption+AES.h"
 #import "JXEncryption+RSA.h"
 #import "JXPhotos.h"
-#import "JXPhotosView.h"
+#import "JXPhotosLayoutView.h"
 
 // UIView
 #import "JXQRCodeScanView.h"                // 二维码扫描

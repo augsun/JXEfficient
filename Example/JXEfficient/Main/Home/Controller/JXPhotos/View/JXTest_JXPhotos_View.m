@@ -10,13 +10,13 @@
 #import <Masonry/Masonry.h>
 #import <JXEfficient/JXEfficient.h>
 
-#import "JXPhotosView.h"
+#import "JXPhotosLayoutView.h"
 
 #import "JXTest_JXPhotos_Cell.h"
 
 @interface JXTest_JXPhotos_View ()
 
-@property (nonatomic, strong) JXPhotosView *photosView;
+@property (nonatomic, strong) JXPhotosLayoutView *photosView;
 
 @end
 
@@ -26,7 +26,7 @@
 {
     self = [super init];
     if (self) {
-        _photosView = [[JXPhotosView alloc] init];
+        _photosView = [[JXPhotosLayoutView alloc] init];
         [self addSubview:self.photosView];
         [self.photosView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(self);

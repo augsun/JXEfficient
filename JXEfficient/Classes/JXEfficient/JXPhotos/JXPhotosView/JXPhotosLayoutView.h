@@ -1,5 +1,5 @@
 //
-//  JXPhotosView.h
+//  JXPhotosLayoutView.h
 //  JXEfficient
 //
 //  Created by augsun on 7/18/19.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXPhotosView : UIView
+@interface JXPhotosLayoutView : UIView
 
 @property (nonatomic, strong) Class cellClass; ///< 必须 JXPhotosViewCell 或其子类, <与 nibCellClass 谁优先设置后, 另一设置无效, 设置 assets 后设置无效>, 默认 JXPhotosViewCell.
 @property (nonatomic, strong) Class nibCellClass; ///< 必须 JXPhotosViewCell 或其子类, <与 cellClass 谁优先设置后, 另一设置无效, 设置 assets 后设置无效>, 默认 nil

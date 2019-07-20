@@ -1,19 +1,19 @@
 //
-//  JXPhotosView.m
+//  JXPhotosLayoutView.m
 //  JXEfficient
 //
 //  Created by augsun on 7/18/19.
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXPhotosView.h"
+#import "JXPhotosLayoutView.h"
 
 #import "UICollectionView+JXCategory.h"
 #import "UIView+JXCategory.h"
 #import "NSLayoutConstraint+JXCategory.h"
 #import "JXMacro.h"
 
-#import "JXPhotosViewFlowLayout.h"
+#import "JXPhotosFlowLayout.h"
 
 static const CGFloat k_lineSpacing_default = 2.0;
 static const CGFloat k_interitemSpacing_default = 2.0;
@@ -22,9 +22,9 @@ static const CGSize k_expectItemSize_default = {60.0, 60.0};
 
 static NSString *const kCellID = @"kCellID";
 
-@interface JXPhotosView () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface JXPhotosLayoutView () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) JXPhotosViewFlowLayout *layout;
+@property (nonatomic, strong) JXPhotosFlowLayout *layout;
 
 @property (nonatomic, assign) BOOL didSetAssets;
 
@@ -34,7 +34,7 @@ static NSString *const kCellID = @"kCellID";
 
 @end
 
-@implementation JXPhotosView
+@implementation JXPhotosLayoutView
 
 - (instancetype)init {
     self = [super init];
@@ -61,7 +61,7 @@ static NSString *const kCellID = @"kCellID";
     self.rollToBottomForFirstTime = YES;
     
     //
-    self.layout = [[JXPhotosViewFlowLayout alloc] init];
+    self.layout = [[JXPhotosFlowLayout alloc] init];
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     [self addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
