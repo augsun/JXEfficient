@@ -48,9 +48,8 @@
 - (void)refreshUI:(__kindof JXPhotosAsset *)asset thumbImageSize:(CGSize)thumbImageSize {
     _asset = asset;
     
-    if (asset.image)
-    {
-        self.thumbImageView.image = self.asset.image;
+    if (asset.thumbImage) {
+        self.thumbImageView.image = self.asset.thumbImage;
     }
     else {
         self.thumbImageView.image = nil;
@@ -60,10 +59,10 @@
                                                       options:asset.imageRequestOptions
                                                 resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info)
          {
-             asset.image = result;
-             asset.info = info;
+             asset.thumbImage = result;
+             asset.thumbImageInfo = info;
              if (self.asset == asset) {
-                 self.thumbImageView.image = self.asset.image;
+                 self.thumbImageView.image = self.asset.thumbImage;
              }
          }];
     }

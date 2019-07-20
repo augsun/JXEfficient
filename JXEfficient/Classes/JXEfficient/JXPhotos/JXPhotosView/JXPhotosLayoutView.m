@@ -179,7 +179,7 @@ static NSString *const kCellID = @"kCellID";
 }
 
 - (void)setAssets:(NSArray<__kindof JXPhotosAsset *> *)assets {
-    _assets = assets;
+    _assets = [assets copy];
     
     //
     if (!self.didSetAssets) {
@@ -195,17 +195,39 @@ static NSString *const kCellID = @"kCellID";
     }
     
     //
-    [self.collectionView reloadData];
+    [self layoutIfNeeded];
     
-    //
-    if (!self.didSetAssets) {
-        if (self.assets.count > 0 && self.rollToBottomForFirstTime) {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assets.count - 1 inSection:0]
-                                        atScrollPosition:UICollectionViewScrollPositionTop
-                                                animated:NO];
-        }
+    CGFloat rows = self.assets.count / self.countPerRow + (self.assets.count % self.countPerRow == 0 ? 0 : 1);
+    CGFloat items_h = rows * (self.showingItemSize.height + self.lineSpacing) - self.lineSpacing;
+    
+    CGFloat contentOffset_y
+    = items_h
+    + self.collectionView.contentInset.top
+    + self.collectionView.contentInset.bottom
+    + self.sectionInset.top
+    + self.sectionInset.bottom
+    - self.collectionView.contentInset.top // collectionView 的 contentInset.top 值已经作为 负 contentOffset.y 的形式存在 再扣除<或直接不考虑>.
+    - self.jx_height;
+
+    if (contentOffset_y > 0.0) {
+        CGFloat contentSize_h
+        = items_h
+        + self.sectionInset.top
+        + self.sectionInset.bottom;
+        
+        [self.collectionView setContentSize:CGSizeMake(self.jx_width, contentSize_h)];
+        [self.collectionView setContentOffset:CGPointMake(0.0, contentOffset_y) animated:NO];
+        
+#if DEBUG
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSLog(@"DEBUG: contentSize_h = %lf, contentOffset_y = %lf", contentSize_h, contentOffset_y);
+            NSLog(@"DEBUG: real contentSize = %@", NSStringFromCGSize(self.collectionView.contentSize));
+        });
+#endif
     }
     
+    [self.collectionView reloadData];
+
     //
     self.didSetAssets = YES;
 }

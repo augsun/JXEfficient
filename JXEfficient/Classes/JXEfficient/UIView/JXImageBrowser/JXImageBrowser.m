@@ -66,7 +66,6 @@ static const CGFloat kInteritemSpace = 15.f;
 @property (nonatomic, assign) CGFloat wSelf;
 @property (nonatomic, assign) CGFloat hSelf;
 @property (nonatomic, assign) NSUInteger currentIndex;
-@property (nonatomic, assign) CGFloat xOffsetPre;
 
 @end
 
