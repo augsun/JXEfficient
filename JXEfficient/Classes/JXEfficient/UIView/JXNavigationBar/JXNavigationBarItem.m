@@ -393,6 +393,7 @@ highlightedColor:(UIColor *)highlightedColor
 
 - (void)setEnable:(BOOL)enable {
     _enable = enable;
+    self.button.enabled = enable;
     self.userInteractionEnabled = enable;
 }
 

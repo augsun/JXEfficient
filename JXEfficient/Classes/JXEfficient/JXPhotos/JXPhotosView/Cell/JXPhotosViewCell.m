@@ -53,6 +53,7 @@
     }
     else {
         self.thumbImageView.image = nil;
+        BOOL is_async = NO; // 下面 requestImageForAsset 方法由于可能存在同步回调, 防止二次异步回调时无法刷新二次回调的 result 图片.
         [[PHImageManager defaultManager] requestImageForAsset:asset.phAsset
                                                    targetSize:thumbImageSize
                                                   contentMode:PHImageContentModeAspectFill
@@ -61,10 +62,12 @@
          {
              asset.thumbImage = result;
              asset.thumbImageInfo = info;
-             if (self.asset == asset) {
-                 self.thumbImageView.image = self.asset.thumbImage;
+             
+             if (self.asset == asset || !is_async) {
+                 self.thumbImageView.image = result;
              }
          }];
+        is_async = YES;
     }
 }
 
