@@ -52,6 +52,11 @@ typedef NS_ENUM(NSUInteger, JXNavigationBarItemType) {
 @property (nonatomic, strong) UIImage *highlightedImage;
 @property (nonatomic, strong) UIImage *disabledImage;
 
+@property (nonatomic, copy) NSArray <NSLayoutConstraint *> *customContentView_cons;
+
+//
+@property (nonatomic, assign) BOOL needLayout_customContentViewWidth;
+
 @end
 
 @implementation JXNavigationBarItem
@@ -79,8 +84,7 @@ typedef NS_ENUM(NSUInteger, JXNavigationBarItemType) {
 }
 
 //  标题 设置方式 1_0: 不同状态下 [同一标题 同一颜色 同一字体]
-- (void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title {
     [self setTitle:title color:nil font:nil];
 }
 
@@ -389,6 +393,47 @@ highlightedColor:(UIColor *)highlightedColor
         default: break;
     }
     [self JXNavigationBarItem_needLayout];
+}
+
+- (void)setCustomContentView:(UIView *)customContentView {
+    if (_customContentView) {
+        [_customContentView removeFromSuperview];
+    }
+    _customContentView = customContentView;
+    [self addSubview:self.customContentView];
+    customContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (self.customContentView && self.needLayout_customContentViewWidth) {
+        self.needLayout_customContentViewWidth = NO;
+        CGFloat w = self.customContentViewWidth;
+        if (w >= 0.0) {
+            if (self.customContentView_cons.count > 0) {
+                [NSLayoutConstraint deactivateConstraints:self.customContentView_cons];
+            }
+            [NSLayoutConstraint activateConstraints:[self.customContentView jx_con_edgeEqual:self]];
+
+            self.contentWidth = w;
+            self.rightForShowing = YES;
+        }
+        else {
+            self.rightForShowing = NO;
+        }
+        
+        [self JXNavigationBarItem_needLayout];
+    }
+}
+
+- (void)setCustomContentViewWidth:(CGFloat)customContentViewWidth {
+    if (_customContentViewWidth != customContentViewWidth) {
+        _customContentViewWidth = customContentViewWidth;
+        self.needLayout_customContentViewWidth = YES;
+        [self setNeedsLayout];
+    }
 }
 
 - (void)setEnable:(BOOL)enable {

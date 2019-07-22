@@ -32,6 +32,9 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemFontSizeDefault; ///< 默认 Ite
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets; ///< 内容边距, 默认 [0, 4, 0, 4]
 @property (nonatomic, readonly) CGFloat itemWidth; ///< 最佳 itemView 的宽度 <即 contentEdgeInsets.left + contentWidth + contentEdgeInsets.right>.
 
+@property (nonatomic, strong) UIView *customContentView; ///< 自定义视图 <必须实现 customContentView_width>
+@property (nonatomic, assign) CGFloat customContentViewWidth;
+
 #pragma mark - 标题 设置方式
 
 /**

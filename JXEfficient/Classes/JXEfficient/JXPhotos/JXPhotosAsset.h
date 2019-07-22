@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) PHImageRequestOptions *imageRequestOptions; ///< 用于获取图片配置
 
 @property (nonatomic, strong, nullable) UIImage *thumbImage; ///< 获取图片后返回的图片, 上层使用
+- (void)addThumbImageSettedTrigger:(void (^)(void))settedTrigger cellHashKey:(NSString *)cellHashKey;
 @property (nonatomic, strong, nullable) NSDictionary *thumbImageInfo; ///< 获取图片后返回的 info, 上层使用
 
 @property (nonatomic, strong, nullable) UIImage *largeImage;

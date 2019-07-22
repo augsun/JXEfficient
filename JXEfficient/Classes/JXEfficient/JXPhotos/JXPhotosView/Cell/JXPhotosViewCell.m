@@ -13,6 +13,10 @@
 
 @interface JXPhotosViewCell ()
 
+@property (nonatomic, copy) void (^thumbImageSettedTrigger)(void);
+
+@property (nonatomic, copy) NSString *hashKey;
+
 @end
 
 @implementation JXPhotosViewCell
@@ -34,6 +38,7 @@
 }
 
 - (void)JXPhotosViewCell_moreInit {
+    self.hashKey = [NSString stringWithFormat:@"%ld", self.hash];
     self.backgroundColor = JX_COLOR_SYS_IMG_BG;
     
     _thumbImageView = [[UIImageView alloc] init];
@@ -43,17 +48,25 @@
     self.thumbImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.thumbImageView.clipsToBounds = YES;
     
+    //
+    JX_WEAK_SELF;
+    self.thumbImageSettedTrigger = ^ {
+        JX_STRONG_SELF;
+        self.thumbImageView.image = self.asset.thumbImage;
+    };
+    
 }
 
 - (void)refreshUI:(__kindof JXPhotosAsset *)asset thumbImageSize:(CGSize)thumbImageSize {
     _asset = asset;
     
+    [self.asset addThumbImageSettedTrigger:self.thumbImageSettedTrigger cellHashKey:self.hashKey];
+    
     if (asset.thumbImage) {
-        self.thumbImageView.image = self.asset.thumbImage;
+        self.thumbImageView.image = asset.thumbImage;
     }
     else {
         self.thumbImageView.image = nil;
-        BOOL is_async = NO; // 下面 requestImageForAsset 方法由于可能存在同步回调, 防止二次异步回调时无法刷新二次回调的 result 图片.
         [[PHImageManager defaultManager] requestImageForAsset:asset.phAsset
                                                    targetSize:thumbImageSize
                                                   contentMode:PHImageContentModeAspectFill
@@ -62,12 +75,7 @@
          {
              asset.thumbImage = result;
              asset.thumbImageInfo = info;
-             
-             if (self.asset == asset || !is_async) {
-                 self.thumbImageView.image = result;
-             }
          }];
-        is_async = YES;
     }
 }
 
