@@ -39,7 +39,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 @property (nonatomic, assign) CGFloat self_w;
 
 @property (nonatomic, strong) JXTagsViewTagModel *selectedModel;
-@property (nonatomic, strong) NSMutableArray <__kindof JXTagsViewTagModel *> *tagModels;
+@property (nonatomic, copy) NSArray <__kindof JXTagsViewTagModel *> *tagModels;
 
 @property (nonatomic, assign) BOOL didRefreshIndicatorView; ///< 初始刷新不动画
 
@@ -216,10 +216,8 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
         self.tagModels[tagIndex].selected = YES;
         self.selectedModel = self.tagModels[tagIndex];
         _tagIndex = tagIndex;
+        [self jx_refreshUI:animated];
         
-        [self jx_refreshUI_collectionView_contentOffset:animated];
-        [self jx_refreshUI_indicator_LW:animated];
-
         [self tagIndexDidChanged:tagIndex];
     }
 }
@@ -239,12 +237,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
         
         [self jx_prepareDataForShowing];
         
-        if (self.tagModels.count > 0) {
-            [self.collectionView reloadData];
-            
-            [self jx_refreshUI_collectionView_contentOffset:YES];
-            [self jx_refreshUI_indicator_LW:YES];
-        }
+        [self jx_refreshUI:YES];
     }
 }
 
@@ -257,7 +250,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     NSAssert(self.tagCellClass != nil || self.tagNibCellClass != nil, JX_ASSERT_MSG(@"tagCellClass 或 tagNibCellClass 未指定"));
 
     if (self.tagModelsForReloadData) {
-        self.tagModels = [self.tagModelsForReloadData() mutableCopy];
+        self.tagModels = self.tagModelsForReloadData();
     }
     
     if (self.tagModels.count == 0) {
@@ -292,10 +285,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     [self jx_prepareDataForShowing];
     
     //
-    if (tagIndex >= 0 && tagIndex < self.tagModels.count) {
-        _tagIndex = tagIndex;
-        [self.collectionView reloadData];
-    }
+    [self selectTagIndex:tagIndex animated:NO];
 }
 
 /**
@@ -406,6 +396,15 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     }
 }
 
+- (void)jx_refreshUI:(BOOL)animated {
+    if (self.tagModels.count > 0) {
+        [self.collectionView reloadData];
+        
+        [self jx_refreshUI_collectionView_contentOffset:animated];
+        [self jx_refreshUI_indicator_LW:animated];
+    }
+}
+
 - (void)jx_refreshUI_collectionView_contentOffset:(BOOL)animated {
     JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
     
@@ -415,7 +414,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     
     // 确定是否需要偏移
     CGFloat total_w = self.tagModels.lastObject.tag_toL + self.tagModels.lastObject.tagWidth_showing + coll_edgeR;
-//    [self layoutIfNeeded];
+    [self layoutIfNeeded];
     CGFloat self_w = self.jx_width;
     CGFloat half_self_w = self_w / 2.0;
     
