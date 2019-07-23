@@ -42,9 +42,9 @@
     self.backgroundColor = JX_COLOR_SYS_IMG_BG;
     
     _thumbImageView = [[UIImageView alloc] init];
-    [self addSubview:self.thumbImageView];
+    [self.contentView addSubview:self.thumbImageView];
     self.thumbImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:[self.thumbImageView jx_con_edgeEqual:self]];
+    [NSLayoutConstraint activateConstraints:[self.thumbImageView jx_con_edgeEqual:self.contentView]];
     self.thumbImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.thumbImageView.clipsToBounds = YES;
     
