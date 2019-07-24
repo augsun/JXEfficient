@@ -65,7 +65,7 @@
 #import "JXImageBrowserImageView.h"
 #import "JXImageBrowserLoadImageFailureView.h"
 #import "JXImageBrowserPageControlView.h"
-#import "JXImageBrowserProgressHUDView.h"
+#import "JXCircleProgressHUDView.h"
 #import "JXNavigationBar.h"
 #import "JXNavigationBarItem.h"
 #import "JXNaviView.h"

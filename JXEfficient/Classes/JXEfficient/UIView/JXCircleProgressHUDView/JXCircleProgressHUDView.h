@@ -1,5 +1,5 @@
 //
-//  JXImageBrowserProgressHUDView.h
+//  JXCircleProgressHUDView.h
 //  JXEfficient
 //
 //  Created by augsun on 1/30/19.
@@ -9,14 +9,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+UIKIT_EXTERN const CGSize JXCircleProgressHUDViewRecommendSize;
+
 /**
  JXEfficient Internal Use Class.
  */
-@interface JXImageBrowserProgressHUDView : UIView
+@interface JXCircleProgressHUDView : UIView
 
 @property (nonatomic, assign) CGFloat progress;
 
-+ (CGSize)showSize;
+- (void)hide:(BOOL)animated;
 
 @end
 

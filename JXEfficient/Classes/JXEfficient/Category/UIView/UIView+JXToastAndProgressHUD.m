@@ -527,6 +527,15 @@ static UIColor *kProgressHUDActivityIndicatorColor = nil;
     return showing;
 }
 
+- (JXCircleProgressHUDView *)jx_circleProgressHUD {
+    JXCircleProgressHUDView *view = [[JXCircleProgressHUDView alloc] init];
+    [self addSubview:view];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+//    view
+    
+    return view;
+}
+
 @end
 
 

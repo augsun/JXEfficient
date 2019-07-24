@@ -191,8 +191,8 @@ Continuous updates will be made.
 │       │   ├── JXImageBrowserLoadImageFailureView.m
 │       │   ├── JXImageBrowserPageControlView.h
 │       │   ├── JXImageBrowserPageControlView.m
-│       │   ├── JXImageBrowserProgressHUDView.h
-│       │   └── JXImageBrowserProgressHUDView.m
+│       │   ├── JXCircleProgressHUDView.h
+│       │   └── JXCircleProgressHUDView.m
 │       ├── JXNaviView
 │       │   ├── JXNaviView.h
 │       │   └── JXNaviView.m

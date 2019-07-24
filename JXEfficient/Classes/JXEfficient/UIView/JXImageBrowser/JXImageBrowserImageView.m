@@ -10,7 +10,7 @@
 #import "JXMacro.h"
 #import "NSLayoutConstraint+JXCategory.h"
 
-#import "JXImageBrowserProgressHUDView.h"
+#import "JXCircleProgressHUDView.h"
 #import "JXImageBrowserLoadImageFailureView.h"
 
 static const CGFloat kZoomScaleMax = 4.0;
@@ -26,7 +26,7 @@ const CGFloat JXImageBrowserImageViewAnimationDuration = 0.25;
 
 @property (nonatomic, assign) BOOL imageDownloading;
 @property (nonatomic, assign) BOOL loadImageFailure;
-@property (nonatomic, strong) JXImageBrowserProgressHUDView *progressHUDView;
+@property (nonatomic, strong) JXCircleProgressHUDView *progressHUDView;
 @property (nonatomic, strong) JXImageBrowserLoadImageFailureView *loadImageFailureView;
 
 @property (nonatomic, assign) CGFloat wSelf;
@@ -90,11 +90,11 @@ const CGFloat JXImageBrowserImageViewAnimationDuration = 0.25;
     return self;
 }
 
-- (JXImageBrowserProgressHUDView *)progressHUDView {
+- (JXCircleProgressHUDView *)progressHUDView {
     if (!_progressHUDView) {
-        CGSize size = [JXImageBrowserProgressHUDView showSize];
+        CGSize size = JXCircleProgressHUDViewRecommendSize;
         
-        _progressHUDView =[[JXImageBrowserProgressHUDView alloc] init];
+        _progressHUDView =[[JXCircleProgressHUDView alloc] init];
         [self addSubview:_progressHUDView];
         _progressHUDView.translatesAutoresizingMaskIntoConstraints = NO;
         [NSLayoutConstraint activateConstraints:@[

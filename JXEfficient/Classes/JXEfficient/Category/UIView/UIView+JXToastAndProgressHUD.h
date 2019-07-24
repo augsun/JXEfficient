@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JXCircleProgressHUDView.h"
 
 @interface UIView (JXToastAndProgressHUD)
 
@@ -37,6 +38,10 @@
 - (void)jx_showProgressHUD:(NSString *)title animation:(BOOL)animation;
 - (void)jx_hideProgressHUD:(BOOL)animation;
 - (BOOL)jx_progressHUDShowing; ///< 当前页面是否正在显示 ProgresssHUD
+
+//
+- (JXCircleProgressHUDView *)jx_circleProgressHUD;
+
 
 @end
 

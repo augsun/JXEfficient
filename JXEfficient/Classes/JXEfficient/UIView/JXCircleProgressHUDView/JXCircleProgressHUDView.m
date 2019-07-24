@@ -1,30 +1,26 @@
 //
-//  JXImageBrowserProgressHUDView.m
+//  JXCircleProgressHUDView.m
 //  JXEfficient
 //
 //  Created by augsun on 1/30/19.
 //
 
-#import "JXImageBrowserProgressHUDView.h"
+#import "JXCircleProgressHUDView.h"
 
-static const CGFloat kProgressBackgroundRadius = 78.0;
+const CGSize JXCircleProgressHUDViewRecommendSize = {78.0, 78.0};
+
 static const CGFloat kProgressShapWidth = 4.0;
 static const CGFloat kProgressShapRadius = 15.0;
 static const CGFloat kProgressShapStrokeEndDefault = 0.01;
 
-@interface JXImageBrowserProgressHUDView ()
+@interface JXCircleProgressHUDView ()
 
 @property (nonatomic, strong) CALayer *layerHUD;
 @property (nonatomic, strong) CAShapeLayer *layerCircle;
 
 @end
 
-@implementation JXImageBrowserProgressHUDView
-
-+ (CGSize)showSize {
-    CGSize size = CGSizeMake(kProgressBackgroundRadius, kProgressBackgroundRadius);
-    return size;
-}
+@implementation JXCircleProgressHUDView
 
 - (instancetype)init
 {
@@ -35,8 +31,8 @@ static const CGFloat kProgressShapStrokeEndDefault = 0.01;
         self.layerHUD.cornerRadius = 10.0;
         self.layerHUD.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8f].CGColor;
         
-        CGRect rectCircle = CGRectMake((kProgressBackgroundRadius - kProgressShapRadius * 2) / 2,
-                                       (kProgressBackgroundRadius - kProgressShapRadius * 2) / 2,
+        CGRect rectCircle = CGRectMake((JXCircleProgressHUDViewRecommendSize.width - kProgressShapRadius * 2) / 2,
+                                       (JXCircleProgressHUDViewRecommendSize.height - kProgressShapRadius * 2) / 2,
                                        kProgressShapRadius * 2,
                                        kProgressShapRadius * 2);
         
@@ -85,6 +81,18 @@ static const CGFloat kProgressShapStrokeEndDefault = 0.01;
     }];
     
     _progress = progress;
+}
+
+- (void)hide:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.transform = CGAffineTransformMakeScale(0.5, 0.5);
+            self.alpha = 0.0;
+        }];
+    }
+    else {
+        [self removeFromSuperview];
+    }
 }
 
 @end
