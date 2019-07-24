@@ -56,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)deviceModel;
 
++ (nullable NSString *)appName; ///< 获取 APP 显示名称 <CFBundleDisplayName>
+
 @end
 
 NS_ASSUME_NONNULL_END

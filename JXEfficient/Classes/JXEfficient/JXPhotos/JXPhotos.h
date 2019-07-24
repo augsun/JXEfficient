@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXPhotos : NSObject
 
++ (PHAuthorizationStatus)authorizationStatus; ///< 获取相册权限
+
 /**
  相册授权获取
 

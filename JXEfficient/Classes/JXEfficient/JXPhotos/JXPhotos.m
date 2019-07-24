@@ -11,6 +11,10 @@
 
 @implementation JXPhotos
 
++ (PHAuthorizationStatus)authorizationStatus {
+    return [PHPhotoLibrary authorizationStatus];
+}
+
 + (void)requestAuthorization:(void(^)(PHAuthorizationStatus status))handler {
     void (^temp_handler)(PHAuthorizationStatus) = ^ (PHAuthorizationStatus status) {
         JX_BLOCK_EXEC(handler, status);

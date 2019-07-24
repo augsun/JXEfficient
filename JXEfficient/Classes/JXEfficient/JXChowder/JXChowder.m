@@ -7,6 +7,7 @@
 
 #import "JXChowder.h"
 #import <sys/utsname.h>
+#import "JXInline.h"
 
 @implementation JXChowder
 
@@ -60,6 +61,12 @@
         machine = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
     }
     return machine;
+}
+
++ (NSString *)appName {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
+    return appName;
 }
 
 @end
