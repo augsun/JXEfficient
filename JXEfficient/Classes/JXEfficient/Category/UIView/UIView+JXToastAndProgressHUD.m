@@ -9,6 +9,7 @@
 #import "UIView+JXToastAndProgressHUD.h"
 #import "JXMacro.h"
 #import "JXInline.h"
+#import "NSLayoutConstraint+JXCategory.h"
 
 static const CGFloat kToastViewShowAnimTime = .15f;
 static const CGFloat kToastViewHideAnimTime = .35f;
@@ -531,8 +532,12 @@ static UIColor *kProgressHUDActivityIndicatorColor = nil;
     JXCircleProgressHUDView *view = [[JXCircleProgressHUDView alloc] init];
     [self addSubview:view];
     view.translatesAutoresizingMaskIntoConstraints = NO;
-//    view
-    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [view jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:JXCircleProgressHUDViewRecommendSize.width],
+                                              [view jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:JXCircleProgressHUDViewRecommendSize.height],
+                                              [view jx_con_same:NSLayoutAttributeCenterX equal:self m:1.0 c:0.0],
+                                              [view jx_con_same:NSLayoutAttributeCenterY equal:self m:1.0 c:0.0],
+                                              ]];
     return view;
 }
 
