@@ -179,6 +179,9 @@ static NSString *const kCellID = @"kCellID";
 }
 
 - (void)setAssets:(NSArray<__kindof JXPhotosAsset *> *)assets {
+    //
+    [self layoutIfNeeded];
+    
     _assets = [assets copy];
     
     //
@@ -193,9 +196,6 @@ static NSString *const kCellID = @"kCellID";
             [self.collectionView registerClass:[JXPhotosViewCell class] forCellWithReuseIdentifier:kCellID];
         }
     }
-    
-    //
-    [self layoutIfNeeded];
     
     CGFloat rows = self.assets.count / self.countPerRow + (self.assets.count % self.countPerRow == 0 ? 0 : 1);
     CGFloat items_h = rows * (self.showingItemSize.height + self.lineSpacing) - self.lineSpacing;

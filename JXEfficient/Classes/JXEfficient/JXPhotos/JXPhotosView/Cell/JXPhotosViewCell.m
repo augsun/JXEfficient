@@ -13,9 +13,7 @@
 
 @interface JXPhotosViewCell ()
 
-@property (nonatomic, copy) void (^thumbImageSettedTrigger)(void);
-
-@property (nonatomic, copy) NSString *hashKey;
+@property (nonatomic, assign) PHImageRequestID ID;
 
 @end
 
@@ -38,7 +36,6 @@
 }
 
 - (void)JXPhotosViewCell_moreInit {
-    self.hashKey = [NSString stringWithFormat:@"%ld", self.hash];
     self.backgroundColor = JX_COLOR_SYS_IMG_BG;
     
     _thumbImageView = [[UIImageView alloc] init];
@@ -47,27 +44,21 @@
     [NSLayoutConstraint activateConstraints:[self.thumbImageView jx_con_edgeEqual:self.contentView]];
     self.thumbImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.thumbImageView.clipsToBounds = YES;
-    
-    //
-    JX_WEAK_SELF;
-    self.thumbImageSettedTrigger = ^ {
-        JX_STRONG_SELF;
-        self.thumbImageView.image = self.asset.thumbImage;
-    };
-    
 }
 
 - (void)refreshUI:(__kindof JXPhotosAsset *)asset thumbImageSize:(CGSize)thumbImageSize {
+    self.asset.sourceImageView = nil;
     _asset = asset;
-    
-    [self.asset addThumbImageSettedTrigger:self.thumbImageSettedTrigger cellHashKey:self.hashKey];
-    
+    self.ID = PHInvalidImageRequestID;
+
+    //
     if (asset.thumbImage) {
-        self.thumbImageView.image = asset.thumbImage;
+        [self refreshUI];
     }
     else {
         self.thumbImageView.image = nil;
-        [[PHImageManager defaultManager] requestImageForAsset:asset.phAsset
+        
+        self.ID = [[PHImageManager defaultManager] requestImageForAsset:asset.phAsset
                                                    targetSize:thumbImageSize
                                                   contentMode:PHImageContentModeAspectFill
                                                       options:asset.imageRequestOptions
@@ -75,8 +66,18 @@
          {
              asset.thumbImage = result;
              asset.thumbImageInfo = info;
+             
+             PHImageRequestID now_ID = [info[PHImageResultRequestIDKey] intValue];
+             if (self.ID == now_ID) {
+                 [self refreshUI];
+             }
          }];
     }
+}
+
+- (void)refreshUI {
+    self.thumbImageView.image = self.asset.thumbImage;
+    self.asset.sourceImageView = self.thumbImageView;
 }
 
 @end
