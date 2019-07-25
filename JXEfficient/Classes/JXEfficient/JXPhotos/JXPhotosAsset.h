@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  代表一个 PHAsset
+ 
+ @discussion 收到内存警告时, 会对 thumbImage 和 thumbImageInfo 进行释放.
  */
 @interface JXPhotosAsset : NSObject
 
@@ -22,8 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) UIImage *thumbImage; ///< 获取图片后返回的图片 <如果子类, 则调用 -[JXPhotosViewCell refreshUI:thumbImageSize:] 后将有值>
 @property (nonatomic, strong, nullable) NSDictionary *thumbImageInfo; ///< 获取图片后返回的 info <如果子类, 则调用 -[JXPhotosViewCell refreshUI:thumbImageSize:] 后将有值>
 
-@property (nonatomic, strong, nullable) UIImage *largeImage; ///< 大图 <用于上层业务或子类定义>
-@property (nonatomic, strong, nullable) NSDictionary *largeImageInfo; ///< 大图信息 <用于上层业务或子类定义>
+@property (nonatomic, strong, nullable) UIImage *largeImage; ///< 大图 <用于上层业务或子类定义>, 存警告时会被释放.
+@property (nonatomic, strong, nullable) NSDictionary *largeImageInfo; ///< 大图信息 <用于上层业务或子类定义>, 存警告时会被释放.
 @property (nonatomic, assign) BOOL selected; ///< 是否选中 <用于上层业务或子类定义>
 @property (nonatomic, assign) NSInteger selectedIndex; ///< 所有选中的 index <用于上层业务或子类定义>
 

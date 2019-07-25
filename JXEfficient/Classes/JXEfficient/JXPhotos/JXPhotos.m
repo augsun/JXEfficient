@@ -62,7 +62,7 @@
     //
     PHFetchResult <PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
                                                                                            subtype:PHAssetCollectionSubtypeAny
-                                                                                           options:fetchOptions];
+                                                                                           options:nil];
     
     if (result.count == 0) {
         return nil;
@@ -70,16 +70,19 @@
     
     NSMutableArray <JXPhotosAssetCollection *> *tempArr_collections = [[NSMutableArray alloc] init];
     for (PHAssetCollection *collectionEnum in result) {
-        PHFetchResult <PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collectionEnum options:fetchOptions];
+        
+        PHFetchOptions*oo = [[PHFetchOptions alloc]init];
+        oo.sortDescriptors=@[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+        oo.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+
+        PHFetchResult <PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collectionEnum options:oo];
         
         NSMutableArray <JXPhotosAsset *> *tempArr_assets = [[NSMutableArray alloc] init];
         for (PHAsset *assetEnum in assets) {
-            if (assetEnum.mediaType == PHAssetMediaTypeImage) {
-                JXPhotosAsset *jxAsset = [[assetClass alloc] init];
-                jxAsset.phAsset = assetEnum;
-                jxAsset.imageRequestOptions = imageRequestOptions;
-                [tempArr_assets addObject:jxAsset];
-            }
+            JXPhotosAsset *jxAsset = [[assetClass alloc] init];
+            jxAsset.phAsset = assetEnum;
+            jxAsset.imageRequestOptions = imageRequestOptions;
+            [tempArr_assets addObject:jxAsset];
         }
         if (tempArr_assets.count > 0) {
             JXPhotosAssetCollection *jxAssetCollection = [[assetCollectionClass alloc] init];

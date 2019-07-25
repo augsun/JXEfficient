@@ -15,8 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface JXPhotosAssetCollection : NSObject
 
-@property (nonatomic, strong) PHAssetCollection *phAssetCollection; ///< 获取的系统  PHAssetCollection
+@property (nonatomic, strong) __kindof JXPhotosAsset *thumbImageAsset;
+@property (nonatomic, strong, nullable) PHImageRequestOptions *thumbImageRequestOptions;
 
+@property (nonatomic, strong, nullable) UIImage *thumbImage;
+@property (nonatomic, strong, nullable) NSDictionary *thumbImageInfo;
+
+@property (nonatomic, strong) PHAssetCollection *phAssetCollection; ///< 获取的系统  PHAssetCollection
 @property (nonatomic, copy) NSArray <__kindof JXPhotosAsset *> *assets; ///< 获取的 JXPhotosAsset
 
 @end

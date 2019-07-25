@@ -15,4 +15,20 @@
 
 @implementation JXPhotosAsset
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidReceiveMemoryWarningNotification)
+                                                     name:UIApplicationDidReceiveMemoryWarningNotification
+                                                   object:nil];
+    }
+    return self;
+}
+
+- (void)applicationDidReceiveMemoryWarningNotification {
+    self.largeImage = nil;
+    self.largeImageInfo = nil;
+}
+
 @end
