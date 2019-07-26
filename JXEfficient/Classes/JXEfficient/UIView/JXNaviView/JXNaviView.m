@@ -173,10 +173,12 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
         return;
     }
     if (self.bgColorStyle) {
-        [self.titleItem setTitle:self.title color:[UIColor whiteColor] font:[UIFont systemFontOfSize:17.0]];
+        self.titleItem.title = self.title;
+        self.titleItem.color = [UIColor whiteColor];
     }
     else {
-        [self.titleItem setTitle:self.title color:JX_COLOR_HEX(0x333333) font:[UIFont systemFontOfSize:17.0]];
+        self.titleItem.title = self.title;
+        self.titleItem.color = nil;
     }
 }
 
@@ -225,10 +227,12 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     }
     if (self.left_is_title) {
         if (self.bgColorStyle) {
-            [self.leftItem setTitle:self.leftButtonTitle color:[UIColor whiteColor] font:nil];
+            self.leftItem.title = self.leftButtonTitle;
+            self.leftItem.color = [UIColor whiteColor];
         }
         else {
-            [self.leftItem setTitle:self.leftButtonTitle color:nil font:nil];
+            self.leftItem.title = self.leftButtonTitle;
+            self.leftItem.color = nil;
         }
     }
 }
@@ -277,10 +281,12 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     }
     if (self.right_is_title) {
         if (self.bgColorStyle) {
-            [self.rightItem setTitle:self.rightButtonTitle color:[UIColor whiteColor] font:nil];
+            self.rightItem.title = self.rightButtonTitle;
+            self.rightItem.color = [UIColor whiteColor];
         }
         else {
-            [self.rightItem setTitle:self.rightButtonTitle color:nil font:nil];
+            self.rightItem.title = self.rightButtonTitle;
+            self.rightItem.color = nil;
         }
     }
 }
@@ -327,10 +333,12 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     if (self.subRight_is_title) {
         NSString *subRightButtonTitle = self.subRightButtonTitle ? self.subRightButtonTitle : self.rightSubButtonTitle;
         if (self.bgColorStyle) {
-            [self.subRightItem setTitle:subRightButtonTitle color:[UIColor whiteColor] font:nil];
+            self.subRightItem.title = self.subRightButtonTitle;
+            self.subRightItem.color = [UIColor whiteColor];
         }
         else {
-            [self.subRightItem setTitle:subRightButtonTitle color:nil font:nil];
+            self.subRightItem.title = self.subRightButtonTitle;
+            self.subRightItem.color = nil;
         }
     }
 }

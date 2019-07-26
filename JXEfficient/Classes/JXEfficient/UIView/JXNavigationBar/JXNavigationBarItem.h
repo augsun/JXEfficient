@@ -16,11 +16,24 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemDisabledColorDefault; ///< Disab
 UIKIT_EXTERN const NSInteger JXNavigationBarItemFontSizeDefault; ///< 默认 Item 的 fontSize, 15.0pt
 
 /**
+ Item 样式
+ */
+typedef NS_ENUM(NSUInteger, JXNavigationBarItemStyle) {
+    JXNavigationBarItemStyleUnSet, ///< 未设置
+    JXNavigationBarItemStyleTitle, ///< 标题样式
+    JXNavigationBarItemStyleAttributedTitle, ///< 富文本标题样式
+    JXNavigationBarItemStyleImage, ///< 图片样式
+    JXNavigationBarItemStyleCustomView, ///< 自定义视图样式
+};
+
+/**
  导航条的 Item.
  
  @discussion 最小内容宽度不会小于 20pt, 高度固定 44pt, contentEdgeInsets.left 和 contentEdgeInsets.right 默认 4pt. 需要隐藏可以调用 JXNavigationBarItem.hidden 属性.
  */
 @interface JXNavigationBarItem : UIView
+
+@property (nonatomic, readonly) JXNavigationBarItemStyle style; ///< Item 样式
 
 @property (nonatomic, readonly) BOOL rightForShowing; ///< 是否符合展示
 
@@ -38,16 +51,28 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemFontSizeDefault; ///< 默认 Ite
 #pragma mark - 标题 设置方式
 
 /**
- 标题 设置方式 1_0: 不同状态下 [同一标题 同一颜色 同一字体]
+ 标题 设置方式 1_0: 不同状态下 [同一标题 同一颜色 同一字体]<style 强制切换为 JXNavigationBarItemStyleTitle>
  
- @param title 标题
  @discussion 同一颜色为 <JXNavigationBarItemNormalTitleColorDefault, JXNavigationBarItemHighlightedColorDefault, JXNavigationBarItemDisabledColorDefault>, 同一字体为 <系统字体 JXNavigationBarItemFontSizeDefault>
  @warning 如果传入的参数不符合展示, 该 Item 不会被展示, 即 rightForShowing == NO. 标题 设置方式 和 "图片 设置方式" 会相互覆盖, 不能共存.
  */
-- (void)setTitle:(NSString *)title;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong, nullable) UIColor *color; ///< 修改 JXNavigationBarItemStyleTitle 样式下所有状态为统一颜色
+@property (nonatomic, strong, nullable) UIFont *font; ///< 修改 JXNavigationBarItemStyleTitle 样式下字体
 
 /**
- 标题 设置方式 1_1: 不同状态下 [同一标题 同一颜色 同一字体]
+ 修改 JXNavigationBarItemStyleTitle 样式下的各状态颜色
+
+ @param normalColor Normal 状态下颜色, 为 nil 则默认 JXNavigationBarItemNormalTitleColorDefault
+ @param highlightedColor Highlighted 状态下颜色, 为 nil 则默认 JXNavigationBarItemHighlightedColorDefault
+ @param disabledColor Disabled 状态下颜色, 为 nil 则默认 JXNavigationBarItemDisabledColorDefault
+ */
+- (void)setTitleNormalColor:(nullable UIColor *)normalColor
+           highlightedColor:(nullable UIColor *)highlightedColor
+              disabledColor:(nullable UIColor *)disabledColor;
+
+/**
+ 标题 设置方式 1_1: 不同状态下 [同一标题 同一颜色 同一字体]<style 强制切换为 JXNavigationBarItemStyleTitle>
 
  @param title 标题
  @param color 颜色, 为 nil 则默认 [JXNavigationBarItemNormalTitleColorDefault, JXNavigationBarItemHighlightedColorDefault, JXNavigationBarItemDisabledColorDefault]
@@ -59,7 +84,7 @@ UIKIT_EXTERN const NSInteger JXNavigationBarItemFontSizeDefault; ///< 默认 Ite
             font:(nullable UIFont *)font;
 
 /**
- 标题 设置方式 2: 不同状态下 [同一标题 不同颜色 同一字体]
+ 标题 设置方式 2: 不同状态下 [同一标题 不同颜色 同一字体]<style 强制切换为 JXNavigationBarItemStyleTitle>
 
  @param title 标题
  @param normalColor Normal 状态下颜色, 为 nil 则默认 JXNavigationBarItemNormalTitleColorDefault
@@ -75,7 +100,7 @@ highlightedColor:(nullable UIColor *)highlightedColor
             font:(nullable UIFont *)font;
 
 /**
- 标题 设置方式 3: 不同状态下 [不同标题 不同颜色 同一字体]
+ 标题 设置方式 3: 不同状态下 [不同标题 不同颜色 同一字体]<style 强制切换为 JXNavigationBarItemStyleTitle>
 
  @param normalTitle Normal 状态下标题
  @param normalColor Normal 状态下颜色, 为 nil 则默认 JXNavigationBarItemNormalTitleColorDefault
@@ -95,7 +120,7 @@ highlightedColor:(nullable UIColor *)highlightedColor
                   font:(nullable UIFont *)font;
 
 /**
- 标题 设置方式 4: 自定义富文本设置 (支持更多样式)
+ 标题 设置方式 4: 自定义富文本设置 (支持更多样式)<style 强制切换为 JXNavigationBarItemStyleAttributedTitle>
 
  @param normalAttributedTitle Normal 状态下富文本标题
  @param highlightedAttributedTitle Highlighted 状态下富文本标题, 为 nil 则默认 normalAttributedTitle
@@ -109,7 +134,7 @@ highlightedColor:(nullable UIColor *)highlightedColor
 #pragma mark - 图片 设置方式
 
 /**
- 图片 设置方式
+ 图片 设置方式 <style 强制切换为 JXNavigationBarItemStyleImage>
 
  @param normalImage Normal 状态下图片
  @param highlightedImage Highlighted 状态下图片, 为 nil 则默认 normalImage
