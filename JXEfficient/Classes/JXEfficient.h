@@ -62,6 +62,7 @@
 #import "JXTagsGeneralView.h"
 #import "JXPagingView.h"
 #import "JXCircularArcView.h"
+#import "JXKeysValuesView.h"
 
 @interface JXEfficient : NSObject
 
