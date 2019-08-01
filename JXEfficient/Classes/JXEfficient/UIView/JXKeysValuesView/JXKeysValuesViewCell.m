@@ -150,10 +150,6 @@
         }
         self.valueLabel.textColor = JX_COLOR_HEX(0x333333);
         self.valueLabel.numberOfLines = 0;
-        
-        //
-        self.keyLabel.backgroundColor = JX_COLOR_RANDOM;
-        self.valueLabel.backgroundColor = JX_COLOR_RANDOM;
     }
     return self;
 }
