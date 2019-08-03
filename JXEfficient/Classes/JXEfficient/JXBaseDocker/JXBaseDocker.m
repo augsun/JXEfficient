@@ -6,31 +6,32 @@
 //
 
 #import "JXBaseDocker.h"
+#import "UIImage+JXCategory.h"
+#import "UIView+JXCategory.h"
 
 @implementation JXBaseDocker
 
 + (instancetype)sharedDocker {
-    BOOL isBaseClass = [self isMemberOfClass:[JXBaseDocker class]];
-    NSAssert(!isBaseClass, @"子类必须实现 +sharedDocker 方法.");
     return nil;
 }
 
 + (NSBundle *)bundle {
-    BOOL isBaseClass = [self isMemberOfClass:[JXBaseDocker class]];
-    NSAssert(!isBaseClass, @"子类必须实现 +bundle 方法.");
     return nil;
 }
 
 + (UIImage *)PDFImageWithNamed:(NSString *)name {
-    BOOL isBaseClass = [self isMemberOfClass:[JXBaseDocker class]];
-    NSAssert(!isBaseClass, @"子类必须实现 +PDFImageWithNamed: 方法.");
-    return nil;
+    UIImage *image = [UIImage jx_PDFImageWithNamed:name inBundle:[self bundle]];
+    return image;
 }
 
 + (UIImage *)imageWithNamed:(NSString *)name {
-    BOOL isBaseClass = [self isMemberOfClass:[JXBaseDocker class]];
-    NSAssert(!isBaseClass, @"子类必须实现 +imageWithNamed: 方法.");
-    return nil;
+    UIImage *image = [UIImage jx_imageWithNamed:name inBundle:[self bundle]];
+    return image;
+}
+
++ (UIView *)xibView:(Class)aClass {
+    __kindof  UIView *view = [aClass jx_createFromXibInBundle:[self bundle]];
+    return view;
 }
 
 @end

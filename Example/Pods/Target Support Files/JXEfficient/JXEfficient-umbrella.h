@@ -30,7 +30,6 @@
 #import "JXChowder+GetTimestampFromNet.h"
 #import "JXChowder.h"
 #import "JXCoreData.h"
-#import "JXEfficientDocker.h"
 #import "JXEncryption+AES.h"
 #import "JXEncryption+MD5.h"
 #import "JXEncryption+RSA.h"
@@ -86,6 +85,7 @@
 #import "JXTagsView.h"
 #import "JXTagsViewTagModel.h"
 #import "JXVideoPlayerView.h"
+#import "JXEfficientDocker.h"
 
 FOUNDATION_EXPORT double JXEfficientVersionNumber;
 FOUNDATION_EXPORT const unsigned char JXEfficientVersionString[];

@@ -21,14 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  单例
 
- @warning 该方法为空实现. 由子类实现.
+ @warning 该方法为空实现. 子类必须实现.
  */
 + (nullable instancetype)sharedDocker;
 
 /**
  加载所在组件对应该组件下的 Bundle.
+ 
+ @warning 该方法为空实现. 子类必须实现.
 
- @warning 该方法为空实现. 由子类实现.
+ @return 如果组件还在主工程, 子类返回 nil.
  */
 + (nullable NSBundle *)bundle;
 
@@ -36,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
  加载所在组件 Bundle 里的 PDF 图片资源.
 
  @param name 图片文件名
- @warning 该方法为空实现. 由子类实现.
  */
 + (nullable UIImage *)PDFImageWithNamed:(NSString *)name;
 
@@ -44,9 +45,15 @@ NS_ASSUME_NONNULL_BEGIN
  加载所在组件 Bundle 里的图片资源.
 
  @param name 图片文件名
- @warning 该方法为空实现. 由子类实现.
  */
 + (nullable UIImage *)imageWithNamed:(NSString *)name;
+
+/**
+ 加载当前组件下的 xib
+
+ @param aClass UIView 范型
+ */
++ (nullable __kindof UIView *)xibView:(Class)aClass;
 
 @end
 
