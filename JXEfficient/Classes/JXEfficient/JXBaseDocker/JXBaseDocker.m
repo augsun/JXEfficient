@@ -29,7 +29,7 @@
     return image;
 }
 
-+ (UIView *)xibView:(Class)aClass {
++ (UIView *)loadXibView:(Class)aClass {
     __kindof  UIView *view = [aClass jx_createFromXibInBundle:[self bundle]];
     return view;
 }

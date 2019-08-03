@@ -49,11 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)imageWithNamed:(NSString *)name;
 
 /**
- 加载当前组件下的 xib
+ 加载所在组件 Bundle 里的 xib 资源.
 
  @param aClass UIView 范型
  */
-+ (nullable __kindof UIView *)xibView:(Class)aClass;
++ (nullable __kindof UIView *)loadXibView:(Class)aClass;
 
 @end
 
