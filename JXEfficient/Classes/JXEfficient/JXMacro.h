@@ -106,6 +106,8 @@
 #define JX_DEALLOC_TEST_LOG             NSLog(@"jx_dealloc -> %@", NSStringFromClass([self class]))
 #define JX_DEALLOC_TEST                 - (void)dealloc { JX_DEALLOC_TEST_LOG; }
 
+#define JX_LOG_FUNC                     NSLog(@"%s", __func__)
+
 #define JX_ASSERT_MSG(assertMsg)        [NSString stringWithFormat:@"%@: %@", NSStringFromClass([self class]), assertMsg]
 
 @interface JXMacro : NSObject
