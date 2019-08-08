@@ -84,7 +84,7 @@ const NSInteger JXNavigationBarItemFontSizeDefault = 15.0;
     self.disabledTitle = title;
 
     self.type = JXNavigationBarItemStyleTitle;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 - (void)setColor:(UIColor *)color {
@@ -94,13 +94,13 @@ const NSInteger JXNavigationBarItemFontSizeDefault = 15.0;
     self.highlightedColor = color;
     self.disabledColor = color;
 
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 - (void)setFont:(UIFont *)font {
     _font = font;
 
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 - (void)setTitleNormalColor:(UIColor *)normalColor highlightedColor:(UIColor *)highlightedColor disabledColor:(UIColor *)disabledColor {
@@ -108,7 +108,7 @@ const NSInteger JXNavigationBarItemFontSizeDefault = 15.0;
     self.highlightedColor = highlightedColor;
     self.disabledColor = disabledColor;
 
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 标题 设置方式 1_1: 不同状态下 [同一标题 同一颜色 同一字体]
@@ -127,7 +127,7 @@ const NSInteger JXNavigationBarItemFontSizeDefault = 15.0;
     self.font = font;
     
     self.type = JXNavigationBarItemStyleTitle;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 设置方式 2: 不同状态下 [同一标题 不同颜色 同一字体]
@@ -148,7 +148,7 @@ highlightedColor:(UIColor *)highlightedColor
     self.font = font;
     
     self.type = JXNavigationBarItemStyleTitle;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 设置方式 3: 不同状态下 [不同标题 不同颜色 同一字体]
@@ -171,7 +171,7 @@ highlightedColor:(UIColor *)highlightedColor
     self.font = font;
 
     self.type = JXNavigationBarItemStyleTitle;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 标题 设置方式 4: 自定义富文本设置 (支持更多样式)
@@ -184,7 +184,7 @@ highlightedColor:(UIColor *)highlightedColor
     self.disabledAttributedTitle = disabledAttributedTitle;
 
     self.type = JXNavigationBarItemStyleAttributedTitle;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 图片 设置方式
@@ -197,7 +197,7 @@ highlightedColor:(UIColor *)highlightedColor
     self.disabledImage = disabledImage;
 
     self.type = JXNavigationBarItemStyleImage;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 // 背景图片 设置方式
@@ -210,7 +210,7 @@ highlightedColor:(UIColor *)highlightedColor
 - (void)setContentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
     _contentEdgeInsets = contentEdgeInsets;
     self.button.contentEdgeInsets = contentEdgeInsets;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 - (void)setCustomContentView:(UIView *)customContentView {
@@ -222,7 +222,7 @@ highlightedColor:(UIColor *)highlightedColor
     customContentView.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.type = JXNavigationBarItemStyleCustomView;
-    [self setNeedsLayout];
+    [self decorateItem];
 }
 
 - (void)setCustomContentViewWidth:(CGFloat)customContentViewWidth {
@@ -230,247 +230,244 @@ highlightedColor:(UIColor *)highlightedColor
         _customContentViewWidth = customContentViewWidth;
 
         self.type = JXNavigationBarItemStyleCustomView;
-        [self setNeedsLayout];
+        [self decorateItem];
     }
+    
+    [NSRunLoop currentRunLoop];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-
-    //
-    if (self.jx_width > 0 && self.jx_height > 0) {
-        switch (self.type) {
-            case JXNavigationBarItemStyleTitle:
-            {
-                if (self.normalTitle && [self.normalTitle isKindOfClass:[NSString class]]) {
-                    
-                    // 图片置空
-                    [self.button setImage:nil forState:UIControlStateNormal];
-                    [self.button setImage:nil forState:UIControlStateHighlighted];
-                    [self.button setImage:nil forState:UIControlStateDisabled];
-                    
-                    // title
-                    NSString *normalTitle = self.normalTitle;
-                    NSString *highlightedTitle = jx_strValue(self.highlightedTitle);
-                    NSString *disabledTitle = jx_strValue(self.disabledTitle);
-                    if (highlightedTitle.length <= 0) {
-                        highlightedTitle = self.normalTitle;
-                    }
-                    if (disabledTitle.length <= 0) {
-                        disabledTitle = self.normalTitle;
-                    }
-                    [self.button setTitle:normalTitle forState:UIControlStateNormal];
-                    [self.button setTitle:normalTitle forState:UIControlStateHighlighted];
-                    [self.button setTitle:normalTitle forState:UIControlStateDisabled];
-
-                    // color
-                    UIColor *normalColor = self.normalColor;
-                    UIColor *highlightedColor = self.highlightedColor;
-                    UIColor *disabledColor = self.disabledColor;
-                    if (!self.normalColor || ![self.normalColor isKindOfClass:[UIColor class]]) {
-                        normalColor = JX_COLOR_HEX(JXNavigationBarItemNormalTitleColorDefault);
-                    }
-                    if (!self.highlightedColor || ![self.highlightedColor isKindOfClass:[UIColor class]]) {
-                        highlightedColor = JX_COLOR_HEX(JXNavigationBarItemHighlightedColorDefault);
-                    }
-                    if (!self.disabledColor || ![self.disabledColor isKindOfClass:[UIColor class]]) {
-                        disabledColor = JX_COLOR_HEX(JXNavigationBarItemDisabledColorDefault);
-                    }
-                    [self.button jx_titleColorStyleNormalColor:normalColor
-                                              highlightedColor:highlightedColor
-                                                 disabledColor:disabledColor];
-                    
-                    // font
-                    UIFont *font = self.font;
-                    if (font == nil || ![font isKindOfClass:[UIFont class]]) {
-                        font = [UIFont systemFontOfSize:JXNavigationBarItemFontSizeDefault];
-                    }
-                    self.button.titleLabel.font = font;
-
-                    // 计算宽度
-                    static CGFloat (^count_title_w)(NSString *, UIFont *) = ^ CGFloat (NSString *t, UIFont *f) {
-                        CGFloat w = [t boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44.0)
-                                                    options:JX_DRAW_OPTION
-                                                 attributes:@{NSFontAttributeName: f}
-                                                    context:nil].size.width + 1.0;
-                        return w;
-                    };
-                    
-                    CGFloat contentWidth = k_min_content_width;
-                    
-                    {
-                        CGFloat title_w = count_title_w(normalTitle, font);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-                    if (![highlightedTitle isEqualToString:normalTitle]) {
-                        CGFloat title_w = count_title_w(highlightedTitle, font);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-                    if (![disabledTitle isEqualToString:normalTitle] && ![disabledTitle isEqualToString:highlightedTitle]) {
-                        CGFloat title_w = count_title_w(disabledTitle, font);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-
-                    //
-                    self.contentWidth = contentWidth;
-                    self.rightForShowing = YES;
-                }
-                else {
-                    self.rightForShowing = NO;
-                }
-            } break;
+- (void)decorateItem {
+    switch (self.type) {
+        case JXNavigationBarItemStyleTitle:
+        {
+            if (self.normalTitle && [self.normalTitle isKindOfClass:[NSString class]]) {
                 
-            case JXNavigationBarItemStyleAttributedTitle:
-            {
-                if (self.normalAttributedTitle && [self.normalAttributedTitle isKindOfClass:[NSAttributedString class]]) {
-                    
-                    // 图片置空
-                    [self.button setImage:nil forState:UIControlStateNormal];
-                    [self.button setImage:nil forState:UIControlStateHighlighted];
-                    [self.button setImage:nil forState:UIControlStateDisabled];
-                    
-                    // attributedTitle
-                    NSAttributedString *normalAttributedTitle = self.normalAttributedTitle;
-                    NSAttributedString *highlightedAttributedTitle = self.highlightedAttributedTitle;
-                    NSAttributedString *disabledAttributedTitle = self.disabledAttributedTitle;
-
-                    if (!highlightedAttributedTitle || ![highlightedAttributedTitle isKindOfClass:[NSAttributedString class]]) {
-                        highlightedAttributedTitle = normalAttributedTitle;
-                    }
-                    if (!disabledAttributedTitle || ![disabledAttributedTitle isKindOfClass:[NSAttributedString class]]) {
-                        disabledAttributedTitle = normalAttributedTitle;
-                    }
-                    
-                    [self.button setAttributedTitle:normalAttributedTitle forState:UIControlStateNormal];
-                    [self.button setAttributedTitle:highlightedAttributedTitle forState:UIControlStateHighlighted];
-                    [self.button setAttributedTitle:disabledAttributedTitle forState:UIControlStateDisabled];
-                    
-                    // 计算宽度
-                    static CGFloat (^count_title_w_arr)(NSAttributedString *) = ^ CGFloat (NSAttributedString *t) {
-                        CGFloat w = [t boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44.0)
-                                                    options:JX_DRAW_OPTION
-                                                    context:nil].size.width + 1.0;
-                        return w;
-                    };
-                    
-                    CGFloat contentWidth = k_min_content_width;
-                    
-                    {
-                        CGFloat title_w = count_title_w_arr(normalAttributedTitle);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-                    if (![highlightedAttributedTitle isEqualToAttributedString:normalAttributedTitle]) {
-                        CGFloat title_w = count_title_w_arr(highlightedAttributedTitle);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-                    if ([disabledAttributedTitle isEqualToAttributedString:normalAttributedTitle] && [disabledAttributedTitle isEqualToAttributedString:highlightedAttributedTitle]) {
-                        CGFloat title_w = count_title_w_arr(disabledAttributedTitle);
-                        if (title_w > contentWidth) {
-                            contentWidth = title_w;
-                        }
-                    }
-
-                    //
-                    self.contentWidth = contentWidth;
-                    self.rightForShowing = YES;
-                }
-                else {
-                    self.rightForShowing = NO;
-                }
-            } break;
+                // 图片置空
+                [self.button setImage:nil forState:UIControlStateNormal];
+                [self.button setImage:nil forState:UIControlStateHighlighted];
+                [self.button setImage:nil forState:UIControlStateDisabled];
                 
-            case JXNavigationBarItemStyleImage:
-            {
-                static BOOL (^rightImage)(UIImage *) = ^ BOOL (UIImage *img) {
-                    BOOL ret = img && [img isKindOfClass:[UIImage class]] && img.size.width > 0.0 && img.size.height > 0.0;
-                    return ret;
+                // title
+                NSString *normalTitle = self.normalTitle;
+                NSString *highlightedTitle = jx_strValue(self.highlightedTitle);
+                NSString *disabledTitle = jx_strValue(self.disabledTitle);
+                if (highlightedTitle.length <= 0) {
+                    highlightedTitle = self.normalTitle;
+                }
+                if (disabledTitle.length <= 0) {
+                    disabledTitle = self.normalTitle;
+                }
+                [self.button setTitle:normalTitle forState:UIControlStateNormal];
+                [self.button setTitle:normalTitle forState:UIControlStateHighlighted];
+                [self.button setTitle:normalTitle forState:UIControlStateDisabled];
+                
+                // color
+                UIColor *normalColor = self.normalColor;
+                UIColor *highlightedColor = self.highlightedColor;
+                UIColor *disabledColor = self.disabledColor;
+                if (!self.normalColor || ![self.normalColor isKindOfClass:[UIColor class]]) {
+                    normalColor = JX_COLOR_HEX(JXNavigationBarItemNormalTitleColorDefault);
+                }
+                if (!self.highlightedColor || ![self.highlightedColor isKindOfClass:[UIColor class]]) {
+                    highlightedColor = JX_COLOR_HEX(JXNavigationBarItemHighlightedColorDefault);
+                }
+                if (!self.disabledColor || ![self.disabledColor isKindOfClass:[UIColor class]]) {
+                    disabledColor = JX_COLOR_HEX(JXNavigationBarItemDisabledColorDefault);
+                }
+                [self.button jx_titleColorStyleNormalColor:normalColor
+                                          highlightedColor:highlightedColor
+                                             disabledColor:disabledColor];
+                
+                // font
+                UIFont *font = self.font;
+                if (font == nil || ![font isKindOfClass:[UIFont class]]) {
+                    font = [UIFont systemFontOfSize:JXNavigationBarItemFontSizeDefault];
+                }
+                self.button.titleLabel.font = font;
+                
+                // 计算宽度
+                static CGFloat (^count_title_w)(NSString *, UIFont *) = ^ CGFloat (NSString *t, UIFont *f) {
+                    CGFloat w = [t boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44.0)
+                                                options:JX_DRAW_OPTION
+                                             attributes:@{NSFontAttributeName: f}
+                                                context:nil].size.width + 1.0;
+                    return w;
                 };
                 
-                if (rightImage(self.normalImage)) {
-                    UIImage *normalImage = self.normalImage;
-                    UIImage *highlightedImage = self.highlightedImage;
-                    UIImage *disabledImage = self.disabledImage;
-
-                    if (!rightImage(highlightedImage)) {
-                        highlightedImage = normalImage;
-                    }
-                    if (!rightImage(disabledImage)) {
-                        disabledImage = normalImage;
-                    }
-                    
-                    //
-                    [self.button jx_titleForAllStatus:nil];
-                    
-                    //
-                    [self.button setImage:normalImage forState:UIControlStateNormal];
-                    [self.button setImage:highlightedImage forState:UIControlStateHighlighted];
-                    [self.button setImage:disabledImage forState:UIControlStateDisabled];
-                    
-                    static CGFloat (^count_w)(UIImage *, UIEdgeInsets) = ^ CGFloat (UIImage *i, UIEdgeInsets e) {
-                        CGFloat w = i.size.width;
-                        CGFloat h = i.size.height;
-                        CGFloat r = w / h;
-                        CGFloat count_w = 0.0;
-                        CGFloat remain_h = 44.0 - e.top - e.bottom;
-                        if (h < remain_h) {
-                            count_w = h * r;
-                        }
-                        else if (h > remain_h) {
-                            count_w = remain_h * r;
-                        }
-                        return count_w;
-                    };
-                    
-                    CGFloat contentWidth = k_min_content_width;
-                    
-                    {
-                        contentWidth = count_w(normalImage, self.contentEdgeInsets);
-                    }
-                    if (highlightedImage && highlightedImage != normalImage) {
-                        contentWidth = MAX(contentWidth, count_w(highlightedImage, self.contentEdgeInsets));
-                    }
-                    if (disabledImage && disabledImage != normalImage && disabledImage != highlightedImage) {
-                        contentWidth = MAX(contentWidth, count_w(disabledImage, self.contentEdgeInsets));
-                    }
-
-                    //
-                    self.contentWidth = contentWidth;
-                    self.rightForShowing = YES;
-                }
-                else {
-                    self.rightForShowing = NO;
-                }
-            } break;
+                CGFloat contentWidth = k_min_content_width;
                 
-            case JXNavigationBarItemStyleCustomView:
-            {
-                CGFloat w = self.customContentViewWidth;
-                if (w >= 0.0) {
-                    if (self.customContentView_cons.count > 0) {
-                        [NSLayoutConstraint deactivateConstraints:self.customContentView_cons];
+                {
+                    CGFloat title_w = count_title_w(normalTitle, font);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
                     }
-                    [NSLayoutConstraint activateConstraints:[self.customContentView jx_con_edgeEqual:self]];
-                    
-                    self.contentWidth = w;
-                    self.rightForShowing = YES;
                 }
-                else {
-                    self.rightForShowing = NO;
+                if (![highlightedTitle isEqualToString:normalTitle]) {
+                    CGFloat title_w = count_title_w(highlightedTitle, font);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
+                    }
                 }
-            } break;
+                if (![disabledTitle isEqualToString:normalTitle] && ![disabledTitle isEqualToString:highlightedTitle]) {
+                    CGFloat title_w = count_title_w(disabledTitle, font);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
+                    }
+                }
                 
-            default: break;
-        }
+                //
+                self.contentWidth = contentWidth;
+                self.rightForShowing = YES;
+            }
+            else {
+                self.rightForShowing = NO;
+            }
+        } break;
+            
+        case JXNavigationBarItemStyleAttributedTitle:
+        {
+            if (self.normalAttributedTitle && [self.normalAttributedTitle isKindOfClass:[NSAttributedString class]]) {
+                
+                // 图片置空
+                [self.button setImage:nil forState:UIControlStateNormal];
+                [self.button setImage:nil forState:UIControlStateHighlighted];
+                [self.button setImage:nil forState:UIControlStateDisabled];
+                
+                // attributedTitle
+                NSAttributedString *normalAttributedTitle = self.normalAttributedTitle;
+                NSAttributedString *highlightedAttributedTitle = self.highlightedAttributedTitle;
+                NSAttributedString *disabledAttributedTitle = self.disabledAttributedTitle;
+                
+                if (!highlightedAttributedTitle || ![highlightedAttributedTitle isKindOfClass:[NSAttributedString class]]) {
+                    highlightedAttributedTitle = normalAttributedTitle;
+                }
+                if (!disabledAttributedTitle || ![disabledAttributedTitle isKindOfClass:[NSAttributedString class]]) {
+                    disabledAttributedTitle = normalAttributedTitle;
+                }
+                
+                [self.button setAttributedTitle:normalAttributedTitle forState:UIControlStateNormal];
+                [self.button setAttributedTitle:highlightedAttributedTitle forState:UIControlStateHighlighted];
+                [self.button setAttributedTitle:disabledAttributedTitle forState:UIControlStateDisabled];
+                
+                // 计算宽度
+                static CGFloat (^count_title_w_arr)(NSAttributedString *) = ^ CGFloat (NSAttributedString *t) {
+                    CGFloat w = [t boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44.0)
+                                                options:JX_DRAW_OPTION
+                                                context:nil].size.width + 1.0;
+                    return w;
+                };
+                
+                CGFloat contentWidth = k_min_content_width;
+                
+                {
+                    CGFloat title_w = count_title_w_arr(normalAttributedTitle);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
+                    }
+                }
+                if (![highlightedAttributedTitle isEqualToAttributedString:normalAttributedTitle]) {
+                    CGFloat title_w = count_title_w_arr(highlightedAttributedTitle);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
+                    }
+                }
+                if ([disabledAttributedTitle isEqualToAttributedString:normalAttributedTitle] && [disabledAttributedTitle isEqualToAttributedString:highlightedAttributedTitle]) {
+                    CGFloat title_w = count_title_w_arr(disabledAttributedTitle);
+                    if (title_w > contentWidth) {
+                        contentWidth = title_w;
+                    }
+                }
+                
+                //
+                self.contentWidth = contentWidth;
+                self.rightForShowing = YES;
+            }
+            else {
+                self.rightForShowing = NO;
+            }
+        } break;
+            
+        case JXNavigationBarItemStyleImage:
+        {
+            static BOOL (^rightImage)(UIImage *) = ^ BOOL (UIImage *img) {
+                BOOL ret = img && [img isKindOfClass:[UIImage class]] && img.size.width > 0.0 && img.size.height > 0.0;
+                return ret;
+            };
+            
+            if (rightImage(self.normalImage)) {
+                UIImage *normalImage = self.normalImage;
+                UIImage *highlightedImage = self.highlightedImage;
+                UIImage *disabledImage = self.disabledImage;
+                
+                if (!rightImage(highlightedImage)) {
+                    highlightedImage = normalImage;
+                }
+                if (!rightImage(disabledImage)) {
+                    disabledImage = normalImage;
+                }
+                
+                //
+                [self.button jx_titleForAllStatus:nil];
+                
+                //
+                [self.button setImage:normalImage forState:UIControlStateNormal];
+                [self.button setImage:highlightedImage forState:UIControlStateHighlighted];
+                [self.button setImage:disabledImage forState:UIControlStateDisabled];
+                
+                static CGFloat (^count_w)(UIImage *, UIEdgeInsets) = ^ CGFloat (UIImage *i, UIEdgeInsets e) {
+                    CGFloat w = i.size.width;
+                    CGFloat h = i.size.height;
+                    CGFloat r = w / h;
+                    CGFloat count_w = 0.0;
+                    CGFloat remain_h = 44.0 - e.top - e.bottom;
+                    if (h < remain_h) {
+                        count_w = h * r;
+                    }
+                    else if (h > remain_h) {
+                        count_w = remain_h * r;
+                    }
+                    return count_w;
+                };
+                
+                CGFloat contentWidth = k_min_content_width;
+                
+                {
+                    contentWidth = count_w(normalImage, self.contentEdgeInsets);
+                }
+                if (highlightedImage && highlightedImage != normalImage) {
+                    contentWidth = MAX(contentWidth, count_w(highlightedImage, self.contentEdgeInsets));
+                }
+                if (disabledImage && disabledImage != normalImage && disabledImage != highlightedImage) {
+                    contentWidth = MAX(contentWidth, count_w(disabledImage, self.contentEdgeInsets));
+                }
+                
+                //
+                self.contentWidth = contentWidth;
+                self.rightForShowing = YES;
+            }
+            else {
+                self.rightForShowing = NO;
+            }
+        } break;
+            
+        case JXNavigationBarItemStyleCustomView:
+        {
+            CGFloat w = self.customContentViewWidth;
+            if (w >= 0.0) {
+                if (self.customContentView_cons.count > 0) {
+                    [NSLayoutConstraint deactivateConstraints:self.customContentView_cons];
+                }
+                [NSLayoutConstraint activateConstraints:[self.customContentView jx_con_edgeEqual:self]];
+                
+                self.contentWidth = w;
+                self.rightForShowing = YES;
+            }
+            else {
+                self.rightForShowing = NO;
+            }
+        } break;
+            
+        default: break;
     }
     
     //
@@ -506,7 +503,8 @@ highlightedColor:(UIColor *)highlightedColor
 }
 
 - (void)JXNavigationBarItem_needLayout {
-    _itemWidth = self.contentWidth + self.contentEdgeInsets.left + self.contentEdgeInsets.right;
+    CGFloat itemWidth = self.contentWidth + self.contentEdgeInsets.left + self.contentEdgeInsets.right;
+    _itemWidth = itemWidth;
     JX_BLOCK_EXEC(self.setNeedsLayoutInHoldingView);
 }
 

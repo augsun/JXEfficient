@@ -241,7 +241,7 @@ bottomLineView = _bottomLineView;
     JX_WEAK_SELF;
     itemView.setNeedsLayoutInHoldingView = ^{
         JX_STRONG_SELF;
-        [self JXNavigationBar_layout];
+        [self setNeedsLayout];
     };
     return itemView;
 }
