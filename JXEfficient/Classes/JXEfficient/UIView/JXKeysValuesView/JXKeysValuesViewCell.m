@@ -112,6 +112,10 @@
     model.value_w = value_w;
     model.value_h = value_h;
     
+    if (layout.minimumRowHeight > 0.0) {
+        row_h = row_h > layout.minimumRowHeight ? row_h : layout.minimumRowHeight;
+    }
+    
     model.row_h = row_h;
 }
 

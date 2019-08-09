@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, JXKeysValuesCloseTo) {
 @property (nonatomic, assign) JXKeysValuesViewKeyLayoutType keyLayoutType; ///< key 的布局样式, 默认 JXKeysValuesViewKeyLayoutTypePercentKeyWidth
 @property (nonatomic, assign) CGFloat percentOfKeyWidth; ///< JXKeysValuesViewKeyLayoutTypePercentKeyWidth 布局模式下必须有值, 默认 0.2 <包含了 keyContentEdges 和 valueContentEdges 的 left right>
 
+@property (nonatomic, assign) CGFloat minimumRowHeight;
+
 //
 @property (nonatomic, assign) CGFloat keyFixedWidth; ///< JXKeysValuesViewKeyLayoutTypeFixedWidth 布局模式下必须有值 <包含了 keyContentEdges 的 left right>
 @property (nonatomic, assign) NSInteger keyNumberOfLines; ///< 行数 <目前只支持 1单行 和 0多行, 其它值都将归入多行, 后期扩展>, 默认 0
