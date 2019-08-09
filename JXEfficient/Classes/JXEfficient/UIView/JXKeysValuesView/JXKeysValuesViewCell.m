@@ -188,7 +188,16 @@
         self.keyLabel.font = layout.keyFont;
         self.keyLabel.numberOfLines = layout.keyNumberOfLines;
         self.keyLabel.textAlignment = layout.keyTextAlignment;
-        switch (layout.keyCloseTo) {
+        
+        JXKeysValuesCloseTo keyCloseTo = JXKeysValuesCloseToCenterY;
+        if (model.keyCloseTo == JXKeysValuesCloseToTop || model.keyCloseTo == JXKeysValuesCloseToCenterY || model.keyCloseTo == JXKeysValuesCloseToBottom) {
+            keyCloseTo = model.keyCloseTo;
+        }
+        else if (layout.keyCloseTo == JXKeysValuesCloseToTop || layout.keyCloseTo == JXKeysValuesCloseToCenterY || layout.keyCloseTo == JXKeysValuesCloseToBottom) {
+            keyCloseTo = layout.keyCloseTo;
+        }
+        
+        switch (keyCloseTo) {
             case JXKeysValuesCloseToTop:
             {
                 [NSLayoutConstraint deactivateConstraints:@[self.key_con_change]];
@@ -213,6 +222,7 @@
         self.valueLabel.font = layout.valueFont;
         self.valueLabel.numberOfLines = layout.valueNumberOfLines;
         self.valueLabel.textAlignment = layout.valueTextAlignment;
+        
         switch (layout.valueCloseTo) {
             case JXKeysValuesCloseToTop:
             {

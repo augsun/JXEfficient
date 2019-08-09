@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JXKeysValuesConst.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,13 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, JXKeysValuesViewKeyLayoutType) {
     JXKeysValuesViewKeyLayoutTypePercentKeyWidth = 1, ///< key 占布局总宽度百分比
     JXKeysValuesViewKeyLayoutTypeFixedWidth, ///< key 固定宽度
-};
-
-/** key value 中高度较小的那个在布局时的贴近方式*/
-typedef NS_ENUM(NSUInteger, JXKeysValuesCloseTo) {
-    JXKeysValuesCloseToTop, ///< 靠上
-    JXKeysValuesCloseToCenterY, ///< 垂直居中
-    JXKeysValuesCloseToBottom, ///< 靠下
 };
 
 @interface JXKeysValuesViewLayout : NSObject

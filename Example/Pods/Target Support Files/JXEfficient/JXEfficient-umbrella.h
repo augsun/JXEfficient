@@ -65,6 +65,7 @@
 #import "JXImageBrowserImageView.h"
 #import "JXImageBrowserLoadImageFailureView.h"
 #import "JXImageBrowserPageControlView.h"
+#import "JXKeysValuesConst.h"
 #import "JXKeysValuesModel.h"
 #import "JXKeysValuesView.h"
 #import "JXKeysValuesViewCell.h"

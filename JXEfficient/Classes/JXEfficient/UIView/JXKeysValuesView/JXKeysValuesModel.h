@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JXKeysValuesConst.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *value; ///< 同 key
 @property (nonatomic, copy, nullable) NSAttributedString *attributedValue; ///< 同 key
 @property (nonatomic, strong, nullable) UIColor *valueTextColor; ///< 同 key
+
+@property (nonatomic, assign) JXKeysValuesCloseTo keyCloseTo; ///< 不设置, 默认取 JXKeysValuesViewLayout 中的 keyCloseTo
 
 
 
