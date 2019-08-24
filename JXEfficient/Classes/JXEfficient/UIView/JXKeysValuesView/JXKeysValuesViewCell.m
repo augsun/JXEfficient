@@ -32,7 +32,7 @@
 
 + (void)countWithModel:(JXKeysValuesModel *)model layout:(JXKeysValuesViewLayout *)layout {
     //
-    CGFloat width = layout.width;
+    CGFloat width = layout.width - layout.contentEdges.left - layout.contentEdges.right;
     CGFloat key_w = 0.0;
     CGFloat value_w = 0.0;
     
