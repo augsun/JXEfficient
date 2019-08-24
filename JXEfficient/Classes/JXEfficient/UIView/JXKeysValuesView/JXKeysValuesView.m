@@ -75,6 +75,10 @@ static NSString *const kCellID = @"kCellID";
 - (void)refreshWithKeysValues:(NSArray<JXKeysValuesModel *> *)keysValues layout:(JXKeysValuesViewLayout *)layout {
     self.keysValues = keysValues;
     
+    if (layout.backgroundColorForDebug) {
+        self.backgroundColor = JX_COLOR_RANDOM;
+    }
+    
     //
     if (self.layout != layout) {
         self.layout = layout;

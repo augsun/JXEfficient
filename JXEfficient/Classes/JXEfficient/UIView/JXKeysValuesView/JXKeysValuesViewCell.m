@@ -49,7 +49,7 @@
             
         default: break;
     }
-    value_w = width - layout.keyFixedWidth - layout.valueContentEdges.left - layout.valueContentEdges.right;
+    value_w = width - key_w - layout.keyContentEdges.left - layout.keyContentEdges.right - layout.valueContentEdges.left - layout.valueContentEdges.right;
 
     // key
     CGFloat key_h = 0.0;
@@ -176,6 +176,13 @@
 
 - (void)refreshWithModel:(JXKeysValuesModel *)model layout:(JXKeysValuesViewLayout *)layout lastCell:(BOOL)lastCell {
     self.model = model;
+    
+    //
+    if (layout.backgroundColorForDebug) {
+        self.backgroundColor = JX_COLOR_RANDOM;
+        self.keyLabel.backgroundColor = JX_COLOR_RANDOM;
+        self.valueLabel.backgroundColor = JX_COLOR_RANDOM;
+    }
 
     //
     if (self.layout != layout) {

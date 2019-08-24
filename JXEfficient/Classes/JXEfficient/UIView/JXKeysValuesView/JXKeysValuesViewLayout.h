@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, JXKeysValuesViewKeyLayoutType) {
 
 @interface JXKeysValuesViewLayout : NSObject
 
+@property (nonatomic, assign) BOOL backgroundColorForDebug; ///< 打开显示各层级背景颜色, 用于调试. 默认 NO.
 @property (nonatomic, assign) CGFloat width; ///< JXKeysValuesView 将要用于展示时的宽度 <必须正确及合理设置>
 @property (nonatomic, assign) UIEdgeInsets contentEdges; ///< 列表布局的边距. 默认 {0, 0, 0, 0} 
 
