@@ -34,6 +34,8 @@ typedef NS_ENUM(NSUInteger, JXKeysValuesViewKeyLayoutType) {
 
 @property (nonatomic, assign) CGFloat minimumRowHeight;
 
+@property (nonatomic, assign) BOOL keyForceCloseToCenterYIfValueOnlyOneLine; ///< 在 value 只有一行情况下, 是否强制 key 为 Y 居中
+
 //
 @property (nonatomic, assign) CGFloat keyFixedWidth; ///< JXKeysValuesViewKeyLayoutTypeFixedWidth 布局模式下必须有值 <包含了 keyContentEdges 的 left right>
 @property (nonatomic, assign) NSInteger keyNumberOfLines; ///< 行数 <目前只支持 1单行 和 0多行, 其它值都将归入多行, 后期扩展>, 默认 0

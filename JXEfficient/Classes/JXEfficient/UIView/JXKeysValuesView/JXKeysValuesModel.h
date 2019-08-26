@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat row_h;
 
+@property (nonatomic, assign) BOOL valueOnlyOneLine; ///< value 是否只有一行.
+
 @end
 
 NS_ASSUME_NONNULL_END

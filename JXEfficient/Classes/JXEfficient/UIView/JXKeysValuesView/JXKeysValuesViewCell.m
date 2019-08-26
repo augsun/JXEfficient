@@ -78,24 +78,100 @@
     // value
     CGFloat value_h = 0.0;
     {
-        CGSize size = CGSizeZero;
-        if (layout.valueNumberOfLines == 1) {
-            size = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-        }
-        else {
-            size = CGSizeMake(value_w, CGFLOAT_MAX);
-        }
+        CGSize single_line_size = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);;
+        CGSize multi_lines_size = CGSizeMake(value_w, CGFLOAT_MAX);
         
         if (model.value) {
-            value_h = [model.value boundingRectWithSize:size
-                                                options:JX_DRAW_OPTION
-                                             attributes:@{
-                                                          NSFontAttributeName: layout.valueFont,
-                                                          }
-                                                context:nil].size.height + 1.0;
+            NSDictionary *attributes = @{
+                                         NSFontAttributeName: layout.valueFont,
+                                         };
+            
+            // 尝试获取第一行数据
+            NSString *firstLine_value = [model.value componentsSeparatedByString:@"\n"].firstObject;
+            if ([firstLine_value isEqualToString:model.value]) {
+                firstLine_value = [model.value componentsSeparatedByString:@"\r\n"].firstObject;
+            }
+            
+            CGFloat value_single_line_h = [firstLine_value boundingRectWithSize:single_line_size
+                                                                        options:JX_DRAW_OPTION
+                                                                     attributes:attributes
+                                                                        context:nil].size.height + 1.0;
+            
+            // 单行条件下 <强制单行>
+            if (layout.valueNumberOfLines == 1) {
+                model.valueOnlyOneLine = YES;
+                
+                if (layout.keyForceCloseToCenterYIfValueOnlyOneLine) {
+                    model.keyCloseTo = JXKeysValuesCloseToCenterY;
+                }
+
+                value_h = value_single_line_h;
+            }
+            // 多行条件下
+            else {
+                CGFloat value_multi_line_h = [model.value boundingRectWithSize:multi_lines_size
+                                                                       options:JX_DRAW_OPTION
+                                                                    attributes:attributes
+                                                                       context:nil].size.height + 1.0;
+                
+                // 有多行
+                if (value_multi_line_h > 1.5 * value_single_line_h) {
+                    model.valueOnlyOneLine = NO;
+                    
+                    value_h = value_multi_line_h;
+                }
+                // 无多行 <强制为单行>
+                else {
+                    model.valueOnlyOneLine = YES;
+                    
+                    if (layout.keyForceCloseToCenterYIfValueOnlyOneLine) {
+                        model.keyCloseTo = JXKeysValuesCloseToCenterY;
+                    }
+
+                    value_h = value_single_line_h;
+                }
+            }
         }
         else {
-            value_h = [model.attributedValue boundingRectWithSize:size options:JX_DRAW_OPTION context:nil].size.height + 1.0;
+            // 尝试获取第一行数据 <目前以获取第一个字符为准, 会有不准确的情况>
+            NSAttributedString *firstLine_value = [model.attributedValue attributedSubstringFromRange:NSMakeRange(0, 1)];
+            CGFloat value_single_line_h = [firstLine_value boundingRectWithSize:single_line_size
+                                                                        options:JX_DRAW_OPTION
+                                                                        context:nil].size.height + 1.0;
+            
+            // 单行条件下 <强制单行>
+            if (layout.valueNumberOfLines == 1) {
+                model.valueOnlyOneLine = YES;
+                
+                if (layout.keyForceCloseToCenterYIfValueOnlyOneLine) {
+                    model.keyCloseTo = JXKeysValuesCloseToCenterY;
+                }
+                
+                value_h = value_single_line_h;
+            }
+            // 多行条件下
+            else {
+                CGFloat value_multi_line_h = [model.attributedValue boundingRectWithSize:multi_lines_size
+                                                                                 options:JX_DRAW_OPTION
+                                                                                 context:nil].size.height + 1.0;
+                
+                // 有多行
+                if (value_multi_line_h > 1.5 * value_single_line_h) {
+                    model.valueOnlyOneLine = NO;
+                    
+                    value_h = value_multi_line_h;
+                }
+                // 无多行 <强制为单行>
+                else {
+                    model.valueOnlyOneLine = YES;
+                    
+                    if (layout.keyForceCloseToCenterYIfValueOnlyOneLine) {
+                        model.keyCloseTo = JXKeysValuesCloseToCenterY;
+                    }
+                    
+                    value_h = value_single_line_h;
+                }
+            }
         }
     }
 
@@ -266,6 +342,14 @@
     }
     else {
         self.valueLabel.attributedText = model.attributedValue;
+        
+        NSInteger lines = self.valueLabel.numberOfLines;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSInteger lines1 = self.valueLabel.numberOfLines;
+            NSLog(@"");
+//            self.valueLabel.font.lineHeight
+        });
     }
     
     // key
