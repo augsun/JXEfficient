@@ -115,7 +115,7 @@
                                                                        context:nil].size.height + 1.0;
                 
                 // 有多行
-                if (value_multi_line_h > 1.5 * value_single_line_h) {
+                if (value_multi_line_h > 1.6 * value_single_line_h) {
                     model.valueOnlyOneLine = NO;
                     
                     value_h = value_multi_line_h;
@@ -156,13 +156,22 @@
                                                                                  context:nil].size.height + 1.0;
                 
                 // 有多行
-                if (value_multi_line_h > 1.5 * value_single_line_h) {
+                if (value_multi_line_h > 1.6 * value_single_line_h) {
                     model.valueOnlyOneLine = NO;
                     
                     value_h = value_multi_line_h;
                 }
                 // 无多行 <强制为单行>
                 else {
+                    
+                    // 解决单行中文时计算带行高的段落时底部多出的距离<系统如此>
+                    NSMutableAttributedString *m_attributedValue = [model.attributedValue mutableCopy];
+                    [m_attributedValue removeAttribute:NSParagraphStyleAttributeName range:NSMakeRange(0, m_attributedValue.length)];
+                    value_single_line_h = [m_attributedValue boundingRectWithSize:single_line_size
+                                                                          options:JX_DRAW_OPTION
+                                                                          context:nil].size.height + 1.0;
+                    model.attributedValue = m_attributedValue;
+
                     model.valueOnlyOneLine = YES;
                     
                     if (layout.keyForceCloseToCenterYIfValueOnlyOneLine) {
@@ -342,14 +351,6 @@
     }
     else {
         self.valueLabel.attributedText = model.attributedValue;
-        
-        NSInteger lines = self.valueLabel.numberOfLines;
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSInteger lines1 = self.valueLabel.numberOfLines;
-            NSLog(@"");
-//            self.valueLabel.font.lineHeight
-        });
     }
     
     // key
