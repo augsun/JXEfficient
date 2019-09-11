@@ -36,7 +36,11 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 
 @property (nonatomic, assign) BOOL indicatorFixedWidth_didSetted; ///< 是否设置过 indicatorFixedWidth
 
-@property (nonatomic, assign) CGFloat self_w;
+@property (nonatomic, assign) CGFloat self_w_previous; ///< 上一次调用 layoutSubviews 的宽度
+
+@property (nonatomic, assign) BOOL needHandle_jx_refreshUI_func; ///< 是否需要在 layoutSubviews 触发 jx_refreshUI 调用时条件不满足的后续执行
+@property (nonatomic, assign) BOOL needHandle_jx_refreshUI_func_animated; ///< 当时需要后续执行的 参数<是否动画>
+@property (nonatomic, assign) BOOL needHandle_jx_refreshUI_func_w; ///< 当时需要后续执行的 状态<宽度>
 
 @property (nonatomic, strong) JXTagsViewTagModel *selectedModel;
 @property (nonatomic, copy) NSArray <__kindof JXTagsViewTagModel *> *tagModels;
@@ -216,8 +220,24 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
         self.tagModels[tagIndex].selected = YES;
         self.selectedModel = self.tagModels[tagIndex];
         _tagIndex = tagIndex;
-        [self jx_refreshUI:animated];
         
+        // 已布局好
+        if (self.jx_width > 0.0) {
+            self.needHandle_jx_refreshUI_func = NO;
+            
+            [self.collectionView reloadData];
+            
+            [self jx_refreshUI_collectionView_contentOffset:animated];
+            [self jx_refreshUI_indicator_LW:animated];
+        }
+        // 未布局好 <进行标记, 于 layoutSubviews 中进行处理>
+        else {
+            self.needHandle_jx_refreshUI_func = YES;
+            self.needHandle_jx_refreshUI_func_animated = animated;
+            self.needHandle_jx_refreshUI_func_w = self.jx_width;
+        }
+
+        //
         [self tagIndexDidChanged:tagIndex];
     }
 }
@@ -231,14 +251,39 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    // 当前宽度
     CGFloat now_self_w = self.jx_width;
-    if (self.self_w != now_self_w) {
-        self.self_w = now_self_w;
+    
+    // 宽度不同需要重新布局
+    if (now_self_w > 0 && self.self_w_previous != now_self_w) {
         
-        [self jx_prepareDataForShowing];
+        BOOL animated = YES;
         
-        [self jx_refreshUI:YES];
+        // 有未处理的 jx_refreshUI 方法调用
+        if (self.needHandle_jx_refreshUI_func) {
+            // 未处理时的 宽度 与 当前宽度 是否相同, 不相同则重新计算
+            if (self.needHandle_jx_refreshUI_func_w != now_self_w) {
+                [self jx_prepareDataForShowing];
+            }
+            animated = self.needHandle_jx_refreshUI_func_animated;
+        }
+        else {
+            [self jx_prepareDataForShowing];
+            animated = YES;
+        }
+        
+        // 刷新数据
+        [self.collectionView reloadData];
+        
+        // 刷新偏移
+        [self jx_refreshUI_collectionView_contentOffset:animated];
+        
+        // 刷新指示器
+        [self jx_refreshUI_indicator_LW:animated];
     }
+    
+    //
+    self.self_w_previous = now_self_w;
 }
 
 /**
@@ -396,15 +441,6 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     }
 }
 
-- (void)jx_refreshUI:(BOOL)animated {
-    if (self.tagModels.count > 0) {
-        [self.collectionView reloadData];
-        
-        [self jx_refreshUI_collectionView_contentOffset:animated];
-        [self jx_refreshUI_indicator_LW:animated];
-    }
-}
-
 - (void)jx_refreshUI_collectionView_contentOffset:(BOOL)animated {
     JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
     
@@ -414,7 +450,6 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     
     // 确定是否需要偏移
     CGFloat total_w = self.tagModels.lastObject.tag_toL + self.tagModels.lastObject.tagWidth_showing + coll_edgeR;
-    [self layoutIfNeeded];
     CGFloat self_w = self.jx_width;
     CGFloat half_self_w = self_w / 2.0;
     
@@ -454,7 +489,6 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     else {
         self.indicatorView_toL.constant = indicator_x_in_self;
         self.indicatorView_w.constant = tagModel.indicatorWidth_showing;
-        [self layoutIfNeeded];
     }
     
     //
