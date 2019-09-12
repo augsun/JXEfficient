@@ -121,21 +121,21 @@ static const UIEdgeInsets k_buttonsViewEdgeInsets = {0.0, 0.0, 0.0, 0.0}; ///< æ
     }
     
     //
-    self.popupBgViewToT_min = k_popupBgViewToT_min;
-    self.popupBgViewToLR = k_popupBgViewToLR;
-    self.popupBgViewToB_min = k_popupBgViewToB_min;
+    _popupBgViewToT_min = k_popupBgViewToT_min;
+    _popupBgViewToLR = k_popupBgViewToLR;
+    _popupBgViewToB_min = k_popupBgViewToB_min;
     
-    self.popupBgViewContentEdgeT = k_popupBgViewContentEdgeT;
-    self.popupBgViewContentEdgeB = k_popupBgViewContentEdgeB;
+    _popupBgViewContentEdgeT = k_popupBgViewContentEdgeT;
+    _popupBgViewContentEdgeB = k_popupBgViewContentEdgeB;
 
-    self.titleViewToAboveWidget = k_titleViewToAboveWidget;
-    self.titleViewEdgeInsets = k_titleViewEdgeInsets;
+    _titleViewToAboveWidget = k_titleViewToAboveWidget;
+    _titleViewEdgeInsets = k_titleViewEdgeInsets;
 
-    self.contentViewToAboveWidget = k_contentViewToAboveWidget;
-    self.contentViewEdgeInsets = k_contentViewEdgeInsets;
+    _contentViewToAboveWidget = k_contentViewToAboveWidget;
+    _contentViewEdgeInsets = k_contentViewEdgeInsets;
 
-    self.buttonsViewToAboveWidget = k_buttonsViewToAboveWidget;
-    self.buttonsViewEdgeInsets = k_buttonsViewEdgeInsets;
+    _buttonsViewToAboveWidget = k_buttonsViewToAboveWidget;
+    _buttonsViewEdgeInsets = k_buttonsViewEdgeInsets;
 
     //
     self.popupBgView.clipsToBounds = YES;

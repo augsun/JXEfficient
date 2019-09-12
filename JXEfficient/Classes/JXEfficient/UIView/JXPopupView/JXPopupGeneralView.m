@@ -21,6 +21,22 @@
 
 @property (nonatomic, assign) CGSize selfSizePre;
 
+@property (nonatomic, assign) BOOL custom_popupBgViewToT_min; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_popupBgViewToLR; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_popupBgViewToB_min; ///< 用户是否对 JXPopupGeneralView 进行自定义
+
+@property (nonatomic, assign) BOOL custom_popupBgViewContentEdgeT; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_popupBgViewContentEdgeB; ///< 用户是否对 JXPopupGeneralView 进行自定义
+
+@property (nonatomic, assign) BOOL custom_titleViewToAboveWidget; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_titleViewEdgeInsets; ///< 用户是否对 JXPopupGeneralView 进行自定义
+
+@property (nonatomic, assign) BOOL custom_contentViewToAboveWidget; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_contentViewEdgeInsets; ///< 用户是否对 JXPopupGeneralView 进行自定义
+
+@property (nonatomic, assign) BOOL custom_buttonsViewToAboveWidget; ///< 用户是否对 JXPopupGeneralView 进行自定义
+@property (nonatomic, assign) BOOL custom_buttonsViewEdgeInsets; ///< 用户是否对 JXPopupGeneralView 进行自定义
+
 @end
 
 @implementation JXPopupGeneralView
@@ -157,6 +173,61 @@
         }
         [self.buttonsView bringSubviewToFront:self.button1Label];
     }
+}
+
+- (void)setPopupBgViewToT_min:(CGFloat)popupBgViewToT_min {
+    [super setPopupBgViewToT_min:popupBgViewToT_min];
+    self.custom_popupBgViewToT_min = YES;
+}
+
+- (void)setPopupBgViewToLR:(CGFloat)popupBgViewToLR {
+    [super setPopupBgViewToLR:popupBgViewToLR];
+    self.custom_popupBgViewToLR = YES;
+}
+
+- (void)setPopupBgViewToB_min:(CGFloat)popupBgViewToB_min {
+    [super setPopupBgViewToB_min:popupBgViewToB_min];
+    self.custom_popupBgViewToB_min = YES;
+}
+
+- (void)setPopupBgViewContentEdgeT:(CGFloat)popupBgViewContentEdgeT {
+    [super setPopupBgViewContentEdgeT:popupBgViewContentEdgeT];
+    self.custom_popupBgViewContentEdgeT = YES;
+}
+
+- (void)setPopupBgViewContentEdgeB:(CGFloat)popupBgViewContentEdgeB {
+    [super setPopupBgViewContentEdgeB:popupBgViewContentEdgeB];
+    self.custom_popupBgViewContentEdgeB = YES;
+}
+
+- (void)setTitleViewToAboveWidget:(CGFloat)titleViewToAboveWidget {
+    [super setTitleViewToAboveWidget:titleViewToAboveWidget];
+    self.custom_titleViewToAboveWidget = YES;
+}
+
+- (void)setTitleViewEdgeInsets:(UIEdgeInsets)titleViewEdgeInsets {
+    [super setTitleViewEdgeInsets:titleViewEdgeInsets];
+    self.custom_titleViewEdgeInsets = YES;
+}
+
+- (void)setContentViewToAboveWidget:(CGFloat)contentViewToAboveWidget {
+    [super setContentViewToAboveWidget:contentViewToAboveWidget];
+    self.custom_contentViewToAboveWidget = YES;
+}
+
+- (void)setContentViewEdgeInsets:(UIEdgeInsets)contentViewEdgeInsets {
+    [super setContentViewEdgeInsets:contentViewEdgeInsets];
+    self.custom_contentViewEdgeInsets = YES;
+}
+
+- (void)setButtonsViewToAboveWidget:(CGFloat)buttonsViewToAboveWidget {
+    [super setButtonsViewToAboveWidget:buttonsViewToAboveWidget];
+    self.custom_buttonsViewToAboveWidget = YES;
+}
+
+- (void)setButtonsViewEdgeInsets:(UIEdgeInsets)buttonsViewEdgeInsets {
+    [super setButtonsViewEdgeInsets:buttonsViewEdgeInsets];
+    self.custom_buttonsViewEdgeInsets = YES;
 }
 
 - (void)setCustomTitleView:(UIView *)customTitleView {
@@ -370,38 +441,38 @@
     BOOL haveButtons = self.buttonsViewContentH > 0.0;
     
     if (haveTitle && haveContent && haveButtons) {
-        self.popupBgViewContentEdgeT = 20.0;
-        self.contentViewToAboveWidget = 3.0;
-        self.popupBgViewContentEdgeB = 0.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 20.0; }
+        if (!self.custom_contentViewToAboveWidget) { super.contentViewToAboveWidget = 3.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 0.0; }
     }
     else if (haveTitle && haveContent && !haveButtons) {
-        self.popupBgViewContentEdgeT = 20.0;
-        self.contentViewToAboveWidget = 3.0;
-        self.popupBgViewContentEdgeB = 12.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 20.0; }
+        if (!self.custom_contentViewToAboveWidget) { super.contentViewToAboveWidget = 3.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 12.0; }
     }
     else if (haveTitle && !haveContent && haveButtons) {
-        self.popupBgViewContentEdgeT = 20.0;
-        self.buttonsViewToAboveWidget = 20.0;
-        self.popupBgViewContentEdgeB = 0.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 20.0; }
+        if (!self.custom_buttonsViewToAboveWidget) { super.buttonsViewToAboveWidget = 20.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 0.0; }
     }
     else if (haveTitle && !haveContent && !haveButtons) {
-        self.popupBgViewContentEdgeT = 20.0;
-        self.popupBgViewContentEdgeB = 20.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 20.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 20.0; }
     }
     else if (!haveTitle && haveContent && haveButtons) {
-        self.popupBgViewContentEdgeT = 10.0;
-        self.contentViewToAboveWidget = 3.0;
-        self.buttonsViewToAboveWidget = 8.0;
-        self.popupBgViewContentEdgeB = 0.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 10.0; }
+        if (!self.custom_contentViewToAboveWidget) { super.contentViewToAboveWidget = 3.0; }
+        if (!self.custom_buttonsViewToAboveWidget) { super.buttonsViewToAboveWidget = 8.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 0.0; }
     }
     else if (!haveTitle && haveContent && !haveButtons) {
-        self.popupBgViewContentEdgeT = 10.0;
-        self.contentViewToAboveWidget = 3.0;
-        self.popupBgViewContentEdgeB = 10.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 10.0; }
+        if (!self.custom_contentViewToAboveWidget) { super.contentViewToAboveWidget = 3.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 10.0; }
     }
     else if (!haveTitle && !haveContent && haveButtons) {
-        self.popupBgViewContentEdgeT = 0.0;
-        self.popupBgViewContentEdgeB = 0.0;
+        if (!self.custom_popupBgViewContentEdgeT) { super.popupBgViewContentEdgeT = 0.0; }
+        if (!self.custom_popupBgViewContentEdgeB) { super.popupBgViewContentEdgeB = 0.0; }
     }
     else if (!haveTitle && !haveContent && !haveButtons) {
         
