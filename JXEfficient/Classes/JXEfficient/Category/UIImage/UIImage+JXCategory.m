@@ -12,9 +12,6 @@
 @implementation UIImage (JXCategory)
 
 + (UIImage *)jx_imageFromColor:(UIColor *)color {
-    BOOL rightColor = color && [color isKindOfClass:[UIColor class]];
-    NSAssert(rightColor, JX_ASSERT_MSG(@"color 参数为空或非 UIColor 实例"));
-    
     CGSize size = CGSizeMake(3.0, 3.0);
     CGRect rect = CGRectMake(0.0, 0.0, size.width, size.height);
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
@@ -28,9 +25,6 @@
 }
 
 + (UIImage *)jx_imageFromColor:(UIColor *)color radius:(CGFloat)radius {
-    BOOL rightColor = color && [color isKindOfClass:[UIColor class]];
-    NSAssert(rightColor, JX_ASSERT_MSG(@"color 参数为空或非 UIColor 实例"));
-    
     if (radius == 0.0) {
         return [self jx_imageFromColor:color];
     }
@@ -63,9 +57,6 @@
 }
 
 + (UIImage *)jx_imageFromColor:(UIColor *)color radius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor {
-    BOOL rightColor = color && [color isKindOfClass:[UIColor class]];
-    NSAssert(rightColor, JX_ASSERT_MSG(@"color 参数为空或非 UIColor 实例"));
-
     if (borderWidth == 0.0) {
         return [self jx_imageFromColor:color radius:radius];
     }
