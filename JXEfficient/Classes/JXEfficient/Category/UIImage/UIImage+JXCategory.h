@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param color 生成图片的颜色
  @discussion 边长 3pt, scale 为屏幕的 scale, 图片为 UIImageResizingModeStretch 模式
  */
-+ (UIImage *)jx_imageFromColor:(UIColor *)color;
++ (UIImage *)jx_imageFromColor:(nullable UIColor *)color;
 
 /**
  纯色圆角图片
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param radius 圆角
  @discussion 边长 (radius * 2 + 1), scale 为屏幕的 scale, 图片为 UIImageResizingModeStretch 模式
  */
-+ (UIImage *)jx_imageFromColor:(UIColor *)color radius:(CGFloat)radius;
++ (UIImage *)jx_imageFromColor:(nullable UIColor *)color radius:(CGFloat)radius;
 
 /**
  纯色带描边图片
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion 边长 (radius * 2 + 1), scale 为屏幕的 scale, 图片为 UIImageResizingModeStretch 模式
  @warning borderWidth 要小等于 radius
  */
-+ (UIImage *)jx_imageFromColor:(UIColor *)color radius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
++ (UIImage *)jx_imageFromColor:(nullable UIColor *)color radius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 
 /**
  按比例重置图片尺寸 图片的 scale 与 size
