@@ -222,6 +222,19 @@ static const CGFloat kDefaultPagesGap = 8.f;
 }
 
 #pragma mark <UIScrollViewDelegate>
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger pages = 0;
+    if (self.pagesForPaging) {
+        pages = self.pagesForPaging();
+    }
+
+    if (pages > 0) {
+        CGFloat scrollingPage = scrollView.contentOffset.x / scrollView.jx_width;
+        JX_BLOCK_EXEC(self.scrollingPage, scrollingPage);
+    }
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger currentPage = scrollView.contentOffset.x / scrollView.jx_width;
     if (currentPage != self.currentPage && currentPage < self.pages) {

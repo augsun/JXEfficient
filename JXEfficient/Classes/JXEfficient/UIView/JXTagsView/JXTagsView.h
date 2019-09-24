@@ -63,10 +63,7 @@ typedef NS_ENUM(NSUInteger, JXTagsViewForRemainSpacingLayoutType) {
 @property (nonatomic, assign) BOOL forceZoomOutLayoutWhenBeyondSpacingUsingWeightedAverage;
 @property (nonatomic, assign) CGFloat percentForForceZoomOutLayout; ///< 强制压缩布局情况下的最大超出范围百分比. 取值 [0.0, 0.5], 超过 0.5 再强制布局, 会严重导致各 tag 宽度压缩, 不符合日常使用. 默认 0.3.
 
-/**
- 当前选中的 tagIndex
- */
-@property (nonatomic, readonly) NSInteger tagIndex;
+@property (nonatomic, readonly) NSInteger tagIndex; ///< 当前选中的 tagIndex
 
 /**
  选中指定 tag
@@ -90,20 +87,13 @@ typedef NS_ENUM(NSUInteger, JXTagsViewForRemainSpacingLayoutType) {
  */
 @property (nonatomic, copy) void (^didSelectTagAtIndex)(NSInteger tagIndex);
 
-/**
- 获取数据源
- */
-@property (nonatomic, copy) NSArray <__kindof JXTagsViewTagModel *> * _Nullable (^tagModelsForReloadData)(void);
+@property (nonatomic, copy) NSArray <__kindof JXTagsViewTagModel *> * _Nullable (^tagModelsForReloadData)(void); ///< 获取数据源
 
-/**
- 刷新数据
- */
-- (void)reloadData;
+- (void)reloadData; /// <刷新数据
 
-/**
- tagIndex 改变回调, 包括初次刷新. 子类重写, 不允许直接调用.
- */
-- (void)tagIndexDidChanged:(NSInteger)tagIndex NS_REQUIRES_SUPER;
+- (void)tagIndexDidChanged:(NSInteger)tagIndex NS_REQUIRES_SUPER; ///< tagIndex 改变回调, 包括初次刷新. 子类重写, 不允许直接调用.
+
+- (void)scrollingPage:(CGFloat)scrollingPage; ///< 外部设置, 设置 JXPagingView 等滚动时的动态页<以实现两个 tag 之前的渐变过程>
 
 @end
 

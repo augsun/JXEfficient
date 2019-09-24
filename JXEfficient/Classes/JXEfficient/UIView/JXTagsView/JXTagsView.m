@@ -527,4 +527,35 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
     
 }
 
+- (void)scrollingPage:(CGFloat)scrollingPage {
+    if (self.tagModels.count > 0) {
+        NSInteger page1 = floor(scrollingPage);
+        NSInteger page2 = page1 + 1;
+        
+        CGFloat percent1 = page2 - scrollingPage;
+        CGFloat percent2 = 1 - percent1;
+        
+        JXTagsViewTagModel *model1 = nil;
+        JXTagsViewTagModel *model2 = nil;
+        
+        if (page1 < self.tagModels.count) {
+            model1 = self.tagModels[page1];
+        }
+        if (page2 < self.tagModels.count) {
+            model2 = self.tagModels[page2];
+        }
+        
+        // 边界处理
+        if (!model1) {
+            percent2 = 1.0;
+        }
+        if (!model2) {
+            percent1 = 1.0;
+        }
+        
+        JX_BLOCK_EXEC(model1.zoomPercent, percent1);
+        JX_BLOCK_EXEC(model2.zoomPercent, percent2);
+    }
+}
+
 @end

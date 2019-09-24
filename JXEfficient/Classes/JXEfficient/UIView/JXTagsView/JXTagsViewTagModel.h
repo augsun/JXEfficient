@@ -32,11 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGFloat indicatorWidth;
 
-/* ============================== 上层读取 ============================== */
-/**
- 是否当前选中 上层不可修改
- */
-@property (nonatomic, assign) BOOL selected;
+/* ============================== 以下属性 上层读取 ============================== */
+@property (nonatomic, assign) BOOL selected; ///< 是否当前选中 上层不可修改
+
+/* ============================== 以下属性 上层实现 ============================== */
+@property (nonatomic, copy) void (^zoomPercent)(CGFloat percent); ///< 上层实现, tag 的缩放比例
 
 
 

@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, nullable) void (^didScrollToPage)(NSInteger page);
 
+@property (nonatomic, copy, nullable) void (^scrollingPage)(CGFloat scrollingPage); ///< 实时滚动回调
+
 @property (nonatomic, copy) __kindof UIView *(^viewForPage)(NSInteger page); ///< 向外部请求所在 tag 的 View, 必须实现.
 
 /**
