@@ -216,6 +216,8 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 
 - (void)selectTagIndex:(NSInteger)tagIndex animated:(BOOL)animated {
     if (tagIndex >= 0 && tagIndex < self.tagModels.count) {
+        NSInteger tagIndex_previous = self.tagIndex;
+        
         self.selectedModel.selected = NO;
         self.tagModels[tagIndex].selected = YES;
         self.selectedModel = self.tagModels[tagIndex];
@@ -225,8 +227,27 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
         if (self.jx_width > 0.0) {
             self.needHandle_jx_refreshUI_func = NO;
             
+            // 以下 m1 m2, 目前先使用 m1
+            // m1
             [self.collectionView reloadData];
+
+            // m2
+//            NSMutableArray <NSIndexPath *> *tempArr = nil;
+//            if (tagIndex_previous >= 0 && tagIndex_previous < self.tagModels.count) {
+//                tempArr = [[NSMutableArray alloc] init];
+//                [tempArr addObject:[NSIndexPath indexPathForItem:tagIndex_previous inSection:0]];
+//            }
+//            if (tagIndex >= 0 && tagIndex < self.tagModels.count) {
+//                if (!tempArr) {
+//                    tempArr = [[NSMutableArray alloc] init];
+//                }
+//                [tempArr addObject:[NSIndexPath indexPathForItem:tagIndex inSection:0]];
+//            }
+//            if (tempArr.count > 0) {
+//                [self.collectionView reloadItemsAtIndexPaths:tempArr];
+//            }
             
+            //
             [self jx_refreshUI_collectionView_contentOffset:animated];
             [self jx_refreshUI_indicator_LW:animated];
         }

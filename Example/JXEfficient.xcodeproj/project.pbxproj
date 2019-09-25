@@ -37,6 +37,7 @@
 		C85CF26522CC8EA0006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */; };
 		C85CF26622CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */; };
 		C867925322DDEC5300EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */; };
+		C8BE0BEA233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BE0BE9233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.m */; };
 		C8C0CCD522CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */; };
 		C8C0CCD622CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */; };
 		C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0CCD822CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m */; };
@@ -107,6 +108,8 @@
 		C85CF26222CC8E9F006EF8AB /* JXTestBaseVC_navi_subRight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_subRight_icon@2x.png"; sourceTree = "<group>"; };
 		C85CF26322CC8EA0006EF8AB /* JXTestBaseVC_navi_left_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTestBaseVC_navi_left_icon@2x.png"; sourceTree = "<group>"; };
 		C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JXTest_JXNaviView_VC_icon@2x.png"; sourceTree = "<group>"; };
+		C8BE0BE8233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXTagsGeneralView_VC.h; sourceTree = "<group>"; };
+		C8BE0BE9233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXTagsGeneralView_VC.m; sourceTree = "<group>"; };
 		C8C0CCD322CF196000FC14FD /* JXTest_JXCarouselView_VC_current.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_current.pdf; sourceTree = "<group>"; };
 		C8C0CCD422CF196000FC14FD /* JXTest_JXCarouselView_VC_normal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JXTest_JXCarouselView_VC_normal.pdf; sourceTree = "<group>"; };
 		C8C0CCD722CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXCarouselView_CustomView.h; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				C8BE0BE4233B1D09009EC913 /* JXTagsGeneralView */,
 				C8296E0F22E0079900C33089 /* JXPhotos */,
 				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
 				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
@@ -369,6 +373,39 @@
 				C85CF25F22CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m */,
 			);
 			path = JXPopupGeneralView;
+			sourceTree = "<group>";
+		};
+		C8BE0BE4233B1D09009EC913 /* JXTagsGeneralView */ = {
+			isa = PBXGroup;
+			children = (
+				C8BE0BE7233B1D27009EC913 /* Controller */,
+				C8BE0BE6233B1D24009EC913 /* Model */,
+				C8BE0BE5233B1D21009EC913 /* View */,
+			);
+			path = JXTagsGeneralView;
+			sourceTree = "<group>";
+		};
+		C8BE0BE5233B1D21009EC913 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8BE0BE6233B1D24009EC913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8BE0BE7233B1D27009EC913 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C8BE0BE8233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.h */,
+				C8BE0BE9233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		C8D0029122E028C4006D08A5 /* Controller */ = {
@@ -593,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C0CCD922CF1B1C00FC14FD /* JXTest_JXCarouselView_CustomView.m in Sources */,
+				C8BE0BEA233B1D47009EC913 /* JXTest_JXTagsGeneralView_VC.m in Sources */,
 				C84D2BA822DC1BBB00F10BC7 /* JXTest_JXCircularArcView_VC.m in Sources */,
 				C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */,
 				C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */,

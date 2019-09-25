@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL selected; ///< 是否当前选中 上层不可修改
 
 /* ============================== 以下属性 上层实现 ============================== */
-@property (nonatomic, copy) void (^zoomPercent)(CGFloat percent); ///< 上层实现, tag 的缩放比例
+@property (nonatomic, copy, nullable) void (^zoomPercent)(CGFloat percent); ///< 上层实现, tag 的缩放比例
 
 
 
