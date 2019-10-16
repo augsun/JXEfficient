@@ -463,28 +463,33 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 }
 
 - (void)jx_refreshUI_collectionView_contentOffset:(BOOL)animated {
-    JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
-    
-    //
-    CGFloat coll_edgeL = self.contentInset.left;
-    CGFloat coll_edgeR = self.contentInset.right;
-    
-    // 确定是否需要偏移
-    CGFloat total_w = self.tagModels.lastObject.tag_toL + self.tagModels.lastObject.tagWidth_showing + coll_edgeR;
-    CGFloat self_w = self.jx_width;
-    CGFloat half_self_w = self_w / 2.0;
-    
-    CGFloat center_x = tagModel.center_x;
-    CGFloat center_toL = center_x;
-    CGFloat center_toR = total_w - center_toL;
-    
-    CGFloat contentOffset_x = 0.0;
-    if (center_toL > half_self_w && center_toR > half_self_w)   { contentOffset_x = center_x - half_self_w; }
-    else if (center_toL < half_self_w)                          { contentOffset_x = 0.0; }
-    else if (center_toR < half_self_w)                          { contentOffset_x = total_w - self_w; }
-    
-    if (contentOffset_x >= 0.0) {
-        [self.collectionView setContentOffset:CGPointMake(contentOffset_x - coll_edgeL, 0.0) animated:animated];
+    if (self.tagModels.count > 0) {
+        JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
+        
+        //
+        CGFloat coll_edgeL = self.contentInset.left;
+        CGFloat coll_edgeR = self.contentInset.right;
+        
+        // 确定是否需要偏移
+        CGFloat total_w = self.tagModels.lastObject.tag_toL + self.tagModels.lastObject.tagWidth_showing + coll_edgeR;
+        CGFloat self_w = self.jx_width;
+        CGFloat half_self_w = self_w / 2.0;
+        
+        CGFloat center_x = tagModel.center_x;
+        CGFloat center_toL = center_x;
+        CGFloat center_toR = total_w - center_toL;
+        
+        CGFloat contentOffset_x = 0.0;
+        if (center_toL > half_self_w && center_toR > half_self_w)   { contentOffset_x = center_x - half_self_w; }
+        else if (center_toL < half_self_w)                          { contentOffset_x = 0.0; }
+        else if (center_toR < half_self_w)                          { contentOffset_x = total_w - self_w; }
+        
+        if (contentOffset_x >= 0.0) {
+            [self.collectionView setContentOffset:CGPointMake(contentOffset_x - coll_edgeL, 0.0) animated:animated];
+        }
+    }
+    else {
+        
     }
 }
 
@@ -492,28 +497,33 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
  刷新 indicatorView 的 L W 约束
  */
 - (void)jx_refreshUI_indicator_LW:(BOOL)animation {
-    JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
-    
-    CGFloat coll_edgeL = self.contentInset.left;
-    
-    CGFloat indicator_x_in_collectionView = tagModel.center_x - tagModel.indicatorWidth_showing / 2.0;
-    CGFloat indicator_x_in_self = indicator_x_in_collectionView - self.collectionView.contentOffset.x - coll_edgeL;
-    
-    if (animation && self.didRefreshIndicatorView) {
-        [self layoutIfNeeded];
-        self.indicatorView_toL.constant = indicator_x_in_self;
-        self.indicatorView_w.constant = tagModel.indicatorWidth_showing;
-        [UIView animateWithDuration:0.25 animations:^{
+    if (self.tagModels.count > 0) {
+        JXTagsViewTagModel *tagModel = self.tagModels[self.tagIndex];
+        
+        CGFloat coll_edgeL = self.contentInset.left;
+        
+        CGFloat indicator_x_in_collectionView = tagModel.center_x - tagModel.indicatorWidth_showing / 2.0;
+        CGFloat indicator_x_in_self = indicator_x_in_collectionView - self.collectionView.contentOffset.x - coll_edgeL;
+        
+        if (animation && self.didRefreshIndicatorView) {
             [self layoutIfNeeded];
-        }];
+            self.indicatorView_toL.constant = indicator_x_in_self;
+            self.indicatorView_w.constant = tagModel.indicatorWidth_showing;
+            [UIView animateWithDuration:0.25 animations:^{
+                [self layoutIfNeeded];
+            }];
+        }
+        else {
+            self.indicatorView_toL.constant = indicator_x_in_self;
+            self.indicatorView_w.constant = tagModel.indicatorWidth_showing;
+        }
+        
+        //
+        self.didRefreshIndicatorView = YES;
     }
     else {
-        self.indicatorView_toL.constant = indicator_x_in_self;
-        self.indicatorView_w.constant = tagModel.indicatorWidth_showing;
+        
     }
-    
-    //
-    self.didRefreshIndicatorView = YES;
 }
 
 #pragma mark - <UIScrollViewDelegate>
