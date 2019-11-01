@@ -128,10 +128,13 @@ static const CGFloat kDefaultPagesGap = 8.f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-#warning codersun
     if (self.previous_self_size.width == self.jx_width && self.previous_self_size.height == self.jx_height) {
         return;
     }
+    if (self.jx_width <= 0.0 || self.jx_height <= 0.0) {
+        return;
+    }
+    self.previous_self_size = self.jx_size;
     
     [self jx_relayout_bgView];
     [self jx_relayout_allDidAddedPages];
