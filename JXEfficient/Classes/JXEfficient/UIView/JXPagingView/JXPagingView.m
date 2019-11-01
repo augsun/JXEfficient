@@ -12,6 +12,22 @@
 
 static const CGFloat kDefaultPagesGap = 8.f;
 
+// ====================================================================================================
+
+@interface JXPagingViewAddedViewObject : NSObject
+
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong, nullable) UIView *view;
+@property (nonatomic, strong, nullable) NSLayoutConstraint *con_toL;
+
+@end
+
+@implementation JXPagingViewAddedViewObject
+
+@end
+
+// ====================================================================================================
+
 @interface JXPagingView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -23,17 +39,10 @@ static const CGFloat kDefaultPagesGap = 8.f;
 @property (nonatomic, assign) BOOL draggingTriggered; // 手动触发滚动标识
 @property (nonatomic, assign) NSInteger pages; ///< 总页数
 
-/**
- 用以确定指定的 page 是否添加过约束, 或对保存的距左约束进行调整
- 
- @discussion key 为 page 的 hash, value 为 page 距离 bgView 左边的约束.
- */
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSLayoutConstraint *> *page_toL_cons;
+/// 保存已经添加到 bgView 上的 page 所对应的 view 的状态.
+@property (nonatomic, strong) NSMutableDictionary <NSString *, JXPagingViewAddedViewObject *> *didAddedPages;
 
-/**
- 保存已经添加到 bgView 上的 page 所对应的 页号, 用以屏幕旋转或布局变化的情况下, 对其进行约束调整.
- */
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSString *> *didAddedPages;
+@property (nonatomic, assign) CGSize previous_self_size;
 
 @end
 
@@ -60,7 +69,7 @@ static const CGFloat kDefaultPagesGap = 8.f;
     
     _currentPage = NSIntegerMin;
     _pagesGap = kDefaultPagesGap;
-    self.page_toL_cons = [[NSMutableDictionary alloc] init];
+//    self.page_toL_cons = [[NSMutableDictionary alloc] init];
     self.didAddedPages = [[NSMutableDictionary alloc] init];
     
     // scrollView
@@ -119,6 +128,11 @@ static const CGFloat kDefaultPagesGap = 8.f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+#warning codersun
+    if (self.previous_self_size.width == self.jx_width && self.previous_self_size.height == self.jx_height) {
+        return;
+    }
+    
     [self jx_relayout_bgView];
     [self jx_relayout_allDidAddedPages];
     [self jx_relayout_scrollViewOffsetXWithAnimated:NO];
@@ -170,9 +184,14 @@ static const CGFloat kDefaultPagesGap = 8.f;
 
 // 重新布局所有已加到 bgView 上的 page
 - (void)jx_relayout_allDidAddedPages {
-    [self.didAddedPages enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-        NSInteger page = jx_intValue(key);
-        [self jx_relayout_page:page];
+    NSDictionary *didAddedPages_copy = [self.didAddedPages copy];
+    [didAddedPages_copy enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, JXPagingViewAddedViewObject * _Nonnull obj, BOOL * _Nonnull stop) {
+        if (obj.page >= self.pages) {
+            [self removeAddedViewObject:obj];
+        }
+        else {
+            [self jx_relayout_page:obj.page];
+        }
     }];
 }
 
@@ -183,38 +202,54 @@ static const CGFloat kDefaultPagesGap = 8.f;
     
     NSAssert(self.viewForPage != nil, JX_ASSERT_MSG(@"viewForPage 必须实现."));
 
-    // 保存当前添加到 bgView 上的 page
-    NSString *page_string = [NSString stringWithFormat:@"%ld", (long)page];
-    NSString *pageNum = [self.didAddedPages objectForKey:page_string];
-    if (!pageNum) {
-        [self.didAddedPages setObject:page_string forKey:page_string];
+    //
+    UIView *view = self.viewForPage(page);
+    if (view.superview != self.bgView) {
+        [self.bgView addSubview:view];
     }
     
-    UIView *view = self.viewForPage(page);
-    [self.bgView addSubview:view];
-    
+    //
     CGFloat toL = page * (self_w + pagesGap);
     
-    // 检查是否需要为 page 再次添加约束, 还是只调整约束
-    NSString *view_hash = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
-    NSLayoutConstraint *view_con_toL = [self.page_toL_cons objectForKey:view_hash];
-    if (view_con_toL) {
-        view_con_toL.constant = toL;
+    // 获取当前 page 下的 addedViewObject
+    NSString *page_string = [NSString stringWithFormat:@"%ld", (long)page];
+    JXPagingViewAddedViewObject *addedViewObject = [self.didAddedPages objectForKey:page_string];
+    
+    // 没有 page 下的 addedViewObject, 则创建一个
+    if (!addedViewObject) {
+        addedViewObject = [[JXPagingViewAddedViewObject alloc] init];
+        addedViewObject.page = page;
+        [self.didAddedPages setObject:addedViewObject forKey:page_string];
     }
+    
+    // addedViewObject 下的 view 与 将要布局的 view 相同, 则更新 con_toL
+    if (addedViewObject.view == view) {
+        addedViewObject.con_toL.constant = toL;
+    }
+    // addedViewObject 下的 view 与 将要布局的 view 不同, 则移除记录在 addedViewObject 下的 view 的状态, 并绑定为当前将要布局的 view.
     else {
-        view_con_toL = [view jx_con_same:NSLayoutAttributeLeft equal:self.bgView m:1.0 c:toL];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-        [NSLayoutConstraint activateConstraints:@[
-                                                  [view jx_con_same:NSLayoutAttributeTop equal:self.bgView m:1.0 c:0],
-                                                  view_con_toL,
-                                                  [view jx_con_same:NSLayoutAttributeBottom equal:self.bgView m:1.0 c:0],
-                                                  [view jx_con_same:NSLayoutAttributeCenterY equal:self.bgView m:1.0 c:0],
-                                                  [view jx_con_same:NSLayoutAttributeWidth equal:self m:1.0 c:0],
-                                                  ]];
-        
-        // 标记当前 page 为已添加过约束
-        [self.page_toL_cons setObject:view_con_toL forKey:view_hash];
+        [self removeAddedViewObject:addedViewObject];
+        [self updateAddedViewObject:addedViewObject view:view toL:toL];
     }
+}
+
+- (void)removeAddedViewObject:(JXPagingViewAddedViewObject *)addedViewObject {
+    [addedViewObject.view removeFromSuperview];
+    addedViewObject.view = nil;
+    addedViewObject.con_toL = nil;
+}
+
+- (void)updateAddedViewObject:(JXPagingViewAddedViewObject *)addedViewObject view:(UIView *)view toL:(CGFloat)toL {
+    addedViewObject.con_toL = [view jx_con_same:NSLayoutAttributeLeft equal:self.bgView m:1.0 c:toL];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+                                              [view jx_con_same:NSLayoutAttributeTop equal:self.bgView m:1.0 c:0],
+                                              addedViewObject.con_toL,
+                                              [view jx_con_same:NSLayoutAttributeBottom equal:self.bgView m:1.0 c:0],
+                                              [view jx_con_same:NSLayoutAttributeCenterY equal:self.bgView m:1.0 c:0],
+                                              [view jx_con_same:NSLayoutAttributeWidth equal:self m:1.0 c:0],
+                                              ]];
+    addedViewObject.view = view;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -253,6 +288,7 @@ static const CGFloat kDefaultPagesGap = 8.f;
 
 - (void)resetPaging {
     [self.bgView jx_removeAllSubviews];
+    [self.didAddedPages removeAllObjects];
     self.scrollView.bounces = NO;
 }
 
