@@ -84,6 +84,16 @@
     return [formatter stringFromNumber:@(num)];
 }
 
++ (NSString *)jx_priceTwoFractionDigitsString:(CGFloat)num {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.minimumIntegerDigits = 1;
+    formatter.maximumFractionDigits = 2;
+    formatter.minimumFractionDigits = 2;
+    formatter.positivePrefix = @"¥";
+    formatter.negativePrefix = @"¥";
+    return [formatter stringFromNumber:@(num)];
+}
+
 + (NSString *)jx_priceStyleString:(CGFloat)num {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.minimumIntegerDigits = 1;

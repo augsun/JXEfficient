@@ -44,6 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)jx_priceString:(CGFloat)num;
 
 /**
+ 123456.40 -> ￥123456.40 添加人民币符号(强制两位小数)
+ */
++ (NSString *)jx_priceTwoFractionDigitsString:(CGFloat)num;
+
+/**
  123456.40 -> ￥123456.4 自动去除无效小数点位 & 添加人民币符号
  */
 + (NSString *)jx_priceStyleString:(CGFloat)num;
