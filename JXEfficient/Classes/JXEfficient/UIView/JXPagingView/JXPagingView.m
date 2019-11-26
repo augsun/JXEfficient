@@ -30,7 +30,6 @@ static const CGFloat kDefaultPagesGap = 8.f;
 
 @interface JXPagingView () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *bgView;
 
 @property (nonatomic, strong) NSLayoutConstraint *scrollView_toR;
@@ -73,7 +72,7 @@ static const CGFloat kDefaultPagesGap = 8.f;
     self.didAddedPages = [[NSMutableDictionary alloc] init];
     
     // scrollView
-    self.scrollView = [[UIScrollView alloc] init];
+    _scrollView = [[UIScrollView alloc] init];
     [self addSubview:self.scrollView];
     self.scrollView_toR = [self.scrollView jx_con_same:NSLayoutAttributeRight equal:self m:1.0 c:self.pagesGap];
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;

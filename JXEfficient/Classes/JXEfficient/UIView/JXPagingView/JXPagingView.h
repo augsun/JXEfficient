@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface JXPagingView : UIView
 
+@property (nonatomic, readonly) UIScrollView *scrollView;
+
 @property (nonatomic, assign) CGFloat pagesGap; ///< 页面之间的间隙, 默认 8pt, 值应大等于 0.0
 @property (nonatomic, readonly) NSInteger currentPage; ///< 当前页
 @property (nonatomic, copy) NSUInteger (^pagesForPaging)(void); ///< 返回 paging 的页数, 必须实现.
