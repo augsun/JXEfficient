@@ -53,6 +53,21 @@
     return result;
 }
 
++ (NSString *)randomASCII33To126StringOfLength:(NSUInteger)length {
+    if (length < 1) {
+        return nil;
+    }
+    
+    NSMutableString *temp_m_str = [[NSMutableString alloc] init];
+    for (NSInteger i = 0; i < length; i ++) {
+        int c = (int)[JXChowder randomUIntegerFrom:33 to:126];
+        char *c_str = (char *)(&c);
+        NSString *ns_str = [NSString stringWithCString:c_str encoding:NSUTF8StringEncoding];
+        [temp_m_str appendString:ns_str];
+    }
+    return temp_m_str;
+}
+
 + (NSString *)deviceModel {
     static NSString *machine = nil;
     if (!machine) {

@@ -42,12 +42,20 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSUInteger)randomUIntegerFrom:(NSUInteger)from to:(NSUInteger)to;
 
 /**
- 随机生成字符串
+ 随机生成字符串 (0-9 | a-z | A-Z)
 
- @param length 长度
+ @param length 长度(>0)
  @return 生成的字符串
  */
 + (nullable NSString *)randomStringOfLength:(NSUInteger)length;
+
+/**
+ 随机生成 ascii[33, 126] 字符串
+
+ @param length 长度(>0)
+ @return 生成的字符串
+ */
++ (nullable NSString *)randomASCII33To126StringOfLength:(NSUInteger)length;
 
 /**
  获取设备型号
