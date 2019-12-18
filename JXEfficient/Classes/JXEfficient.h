@@ -25,6 +25,7 @@
 #import "NSString+JXCategory_URLString.h"
 #import "UITableView+JXCategory.h"
 #import "NSDate+JXCategory.h"
+#import "NSDateFormatter+JXCategory.h"
 #import "UIViewController+JXCategory.h"
 #import "UIColor+JXCategory.h"
 #import "NSLayoutConstraint+JXCategory.h"

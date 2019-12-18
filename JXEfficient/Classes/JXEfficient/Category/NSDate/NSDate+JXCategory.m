@@ -8,9 +8,13 @@
 
 #import "NSDate+JXCategory.h"
 #import "JXMacro.h"
+#import "NSDateFormatter+JXCategory.h"
 
 NSString *const JXDefaultFormat = @"yyyy-MM-dd HH:mm:ss";
 NSString *const JXDotFormat = @"yyyy.MM.dd HH:mm:ss";
+
+NSString *const JXDateDefaultFormat = @"yyyy-MM-dd HH:mm:ss";
+NSString *const JXDateDotFormat = @"yyyy.MM.dd HH:mm:ss";
 
 @implementation NSDate (JXCategory)
 
@@ -28,8 +32,8 @@ NSString *const JXDotFormat = @"yyyy.MM.dd HH:mm:ss";
 }
 
 - (NSString *)jx_stringByFormat:(NSString *)dateFormat {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:dateFormat ? dateFormat : JXDefaultFormat];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
+    [dateFormatter setDateFormat:dateFormat ? dateFormat : JXDateDefaultFormat];
     return [dateFormatter stringFromDate:self];
 }
 
@@ -37,8 +41,8 @@ NSString *const JXDotFormat = @"yyyy.MM.dd HH:mm:ss";
     if (!string) {
         return nil;
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-    [dateFormatter setDateFormat:format ? format : JXDefaultFormat];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
+    [dateFormatter setDateFormat:format ? format : JXDateDefaultFormat];
     return [dateFormatter dateFromString:string];
 }
 
@@ -73,33 +77,34 @@ NSString *const JXDotFormat = @"yyyy.MM.dd HH:mm:ss";
 }
 
 - (NSString *)jx_year {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     [dateFormatter setDateFormat:@"yyyy"];
     return [dateFormatter stringFromDate:self];
 }
 
 - (NSString *)jx_month {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     [dateFormatter setDateFormat:@"MM"];
     return [dateFormatter stringFromDate:self];
 }
 
 - (NSString *)jx_day {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     [dateFormatter setDateFormat:@"dd"];
     return [dateFormatter stringFromDate:self];
 }
 
 - (NSString *)jx_week {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     [dateFormatter setDateFormat:@"EEEE"];
     return [dateFormatter stringFromDate:self];
 }
 
 + (NSInteger)jx_daysInYearMonth:(NSString *)yearMonth {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     [dateFormatter setDateFormat:@"yyyy/MM"];
-    return [[NSCalendar autoupdatingCurrentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[dateFormatter dateFromString:yearMonth]].length;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    return [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[dateFormatter dateFromString:yearMonth]].length;
 }
 
 + (NSString *)jx_dateUnexactMax:(NSUInteger)unexactMax
@@ -114,7 +119,7 @@ NSString *const JXDotFormat = @"yyyy.MM.dd HH:mm:ss";
     }
     
     //
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter jx_chinaFormatter];
     dateFormatter.dateFormat = formDateFormat;
     NSDate *fromDate = [dateFormatter dateFromString:formDateString];
     if (!fromDate) {
