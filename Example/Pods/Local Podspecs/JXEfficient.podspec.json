@@ -1,6 +1,6 @@
 {
   "name": "JXEfficient",
-  "version": "0.5.43",
+  "version": "0.5.47",
   "summary": "A short description of JXEfficient.",
   "description": "Efficient libraries for iOS development.",
   "homepage": "https://github.com/augsun",
@@ -13,12 +13,15 @@
   },
   "source": {
     "git": "https://github.com/augsun/JXEfficient.git",
-    "tag": "0.5.43"
+    "tag": "0.5.47"
   },
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "JXEfficient/Classes/**/*.{h,m}",
+  "resource_bundles": {
+    "JXEfficient": "JXEfficient/Classes/**/*.{xib,pdf,png}"
+  },
   "frameworks": [
     "UIKit",
     "Foundation",

@@ -47,6 +47,8 @@
 #import "JXPhotos.h"
 #import "JXPhotosLayoutView.h"
 
+#import "JXPhotosGeneral.h"
+
 // UIView
 #import "JXQRCodeScanView.h"                // 二维码扫描
 #import "JXImageBrowser.h"                  // 图片浏览器

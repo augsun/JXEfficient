@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JXEfficient'
-  s.version          = '0.5.47'
+  s.version          = '0.5.48'
   s.summary          = 'A short description of JXEfficient.'
 
 # This description is used to generate tags and improve search results.
@@ -29,9 +29,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'JXEfficient/Classes/**/*.{h,m}'
-  #s.resource_bundles = {
-  #  'JXEfficient' => 'JXEfficient/Classes/**/*.{xib,pdf,png}'
-  #}
+  s.resource_bundles = {
+    'JXEfficient' => 'JXEfficient/Classes/**/*.{xib,pdf,png}'
+  }
 
   s.frameworks = 'UIKit', 'Foundation', 'Security', 'CoreLocation'
 

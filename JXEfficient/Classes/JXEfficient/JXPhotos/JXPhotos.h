@@ -12,6 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// JXPhotos 为上层封装相册提供常用 API.
 @interface JXPhotos : NSObject
 
 + (PHAuthorizationStatus)authorizationStatus; ///< 获取相册权限

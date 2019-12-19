@@ -46,6 +46,7 @@
 		C8D0029022E02835006D08A5 /* JXTest_JXPhotos_View.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0028F22E02835006D08A5 /* JXTest_JXPhotos_View.m */; };
 		C8D0029922E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D0029822E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m */; };
 		C8E3330D22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E3330C22DCD45D00CC7C11 /* JXTest_JXNaviView_VC.m */; };
+		F3FA5BD923AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FA5BD823AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 		D0145AC06A7BB82B287DDE9B /* Pods-JXEfficient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient/Pods-JXEfficient.release.xcconfig"; sourceTree = "<group>"; };
 		D89E0A1F09B8F94CE9D6CB0A /* Pods-JXEfficient_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F040665E92E59B1F9E86B73D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F3FA5BD723AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXPhotosGeneral_VC.h; sourceTree = "<group>"; };
+		F3FA5BD823AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXPhotosGeneral_VC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +359,7 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
+				F3FA5BD323AB5E1D00DC4A87 /* JXPhotosGeneral */,
 				C8BE0BE4233B1D09009EC913 /* JXTagsGeneralView */,
 				C8296E0F22E0079900C33089 /* JXPhotos */,
 				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
@@ -444,6 +448,39 @@
 				C867925222DDEC5200EC1A32 /* JXTest_JXNaviView_VC_icon@2x.png */,
 			);
 			path = JXNaviView;
+			sourceTree = "<group>";
+		};
+		F3FA5BD323AB5E1D00DC4A87 /* JXPhotosGeneral */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA5BD623AB5E3D00DC4A87 /* Controller */,
+				F3FA5BD523AB5E3A00DC4A87 /* Model */,
+				F3FA5BD423AB5E3800DC4A87 /* View */,
+			);
+			path = JXPhotosGeneral;
+			sourceTree = "<group>";
+		};
+		F3FA5BD423AB5E3800DC4A87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3FA5BD523AB5E3A00DC4A87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F3FA5BD623AB5E3D00DC4A87 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA5BD723AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.h */,
+				F3FA5BD823AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -635,6 +672,7 @@
 				C8C0CCDC22CF1B3000FC14FD /* JXTest_JXCarouselView_CustomModel.m in Sources */,
 				C85CF25822CC827A006EF8AB /* JXTestHomeModel.m in Sources */,
 				C840284F22CF0CD70010BB22 /* JXTest_JXCarouselView_VC.m in Sources */,
+				F3FA5BD923AB5E5E00DC4A87 /* JXTest_JXPhotosGeneral_VC.m in Sources */,
 				C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */,
 				C8D0028D22E0274C006D08A5 /* JXTest_JXPhotos_VC.m in Sources */,
 				C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */,

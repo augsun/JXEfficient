@@ -1,5 +1,5 @@
 //
-//  MCCoreDataManager.h
+//  JXCoreData.h
 //  JXEfficient
 //
 //  Created by augsun on 1/4/19.
