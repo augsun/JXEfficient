@@ -33,10 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param assetClass JXPhotosAsset 类 或其子类, 默认 JXPhotosAsset
  @return 获取的 JXPhotosAssetCollection 实例
  */
-+ (NSArray <__kindof JXPhotosAssetCollection *> *)fetchImageAssetCollectionsWithFetchOptions:(nullable PHFetchOptions *)fetchOptions
-                                                                         imageRequestOptions:(nullable PHImageRequestOptions *)imageRequestOptions
-                                                                        assetCollectionClass:(nullable Class)assetCollectionClass
-                                                                                  assetClass:(nullable Class)assetClass;
++ (nullable NSArray <__kindof JXPhotosAssetCollection *> *)fetchImageAssetCollectionsWithFetchOptions:(nullable PHFetchOptions *)fetchOptions
+                                                                                  imageRequestOptions:(nullable PHImageRequestOptions *)imageRequestOptions
+                                                                                 assetCollectionClass:(nullable Class)assetCollectionClass
+                                                                                           assetClass:(nullable Class)assetClass;
 
 /**
  获取图片

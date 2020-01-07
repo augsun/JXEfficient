@@ -131,6 +131,56 @@
     return newText;
 }
 
++ (NSString *)jx_hexString:(NSString *)string {
+    if (string == nil || string.length == 0) {
+        return nil;
+    }
+
+    NSData *myD = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSUInteger len = myD.length;
+    if (myD == nil || len == 0) {
+        return nil;
+    }
+    
+    Byte *bytes = (Byte *)myD.bytes;
+
+    NSMutableString *temp_str = [[NSMutableString alloc] init];
+
+    for (int i = 0; i < len; i ++) {
+        NSString *hex_str = [NSString stringWithFormat:@"%x", bytes[i] & 0xff];
+        if (hex_str.length == 1) {
+            [temp_str appendString:[NSString stringWithFormat:@"0%@", hex_str]];
+        }
+        else {
+            [temp_str appendString:hex_str];
+        }
+    }
+    return temp_str;
+}
+
++ (NSString *)jx_stringFromHexString:(NSString *)hexString {
+    if (hexString == nil || hexString.length == 0) {
+        return nil;
+    }
+    
+    // 当单个字符(0x00 - 0x0f)情况, 即 @"0" - @"f" 传入时
+    if (hexString.length == 1) {
+        hexString = [NSString stringWithFormat:@"0%@", hexString];
+    }
+
+    char *bf = (char *)malloc((int)hexString.length / 2 + 1);
+    bzero(bf, hexString.length / 2 + 1);
+    for (int i = 0; i < hexString.length - 1; i += 2) {
+        unsigned int anInt;
+        NSString *hex_str = [hexString substringWithRange:NSMakeRange(i, 2)];
+        NSScanner *s = [[NSScanner alloc] initWithString:hex_str];
+        [s scanHexInt: &anInt];
+        bf[i / 2] = (char)anInt;
+    }
+    NSString *aString = [NSString stringWithCString:bf encoding:NSUTF8StringEncoding];
+    return aString;
+}
+
 @end
 
 

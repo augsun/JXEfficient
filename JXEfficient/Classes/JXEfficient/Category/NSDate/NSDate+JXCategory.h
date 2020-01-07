@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-UIKIT_EXTERN NSString *const JXDefaultFormat __deprecated_msg("即将废弃, 请使用 JXDateDefaultFormat."); ///< Default is @"yyyy-MM-dd HH:mm:ss".
-UIKIT_EXTERN NSString *const JXDotFormat __deprecated_msg("即将废弃, 请使用 JXDateDotFormat.");
+UIKIT_EXTERN NSString *const JXDefaultFormat __deprecated_msg("已废弃, 请使用 JXDateDefaultFormat."); ///< yyyy-MM-dd HH:mm:ss
+UIKIT_EXTERN NSString *const JXDotFormat __deprecated_msg("已废弃, 请使用 JXDateDotFormat."); ///< yyyy.MM.dd HH:mm:ss
 
-UIKIT_EXTERN NSString *const JXDateDefaultFormat; ///< Default is @"yyyy-MM-dd HH:mm:ss".
-UIKIT_EXTERN NSString *const JXDateDotFormat;
+UIKIT_EXTERN NSString *const JXDateDefaultFormat; ///< yyyy-MM-dd HH:mm:ss
+UIKIT_EXTERN NSString *const JXDateDotFormat; ///< yyyy.MM.dd HH:mm:ss
 
 @interface NSDate (JXCategory)
 

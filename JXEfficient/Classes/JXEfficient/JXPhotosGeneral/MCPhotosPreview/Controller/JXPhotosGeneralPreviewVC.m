@@ -299,7 +299,7 @@ typedef NS_ENUM(NSUInteger, JXPhotosGeneralPreviewIn) {
                             toIndex = self.tagModels.count - 1;
                         }
                     }
-                    else if (self.previewIn == JXPhotosGeneralPreviewInSelectedAssets) { // 该情况下不会增删 sel 只需要刷新
+                    else if (self.previewIn == JXPhotosGeneralPreviewInSelectedAssets && theModelHave) { // 该情况下不会增删 sel 只需要刷新
                         toIndex = [self.tagModels indexOfObject:theModelHave];
                     }
                     

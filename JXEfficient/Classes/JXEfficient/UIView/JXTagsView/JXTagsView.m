@@ -216,7 +216,7 @@ static const CGFloat k_percentForForceZoomOutLayout_max = 0.5;
 
 - (void)selectTagIndex:(NSInteger)tagIndex animated:(BOOL)animated {
     if (tagIndex >= 0 && tagIndex < self.tagModels.count) {
-        NSInteger tagIndex_previous = self.tagIndex;
+//        NSInteger tagIndex_previous = self.tagIndex; // m2 使用
         
         self.selectedModel.selected = NO;
         self.tagModels[tagIndex].selected = YES;

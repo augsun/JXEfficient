@@ -53,6 +53,21 @@
     return result;
 }
 
++ (NSString *)randomHexStringOfLength:(NSUInteger)length {
+    if (length == 0) {
+        return nil;
+    }
+    NSString *str_table = @"0123456789abcdef";
+    NSMutableString * result = [[NSMutableString alloc] initWithCapacity:length];
+    for (int i = 0; i < length; i ++) {
+        NSInteger index = arc4random() % (str_table.length - 1);
+        char c = [str_table characterAtIndex:index];
+        NSString *char_str = [NSString stringWithFormat:@"%c", c];
+        [result appendString:char_str];
+    }
+    return result;
+}
+
 + (NSString *)randomASCII33To126StringOfLength:(NSUInteger)length {
     if (length < 1) {
         return nil;

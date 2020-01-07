@@ -110,6 +110,10 @@
 
 #define JX_ASSERT_MSG(assertMsg)        [NSString stringWithFormat:@"%@: %@", NSStringFromClass([self class]), assertMsg]
 
+#define JX_PROPERTY_STRONG              @property (nonatomic, copy)
+#define JX_PROPERTY_COPY                @property (nonatomic, copy)
+#define JX_PROPERTY_ASSIGN              @property (nonatomic, assign)
+
 @interface JXMacro : NSObject
 
 @end

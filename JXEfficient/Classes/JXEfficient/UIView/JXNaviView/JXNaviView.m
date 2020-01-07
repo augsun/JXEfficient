@@ -333,11 +333,11 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
     if (self.subRight_is_title) {
         NSString *subRightButtonTitle = self.subRightButtonTitle ? self.subRightButtonTitle : self.rightSubButtonTitle;
         if (self.bgColorStyle) {
-            self.subRightItem.title = self.subRightButtonTitle;
+            self.subRightItem.title = subRightButtonTitle;
             self.subRightItem.color = [UIColor whiteColor];
         }
         else {
-            self.subRightItem.title = self.subRightButtonTitle;
+            self.subRightItem.title = subRightButtonTitle;
             self.subRightItem.color = nil;
         }
     }

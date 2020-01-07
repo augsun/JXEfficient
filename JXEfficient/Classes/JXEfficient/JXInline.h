@@ -31,7 +31,7 @@ static JX_ALWAYS_INLINE BOOL jx_isNullOrNil(id _Nullable obj) {
  @param obj 传入的实例
  @return 是否 NSString
  */
-static JX_ALWAYS_INLINE BOOL jx_isStrObj(id obj) {
+static JX_ALWAYS_INLINE BOOL jx_isStrObj(id _Nullable obj) {
     return [obj isKindOfClass:[NSString class]];
 }
 
@@ -41,7 +41,7 @@ static JX_ALWAYS_INLINE BOOL jx_isStrObj(id obj) {
  @param obj 传入的实例
  @return 是否 NSNumber
  */
-static JX_ALWAYS_INLINE BOOL jx_isNumObj(id obj) {
+static JX_ALWAYS_INLINE BOOL jx_isNumObj(id _Nullable obj) {
     return [obj isKindOfClass:[NSNumber class]];
 }
 
@@ -51,7 +51,7 @@ static JX_ALWAYS_INLINE BOOL jx_isNumObj(id obj) {
  @param obj 传入的实例
  @return 是否是 NSString 或 NSNumber
  */
-static JX_ALWAYS_INLINE BOOL jx_isStrOrNumObj(id obj) {
+static JX_ALWAYS_INLINE BOOL jx_isStrOrNumObj(id _Nullable obj) {
     return jx_isStrObj(obj) || jx_isNumObj(obj);
 }
 
@@ -61,7 +61,7 @@ static JX_ALWAYS_INLINE BOOL jx_isStrOrNumObj(id obj) {
  @param obj 传入的实例
  @return 是否 NSDictionary
  */
-static JX_ALWAYS_INLINE BOOL jx_isDicObj(id obj) {
+static JX_ALWAYS_INLINE BOOL jx_isDicObj(id _Nullable obj) {
     return [obj isKindOfClass:[NSDictionary class]];
 }
 
@@ -71,7 +71,7 @@ static JX_ALWAYS_INLINE BOOL jx_isDicObj(id obj) {
  @param obj 传入的实例
  @return 是否 NSArray
  */
-static JX_ALWAYS_INLINE BOOL jx_isArrObj(id obj) {
+static JX_ALWAYS_INLINE BOOL jx_isArrObj(id _Nullable obj) {
     return [obj isKindOfClass:[NSArray class]];
 }
 
@@ -84,7 +84,7 @@ static JX_ALWAYS_INLINE BOOL jx_isArrObj(id obj) {
  @param value 传入的实例
  @return 转 NSString
  */
-static JX_ALWAYS_INLINE NSString * _Nullable jx_strValue(id value) {
+static JX_ALWAYS_INLINE NSString * _Nullable jx_strValue(id _Nullable value) {
     return jx_isStrOrNumObj(value) ? [NSString stringWithFormat:@"%@", value] : nil;
 }
 
@@ -95,7 +95,7 @@ static JX_ALWAYS_INLINE NSString * _Nullable jx_strValue(id value) {
  @param value1 参数2 <NSString or NSNumber>
  @return 返回拼接后的字符串
  */
-static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat2(id value0, id value1) {
+static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat2(id _Nullable value0, id _Nullable value1) {
     NSString *str0 = jx_strValue(value0);
     NSString *str1 = jx_strValue(value1);
     if (!str0 && !str1) {
@@ -114,7 +114,7 @@ static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat2(id value0, id value1) {
  @param value2 参数3 <NSString or NSNumber>
  @return 返回拼接后的字符串
  */
-static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat3(id value0, id value1, id value2) {
+static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat3(id _Nullable value0, id _Nullable value1, id _Nullable value2) {
     return jx_strCat2(jx_strCat2(value0, value1), value2);
 }
 
@@ -124,7 +124,7 @@ static JX_ALWAYS_INLINE NSString * _Nullable jx_strCat3(id value0, id value1, id
  @param value 传入参数 <NSString or NSNumber>
  @return 返回 NSInteger
  */
-static JX_ALWAYS_INLINE NSInteger jx_intValue(id value) {
+static JX_ALWAYS_INLINE NSInteger jx_intValue(id _Nullable value) {
     return jx_isStrOrNumObj(value) ? [value integerValue] : 0;
 }
 
@@ -134,7 +134,7 @@ static JX_ALWAYS_INLINE NSInteger jx_intValue(id value) {
  @param value 传入参数 <NSString or NSNumber>
  @return 返回 NSUInteger
  */
-static JX_ALWAYS_INLINE NSUInteger jx_uIntValue(id value) {
+static JX_ALWAYS_INLINE NSUInteger jx_uIntValue(id _Nullable value) {
     NSInteger num = jx_intValue(value); return num < 0 ? 0 : num;
 }
 
@@ -144,7 +144,7 @@ static JX_ALWAYS_INLINE NSUInteger jx_uIntValue(id value) {
  @param value 传入参数 <NSString or NSNumber>
  @return 返回 long long
  */
-static JX_ALWAYS_INLINE long long jx_longlongValue(id value) {
+static JX_ALWAYS_INLINE long long jx_longlongValue(id _Nullable value) {
     return jx_isStrOrNumObj(value) ? [value longLongValue] : 0;
 }
 
@@ -154,7 +154,7 @@ static JX_ALWAYS_INLINE long long jx_longlongValue(id value) {
  @param value 传入参数 <NSString or NSNumber>
  @return 返回 CGFloat
  */
-static JX_ALWAYS_INLINE CGFloat jx_floValue(id value) {
+static JX_ALWAYS_INLINE CGFloat jx_floValue(id _Nullable value) {
     return jx_isStrOrNumObj(value) ? [value floatValue] : 0;
 }
 
@@ -164,7 +164,7 @@ static JX_ALWAYS_INLINE CGFloat jx_floValue(id value) {
  @param value 传入参数 <NSString or NSNumber>
  @return 返回 BOOL
  */
-static JX_ALWAYS_INLINE BOOL jx_booValue(id value) {
+static JX_ALWAYS_INLINE BOOL jx_booValue(id _Nullable value) {
     return jx_isStrOrNumObj(value) ? [value boolValue] : 0;
 }
 
@@ -174,7 +174,7 @@ static JX_ALWAYS_INLINE BOOL jx_booValue(id value) {
  @param value 传入参数
  @return 返回 NSDictionary
  */
-static JX_ALWAYS_INLINE NSDictionary * _Nullable jx_dicValue(id value) {
+static JX_ALWAYS_INLINE NSDictionary * _Nullable jx_dicValue(id _Nullable value) {
     return jx_isDicObj(value) ? value : nil;
 }
 
@@ -184,7 +184,7 @@ static JX_ALWAYS_INLINE NSDictionary * _Nullable jx_dicValue(id value) {
  @param value 传入参数
  @return 返回 NSArray
  */
-static JX_ALWAYS_INLINE NSArray * _Nullable jx_arrValue(id value) {
+static JX_ALWAYS_INLINE NSArray * _Nullable jx_arrValue(id _Nullable value) {
     return jx_isArrObj(value) ? value : nil;
 }
 
@@ -197,7 +197,7 @@ static JX_ALWAYS_INLINE NSArray * _Nullable jx_arrValue(id value) {
  @param string 字符串参数
  @return 返回 是否包含中文
  */
-static inline BOOL jx_isHaveChinese(NSString *string) {
+static inline BOOL jx_isHaveChinese(NSString * _Nullable string) {
     BOOL have = NO;
     if (jx_isStrObj(string)) {
         for(int i = 0; i < string.length; i++){
@@ -218,7 +218,7 @@ static inline BOOL jx_isHaveChinese(NSString *string) {
  @param value 传入参数
  @return 返回 URL
  */
-static inline NSURL * _Nullable jx_URLValue(id value) {
+static inline NSURL * _Nullable jx_URLValue(id _Nullable value) {
     NSURL *tempURL = nil;
     if ([value isKindOfClass:[NSURL class]]) {
         tempURL = (NSURL *)value;
@@ -248,7 +248,7 @@ static inline NSURL * _Nullable jx_URLValue(id value) {
  @param value 传入参数
  @return 返回 URLString
  */
-static inline NSString * _Nullable jx_URLStringValue(id value) {
+static inline NSString * _Nullable jx_URLStringValue(id _Nullable value) {
     NSString *tempURLString = nil;
     if ([value isKindOfClass:[NSURL class]]) {
         NSURL *URL = (NSURL *)value;
@@ -275,7 +275,7 @@ static NSString *const jx_kPercentEncodingCharacters = @"!*'();:@&=+$,/?%#[]^\"`
  @param value 传入参数
  @return 返回编码过的字符串
  */
-static inline NSString * _Nullable jx_URLEncodedString(id value) {
+static inline NSString * _Nullable jx_URLEncodedString(id _Nullable value) {
     NSString *tempEncoded = nil;
     if ([value isKindOfClass:[NSURL class]]) {
         NSURL *URL = (NSURL *)value;
@@ -299,7 +299,7 @@ static inline NSString * _Nullable jx_URLEncodedString(id value) {
  @param value 传入参数
  @return 返回解码过的字符串
  */
-static inline NSString * _Nullable jx_URLDecodedString(id value) {
+static inline NSString * _Nullable jx_URLDecodedString(id _Nullable value) {
     NSString *tempDecoded = nil;
     if ([value isKindOfClass:[NSURL class]]) {
         NSURL *URL = (NSURL *)value;

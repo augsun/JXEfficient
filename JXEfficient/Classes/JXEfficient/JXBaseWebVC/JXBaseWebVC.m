@@ -228,7 +228,7 @@ static NSString *const js_closeWebPage = @"closeWebPage"; ///< 关闭页面
     //
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
     NSInteger statusCode = response.statusCode;
-    if (statusCode >= 200 && statusCode < 300) {
+    if (statusCode >= 200 && statusCode < 400) {
         !decisionHandler ? : decisionHandler(WKNavigationResponsePolicyAllow);
     }
     else {

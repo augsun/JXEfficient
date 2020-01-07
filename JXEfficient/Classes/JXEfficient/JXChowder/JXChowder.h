@@ -50,6 +50,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)randomStringOfLength:(NSUInteger)length;
 
 /**
+ 随机生成十六进制字符串 (0-9 | a-f )
+
+ @param length 长度(>0)
+ @return 生成的字符串
+ */
++ (nullable NSString *)randomHexStringOfLength:(NSUInteger)length;
+
+/**
  随机生成 ascii[33, 126] 字符串
 
  @param length 长度(>0)

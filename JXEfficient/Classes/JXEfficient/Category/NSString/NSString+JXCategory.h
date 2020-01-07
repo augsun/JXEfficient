@@ -66,6 +66,14 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark 其它
 - (NSString *)jx_stringByTrimmingWhitespaceAndNewlineCharacter; ///< 修剪掉 前后 空格和回车
 
+/// 转十六进制字符串 (@"jack" -> @"6a61636b")
+/// @param string 字符串
++ (nullable NSString *)jx_hexString:(NSString *)string;
+
+/// 十六进制字符串转字符串 (@"6a61636b" -> @"jack")
+/// @param hexString 十六进制字符串
++ (nullable NSString *)jx_stringFromHexString:(NSString *)hexString;
+
 @end
 
 NS_ASSUME_NONNULL_END

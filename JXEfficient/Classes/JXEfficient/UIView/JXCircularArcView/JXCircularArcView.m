@@ -77,7 +77,6 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 
 - (void)setArcPosition:(JXCircularArcViewArcPosition)arcPosition {
     if (_arcPosition != arcPosition) {
-        _arcPosition = arcPosition;
         
         if (arcPosition != JXCircularArcViewArcPositionTop &&
             arcPosition != JXCircularArcViewArcPositionLeft &&
@@ -89,6 +88,9 @@ static const CGFloat k_arcMigration_default = 20.0; ///< 默认 弧偏移
 #endif
             arcPosition = JXCircularArcViewArcPositionBottom;
         }
+        
+        _arcPosition = arcPosition;
+
         [self setNeedsLayout];
     }
 }
