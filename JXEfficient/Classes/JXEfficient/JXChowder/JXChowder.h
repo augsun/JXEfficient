@@ -74,6 +74,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable NSString *)appName; ///< 获取 APP 显示名称 <CFBundleDisplayName>
 
+/// 清除 WKWeb 所有缓存
++ (void)clearWKWebsiteData;
+
 @end
 
 NS_ASSUME_NONNULL_END

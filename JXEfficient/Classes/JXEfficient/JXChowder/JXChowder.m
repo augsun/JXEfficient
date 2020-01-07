@@ -9,6 +9,8 @@
 #import <sys/utsname.h>
 #import "JXInline.h"
 
+#import <WebKit/WebKit.h>
+
 @implementation JXChowder
 
 + (NSString *)msgForNetError:(NSError *)error defaultMsg:(NSString *)defaultMsg {
@@ -97,6 +99,14 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appName = jx_strValue([infoDictionary objectForKey:@"CFBundleDisplayName"]);
     return appName;
+}
+
++ (void)clearWKWebsiteData {
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        
+    }];
 }
 
 @end
