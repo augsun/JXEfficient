@@ -98,7 +98,7 @@ static UIImage *kDisabledImage_bgColorStyle_ = nil;
 }
 
 + (instancetype)naviView {
-    JXNaviView *view = [[JXNaviView alloc] init];
+    JXNaviView *view = [[self alloc] init];
     return view;
 }
 

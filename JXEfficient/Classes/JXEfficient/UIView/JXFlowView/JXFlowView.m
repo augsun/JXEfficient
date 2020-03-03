@@ -138,51 +138,126 @@
     }
     
     // 布局 及 每个 Item 回调上层刷新 UI
-    NSInteger index = 0;
-    NSInteger row = 0;
-    CGFloat x = self.layout.kEdgeL;
-    for (NSArray <JXFlowViewItemModel *> *rowEnum in self.itemModels) {
-        for (JXFlowViewItemModel *modelEnum in rowEnum) {
-            JXFlowViewItemView *itemView = self.itemViews[index];
+    switch (self.layout.alignment) {
+        case JXFlowViewLayoutAlignmentLeft:
+            {
+                NSInteger index = 0;
+                NSInteger row = 0;
+                CGFloat x = self.layout.kEdgeL;
+                for (NSArray <JXFlowViewItemModel *> *rowEnum in self.itemModels) {
+                    for (JXFlowViewItemModel *modelEnum in rowEnum) {
+                        JXFlowViewItemView *itemView = self.itemViews[index];
+                        
+                        // 回调上层刷新 UI
+                        JX_BLOCK_EXEC(self.itemViewForIndex, itemView, index);
+                        
+                        // 布局
+                        CGFloat y = row * (self.layout.itemHeight + self.layout.kLineGap);
+                        
+                        if (!itemView.didSetConstraint) {
+                            itemView.translatesAutoresizingMaskIntoConstraints = NO;
+                            
+                            // L T
+                            itemView.conToL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self m:1.0 c:x];
+                            itemView.conToT = [itemView jx_con_same:NSLayoutAttributeTop equal:self m:1.0 c:y];
+                            [NSLayoutConstraint activateConstraints:@[itemView.conToL, itemView.conToT]];
+                            
+                            // W H
+                            itemView.conW = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:modelEnum.itemWidth];
+                            itemView.conH = [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:self.layout.itemHeight];
+                            [NSLayoutConstraint activateConstraints:@[itemView.conW, itemView.conH]];
+                            
+                            //
+                            itemView.didSetConstraint = YES;
+                        }
+                        else {
+                            itemView.conToL.constant = x;
+                            itemView.conToT.constant = y;
+                            itemView.conW.constant = modelEnum.itemWidth;
+                            itemView.conH.constant = self.layout.itemHeight;
+                        }
+                        
+                        itemView.hidden = NO;
+                        
+                        x += self.layout.kInterGap + modelEnum.itemWidth;
+                        
+                        index ++;
+                    }
+                    
+                    row ++;
+                    x = self.layout.kEdgeL;
+                }
+            } break;
             
-            // 回调上层刷新 UI
-            JX_BLOCK_EXEC(self.itemViewForIndex, itemView, index);
+        case JXFlowViewLayoutAlignmentRight:
+            {
+                NSInteger index = 0;
+                NSInteger row = 0;
+                CGFloat x = self.layout.kEdgeL;
+                for (NSArray <JXFlowViewItemModel *> *rowEnum in self.itemModels) {
+                    NSInteger i = 0; // 所在行的 index
+                    
+                    // 计算当前行的总宽度
+                    CGFloat row_w = 0.0;
+                    for (JXFlowViewItemModel *modelEnum in rowEnum) {
+                        row_w += modelEnum.itemWidth;
+                    }
+                    row_w += (rowEnum.count - 1) * self.layout.kInterGap;
+                    
+                    CGFloat first_item_toL = self.layout.inWidth - self.layout.kEdgeR - row_w;
+
+                    for (JXFlowViewItemModel *modelEnum in rowEnum) {
+                        JXFlowViewItemView *itemView = self.itemViews[index];
+                        
+                        // 回调上层刷新 UI
+                        JX_BLOCK_EXEC(self.itemViewForIndex, itemView, index);
+                        
+                        // 布局
+                        CGFloat y = row * (self.layout.itemHeight + self.layout.kLineGap);
+                        
+                        if (!itemView.didSetConstraint) {
+                            itemView.translatesAutoresizingMaskIntoConstraints = NO;
+                            
+                            // L
+                            if (i == 0) {
+                                x = first_item_toL;
+                            }
+                            
+                            // T
+                            itemView.conToL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self m:1.0 c:x];
+                            itemView.conToT = [itemView jx_con_same:NSLayoutAttributeTop equal:self m:1.0 c:y];
+                            [NSLayoutConstraint activateConstraints:@[itemView.conToL, itemView.conToT]];
+                            
+                            // W H
+                            itemView.conW = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:modelEnum.itemWidth];
+                            itemView.conH = [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:self.layout.itemHeight];
+                            [NSLayoutConstraint activateConstraints:@[itemView.conW, itemView.conH]];
+                            
+                            //
+                            itemView.didSetConstraint = YES;
+                        }
+                        else {
+                            itemView.conToL.constant = x;
+                            itemView.conToT.constant = y;
+                            itemView.conW.constant = modelEnum.itemWidth;
+                            itemView.conH.constant = self.layout.itemHeight;
+                        }
+                        
+                        itemView.hidden = NO;
+                        
+                        x += self.layout.kInterGap + modelEnum.itemWidth;
+                        
+                        index ++;
+                        
+                        i ++;
+                    }
+                    
+                    row ++;
+                    x = self.layout.kEdgeL;
+                }
+            } break;
             
-            // 布局
-            CGFloat y = row * (self.layout.itemHeight + self.layout.kLineGap);
-            
-            if (!itemView.didSetConstraint) {
-                itemView.translatesAutoresizingMaskIntoConstraints = NO;
-                
-                // L T
-                itemView.conToL = [itemView jx_con_same:NSLayoutAttributeLeft equal:self m:1.0 c:x];
-                itemView.conToT = [itemView jx_con_same:NSLayoutAttributeTop equal:self m:1.0 c:y];
-                [NSLayoutConstraint activateConstraints:@[itemView.conToL, itemView.conToT]];
-                
-                // W H
-                itemView.conW = [itemView jx_con_same:NSLayoutAttributeWidth equal:nil m:1.0 c:modelEnum.itemWidth];
-                itemView.conH = [itemView jx_con_same:NSLayoutAttributeHeight equal:nil m:1.0 c:self.layout.itemHeight];
-                [NSLayoutConstraint activateConstraints:@[itemView.conW, itemView.conH]];
-                
-                //
-                itemView.didSetConstraint = YES;
-            }
-            else {
-                itemView.conToL.constant = x;
-                itemView.conToT.constant = y;
-                itemView.conW.constant = modelEnum.itemWidth;
-                itemView.conH.constant = self.layout.itemHeight;
-            }
-            
-            itemView.hidden = NO;
-            
-            x += self.layout.kInterGap + modelEnum.itemWidth;
-            
-            index ++;
-        }
-        
-        row ++;
-        x = self.layout.kEdgeL;
+        default: break;
     }
 }
 

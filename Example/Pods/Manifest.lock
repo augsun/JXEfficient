@@ -1,5 +1,5 @@
 PODS:
-  - JXEfficient (0.5.47)
+  - JXEfficient (0.5.52)
   - Masonry (1.1.0)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JXEfficient: 89b5ae17b7f0d5fa0529ad1fdeac05541512d3a3
+  JXEfficient: 6ce0f3ad030e18a3f20457c4bb8f001e7e96e1c5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
 

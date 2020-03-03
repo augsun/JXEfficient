@@ -77,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 清除 WKWeb 所有缓存
 + (void)clearWKWebsiteData;
 
+/// 手机号分隔 (@"18912341234" -> @"189 1234 1234")
++ (NSString *)separateMobileNumber:(NSString *)mobileNumber;
+
 @end
 
 NS_ASSUME_NONNULL_END

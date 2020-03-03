@@ -109,4 +109,22 @@
     }];
 }
 
++ (NSString *)separateMobileNumber:(NSString *)mobileNumber {
+    if (mobileNumber == nil) {
+        return nil;
+    }
+    
+    if (mobileNumber.length != 11) {
+        return mobileNumber;
+    }
+    
+    NSString *s1 = [mobileNumber substringWithRange:NSMakeRange(0, 3)];
+    NSString *s2 = [mobileNumber substringWithRange:NSMakeRange(3, 4)];
+    NSString *s3 = [mobileNumber substringWithRange:NSMakeRange(7, 4)];
+
+    NSString *s = [NSString stringWithFormat:@"%@ %@ %@", s1, s2, s3];
+    
+    return s;
+}
+
 @end

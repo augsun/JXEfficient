@@ -10,6 +10,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ 对齐方式
+ */
+typedef NS_ENUM(NSUInteger, JXFlowViewLayoutAlignment) {
+    JXFlowViewLayoutAlignmentLeft, ///< 靠左, 默认
+    JXFlowViewLayoutAlignmentRight, ///< 靠右
+};
+
+/**
  整个布局类似一个 UICollectionView 的 section 布局, 其 item 的高度固定 宽度不定
  */
 @interface JXFlowViewLayout : NSObject
@@ -31,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat inWidth; ///< 在多宽范围内布局
 
 @property (nonatomic, assign) CGFloat itemMaxWidth; ///< item 的最大宽度
+
+@property (nonatomic, assign) JXFlowViewLayoutAlignment alignment; ///< 对齐方式, 默认 JXFlowViewLayoutAlignmentLeft
 
 @end
 

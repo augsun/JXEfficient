@@ -284,6 +284,7 @@ highlightedColor:(UIColor *)highlightedColor
                     font = [UIFont systemFontOfSize:JXNavigationBarItemFontSizeDefault];
                 }
                 self.button.titleLabel.font = font;
+                [self.button sizeToFit];
                 
                 // 计算宽度
                 static CGFloat (^count_title_w)(NSString *, UIFont *) = ^ CGFloat (NSString *t, UIFont *f) {
