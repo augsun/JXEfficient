@@ -22,6 +22,7 @@
 #import "UIView+JXToastAndProgressHUD.h"
 #import "UICollectionView+JXCategory.h"
 #import "NSString+JXCategory.h"
+#import "NSNumber+JXCategory.h"
 #import "NSString+JXCategory_URLString.h"
 #import "UITableView+JXCategory.h"
 #import "NSDate+JXCategory.h"

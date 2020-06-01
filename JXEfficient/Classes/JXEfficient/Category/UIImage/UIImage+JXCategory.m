@@ -251,6 +251,7 @@
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     UIImage *pdfImage = [[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp];
+    pdfImage = [pdfImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     CGImageRelease(image);
     CGContextRelease(ctx);
     CGColorSpaceRelease(colorSpace);
