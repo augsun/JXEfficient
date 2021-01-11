@@ -5,7 +5,7 @@
 //  Created by augsun on 4/30/19.
 //
 
-#import "JXEncryption.h"
+#import <JXEncryption.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

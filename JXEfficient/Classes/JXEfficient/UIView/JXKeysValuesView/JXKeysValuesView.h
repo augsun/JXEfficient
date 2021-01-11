@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXKeysValuesViewLayout.h"
+#import <JXKeysValuesViewLayout.h>
 
-#import "JXKeysValuesModel.h"
+#import <JXKeysValuesModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXPhotosGeneralPreviewBottomTagModel.h"
+#import <JXPhotosGeneralPreviewBottomTagModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

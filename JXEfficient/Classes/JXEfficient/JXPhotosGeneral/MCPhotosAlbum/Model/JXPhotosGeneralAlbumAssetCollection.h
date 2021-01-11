@@ -6,7 +6,7 @@
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXPhotosAssetCollection.h"
+#import <JXPhotosAssetCollection.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

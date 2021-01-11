@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXPhotosGeneralNaviView.h"
-#import "JXPhotosGeneralPreviewBottomView.h"
-#import "JXPhotosGeneralUsage.h"
+#import <JXPhotosGeneralNaviView.h>
+#import <JXPhotosGeneralPreviewBottomView.h>
+#import <JXPhotosGeneralUsage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

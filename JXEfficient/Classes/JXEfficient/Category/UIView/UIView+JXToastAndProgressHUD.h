@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXCircleProgressHUDView.h"
+#import <JXCircleProgressHUDView.h>
 
 @interface UIView (JXToastAndProgressHUD)
 

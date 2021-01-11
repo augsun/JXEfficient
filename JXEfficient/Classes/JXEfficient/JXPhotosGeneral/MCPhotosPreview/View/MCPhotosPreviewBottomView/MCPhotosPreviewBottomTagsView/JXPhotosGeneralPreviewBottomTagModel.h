@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "JXPhotosGeneralAsset.h"
+#import <JXPhotosGeneralAsset.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

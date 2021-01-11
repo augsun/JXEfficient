@@ -31,11 +31,7 @@
     
     [JXEfficientDocker bundle];
     
-    
-    NSString *str = [NSString jx_priceTwoFractionDigitsString:00.129];
-    
-    NSLog(@"");
-    
+        
     
     return YES;
 }

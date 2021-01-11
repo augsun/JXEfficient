@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JXPhotosAsset.h"
+#import <JXPhotosAsset.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

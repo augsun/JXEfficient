@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXNavigationBar.h"
-#import "JXPhotosLayoutView.h"
+#import <JXNavigationBar.h>
+#import <JXPhotosLayoutView.h>
 
-#import "JXPhotosGeneralAsset.h"
-#import "JXPhotosGeneralUsage.h"
-#import "JXPhotosGeneralBottomBarView.h"
+#import <JXPhotosGeneralAsset.h>
+#import <JXPhotosGeneralUsage.h>
+#import <JXPhotosGeneralBottomBarView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

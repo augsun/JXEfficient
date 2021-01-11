@@ -6,7 +6,7 @@
 //  Copyright © 2017 CoderSun. All rights reserved.
 //
 
-#import "JXNavigationBar.h"
+#import <JXNavigationBar.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

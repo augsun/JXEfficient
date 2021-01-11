@@ -6,8 +6,8 @@
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXNaviView.h"
-#import "JXPhotosGeneralUsage.h"
+#import <JXNaviView.h>
+#import <JXPhotosGeneralUsage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

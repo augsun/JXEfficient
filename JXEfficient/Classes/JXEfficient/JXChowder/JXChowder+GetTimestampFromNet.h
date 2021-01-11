@@ -5,7 +5,7 @@
 //  Created by augsun on 4/28/19.
 //
 
-#import "JXChowder.h"
+#import <JXChowder.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

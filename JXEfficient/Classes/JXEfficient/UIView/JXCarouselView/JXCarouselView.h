@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXCarouselImageView.h"
-#import "JXCarouselPageControlView.h"
+#import <JXCarouselImageView.h>
+#import <JXCarouselPageControlView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

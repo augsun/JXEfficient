@@ -5,7 +5,7 @@
 //  Created by augsun on 7/1/19.
 //
 
-#import "JXPopupBaseView.h"
+#import <JXPopupBaseView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

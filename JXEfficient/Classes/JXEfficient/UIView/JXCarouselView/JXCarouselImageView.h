@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXCarouselModel.h"
+#import <JXCarouselModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

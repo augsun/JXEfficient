@@ -6,10 +6,10 @@
 //  Copyright © 2019 CoderSun. All rights reserved.
 //
 
-#import "JXPhotosViewCell.h"
+#import <JXPhotosViewCell.h>
 
-#import "JXPhotosGeneralAsset.h"
-#import "JXPhotosGeneralUsage.h"
+#import <JXPhotosGeneralAsset.h>
+#import <JXPhotosGeneralUsage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

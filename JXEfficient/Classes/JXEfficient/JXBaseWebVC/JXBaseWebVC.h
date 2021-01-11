@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
-#import "JXNaviView.h"
+#import <JXNaviView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

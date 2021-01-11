@@ -6,7 +6,7 @@
 //  Copyright © 2018 CoderSun. All rights reserved.
 //
 
-#import "JXTagsView.h"
+#import <JXTagsView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

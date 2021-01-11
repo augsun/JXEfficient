@@ -1,17 +1,17 @@
 PODS:
-  - JXEfficient (0.5.52)
+  - JXEfficient (1.0.11)
   - Masonry (1.1.0)
-  - SDWebImage (4.4.3):
-    - SDWebImage/Core (= 4.4.3)
-  - SDWebImage/Core (4.4.3)
+  - SDWebImage (5.10.2):
+    - SDWebImage/Core (= 5.10.2)
+  - SDWebImage/Core (5.10.2)
 
 DEPENDENCIES:
   - JXEfficient (from `../`)
-  - Masonry (= 1.1.0)
-  - SDWebImage (= 4.4.3)
+  - Masonry
+  - SDWebImage (= 5.10.2)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Masonry
     - SDWebImage
 
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JXEfficient: 6ce0f3ad030e18a3f20457c4bb8f001e7e96e1c5
+  JXEfficient: 3eeac37299a4a811e9889c435ace01f0bd625680
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
 
-PODFILE CHECKSUM: 02218d72dac336d08734a4a294fb1d4f4abbf2c7
+PODFILE CHECKSUM: 6384cedf04262eaf9d8725f3eef101264caf2540
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

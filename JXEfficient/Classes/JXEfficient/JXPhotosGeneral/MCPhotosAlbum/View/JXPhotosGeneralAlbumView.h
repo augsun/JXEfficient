@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXNavigationBar.h"
+#import <JXNavigationBar.h>
 
-#import "JXPhotosGeneralAlbumAssetCollection.h"
+#import <JXPhotosGeneralAlbumAssetCollection.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

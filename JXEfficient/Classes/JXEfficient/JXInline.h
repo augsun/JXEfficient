@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "JXMacro.h"
+#import <JXMacro.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

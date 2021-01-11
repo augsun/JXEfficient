@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JXKeysValuesConst.h"
+#import <JXKeysValuesConst.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

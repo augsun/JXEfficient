@@ -178,6 +178,7 @@
         bf[i / 2] = (char)anInt;
     }
     NSString *aString = [NSString stringWithCString:bf encoding:NSUTF8StringEncoding];
+    free(bf);
     return aString;
 }
 

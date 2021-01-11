@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXNavigationBarItem.h"
+#import <JXNavigationBarItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

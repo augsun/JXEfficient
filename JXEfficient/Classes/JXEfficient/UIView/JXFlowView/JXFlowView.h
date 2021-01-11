@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXFlowViewLayout.h"
-#import "JXFlowViewItemModel.h"
-#import "JXFlowViewItemView.h"
+#import <JXFlowViewLayout.h>
+#import <JXFlowViewItemModel.h>
+#import <JXFlowViewItemView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

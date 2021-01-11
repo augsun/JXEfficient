@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXTagsViewTagModel.h"
+#import <JXTagsViewTagModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
