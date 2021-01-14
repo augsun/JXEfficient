@@ -23,6 +23,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		8606064D25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8606064C25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.m */; };
 		C80292BF21D76F08006095F9 /* autoRelease_JXEfficient.py in Resources */ = {isa = PBXBuildFile; fileRef = C80292BE21D76F08006095F9 /* autoRelease_JXEfficient.py */; };
 		C82B11CF22E051B0007FA929 /* JXTest_JXPhotos_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82B11CD22E051B0007FA929 /* JXTest_JXPhotos_Cell.m */; };
 		C82B11D022E051B0007FA929 /* JXTest_JXPhotos_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82B11CE22E051B0007FA929 /* JXTest_JXPhotos_Cell.xib */; };
@@ -84,6 +85,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		65A5D5BCE02A14E4A79209CC /* JXEfficient.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JXEfficient.podspec; path = ../JXEfficient.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8606064B25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTest_JXTimeFrequencyLimited_VC.h; sourceTree = "<group>"; };
+		8606064C25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTest_JXTimeFrequencyLimited_VC.m; sourceTree = "<group>"; };
 		8E0415D5EA2CC490C2621BCB /* Pods-JXEfficient_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Example/Pods-JXEfficient_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9E99CA329A5BEA7F1C013779 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B80575148304D160ABE3AB86 /* Pods-JXEfficient_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JXEfficient_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JXEfficient_Tests/Pods-JXEfficient_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -261,6 +264,38 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		8606064625B0070200D1470E /* JXTimeFrequencyLimited */ = {
+			isa = PBXGroup;
+			children = (
+				8606064A25B007AD00D1470E /* Controller */,
+			);
+			path = JXTimeFrequencyLimited;
+			sourceTree = "<group>";
+		};
+		8606064725B0075500D1470E /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				8606064625B0070200D1470E /* JXTimeFrequencyLimited */,
+				F3FA5BD323AB5E1D00DC4A87 /* JXPhotosGeneral */,
+				C8BE0BE4233B1D09009EC913 /* JXTagsGeneralView */,
+				C8296E0F22E0079900C33089 /* JXPhotos */,
+				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
+				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
+				C840284C22CF0CC30010BB22 /* JXCarouselView */,
+				C85CF25522CC819C006EF8AB /* JXPopupGeneralView */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		8606064A25B007AD00D1470E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8606064B25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.h */,
+				8606064C25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C8296E0F22E0079900C33089 /* JXPhotos */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +366,7 @@
 				C85CF25122CC8139006EF8AB /* Controller */,
 				C85CF25022CC8136006EF8AB /* Model */,
 				C85CF24F22CC8133006EF8AB /* View */,
+				8606064725B0075500D1470E /* Functions */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -359,13 +395,6 @@
 			children = (
 				6003F5A5195388D20070C39A /* JXTestHomeVC.h */,
 				6003F5A6195388D20070C39A /* JXTestHomeVC.m */,
-				F3FA5BD323AB5E1D00DC4A87 /* JXPhotosGeneral */,
-				C8BE0BE4233B1D09009EC913 /* JXTagsGeneralView */,
-				C8296E0F22E0079900C33089 /* JXPhotos */,
-				C8E3330A22DCD44800CC7C11 /* JXNaviView */,
-				C84D2BA522DC1BA700F10BC7 /* JXCircularArcView */,
-				C840284C22CF0CC30010BB22 /* JXCarouselView */,
-				C85CF25522CC819C006EF8AB /* JXPopupGeneralView */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -535,7 +564,7 @@
 				ORGANIZATIONNAME = CoderSun;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 3DB7LCY84D;
+						DevelopmentTeam = Q8W8534637;
 						ProvisioningStyle = Manual;
 					};
 					6003F5AD195388D20070C39A = {
@@ -674,6 +703,7 @@
 				C85CF25422CC8187006EF8AB /* JXTestBaseVC.m in Sources */,
 				C8D0028D22E0274C006D08A5 /* JXTest_JXPhotos_VC.m in Sources */,
 				C85CF26022CC8476006EF8AB /* JXTest_JXPopupGeneralView_VC.m in Sources */,
+				8606064D25B007D200D1470E /* JXTest_JXTimeFrequencyLimited_VC.m in Sources */,
 				6003F59E195388D20070C39A /* JXAppDelegate.m in Sources */,
 				C85CF25C22CC8305006EF8AB /* JXTestHomeCell.m in Sources */,
 				C8D0029922E02933006D08A5 /* JXTest_JXPhotos_AlbumImageModel.m in Sources */,
@@ -841,14 +871,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3DB7LCY84D;
+				DEVELOPMENT_TEAM = Q8W8534637;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JXEfficient/JXEfficient-Prefix.pch";
 				INFOPLIST_FILE = "JXEfficient/JXEfficient-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crland.newMixc.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwai.videoeditor.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = enterprise_deve_app;
+				PROVISIONING_PROFILE_SPECIFIER = Kmovie_debug;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -865,7 +895,7 @@
 				GCC_PREFIX_HEADER = "JXEfficient/JXEfficient-Prefix.pch";
 				INFOPLIST_FILE = "JXEfficient/JXEfficient-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crland.newMixc.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwai.videoeditor.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;

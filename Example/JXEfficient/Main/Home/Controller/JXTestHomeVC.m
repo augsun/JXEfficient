@@ -13,6 +13,7 @@
 #import "JXTestHomeCell.h"
 
 //
+#import "JXTest_JXTimeFrequencyLimited_VC.h"
 #import "JXTest_JXPhotosGeneral_VC.h"
 #import "JXTest_JXTagsGeneralView_VC.h"
 #import "JXTest_JXPhotos_VC.h"
@@ -52,6 +53,7 @@ static NSString *const kCellID = @"kCellID";
     };
     
     //
+    addTestVC([JXTest_JXTimeFrequencyLimited_VC class]);
     addTestVC([JXTest_JXPhotosGeneral_VC class]);
     addTestVC([JXTest_JXTagsGeneralView_VC class]);
     addTestVC([JXTest_JXPhotos_VC class]);

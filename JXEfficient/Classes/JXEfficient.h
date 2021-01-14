@@ -50,6 +50,8 @@
 
 #import <JXPhotosGeneral.h>
 
+#import <JXRangeNumericalAccuracyFilter.h>
+
 // UIView
 #import <JXQRCodeScanView.h>                // 二维码扫描
 #import <JXImageBrowser.h>                  // 图片浏览器
